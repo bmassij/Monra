@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Monra Support BV — Hospitality, Toezicht & Zorg</title>
+<meta name="description" content="Ondersteuningsprofessionals voor hospitality, veiligheid en zorg – flexibel inzetbaar, altijd gastvrij."/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:#1e293b;background:#fff;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+
+/*
+  MONRA SUPPORT — eigen identiteit
+  Primair:  #0E5C4B  (diep groen)
+  Accent:   #1ABFA1  (teal/mint)
+  Licht:    #F0FBF8  (mintgroen licht)
+  Donker:   #062E26  (bijna zwart groen)
+  Navy behouden voor connectie met Security: #1A2B6D
+*/
+
+/* ── TOPBAR ── */
+.topbar{background:#062E26;padding:9px 48px;display:flex;justify-content:space-between;align-items:center}
+.topbar-left{display:flex;gap:24px}
+.topbar a{font-size:12px;color:rgba(255,255,255,.75);display:flex;align-items:center;gap:6px;transition:color .2s}
+.topbar a:hover{color:#1ABFA1}
+.topbar-right{display:flex;gap:12px;align-items:center}
+.back-pill{font-size:11px;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:6px;padding:4px 12px;border:1px solid rgba(255,255,255,.15);border-radius:20px;transition:all .2s}
+.back-pill:hover{color:#1ABFA1;border-color:#1ABFA1}
+
+/* ── NAV ── */
+nav{background:#fff;border-bottom:3px solid #0E5C4B;position:sticky;top:0;z-index:200;box-shadow:0 2px 20px rgba(14,92,75,.12)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 48px;height:78px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo-wrap{display:flex;align-items:center;gap:14px}
+.nav-logo-wrap img{height:50px;width:auto;object-fit:contain}
+.nav-sep{width:1px;height:36px;background:#e2e8f0}
+.nav-brand{display:flex;flex-direction:column}
+.nav-brand span:first-child{font-size:9px;font-weight:700;color:#1ABFA1;text-transform:uppercase;letter-spacing:2px}
+.nav-brand span:last-child{font-size:15px;font-weight:900;color:#0E5C4B}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:13px;font-weight:700;color:#0E5C4B;text-transform:uppercase;letter-spacing:.8px;padding:6px 0;border-bottom:2px solid transparent;transition:all .2s}
+.nav-links a:hover{color:#1ABFA1;border-bottom-color:#1ABFA1}
+.btn-nav-cta{background:#0E5C4B;color:#fff;font-weight:700;font-size:13px;padding:10px 22px;border-radius:4px;transition:all .2s;white-space:nowrap}
+.btn-nav-cta:hover{background:#1ABFA1}
+
+/* ── HERO SLIDER ── */
+.hs{position:relative;height:620px;overflow:hidden;background:#062E26}
+.hs-viewport{position:relative;width:100%;height:100%;overflow:hidden}
+.hs-slide{position:absolute;inset:0;display:flex;align-items:stretch;opacity:0;transition:opacity .8s ease;pointer-events:none}
+.hs-slide.active{opacity:1;pointer-events:auto;z-index:2}
+.hs-slide.prev{opacity:0;z-index:1}
+.hs-photo{position:absolute;inset:0;width:62%;overflow:hidden}
+.hs-photo img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transform:scale(1.04);transition:transform 6s ease}
+.hs-slide.active .hs-photo img{transform:scale(1)}
+.hs-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(6,46,38,.15) 0%,rgba(6,46,38,.04) 38%,rgba(6,46,38,.65) 68%,rgba(6,46,38,.98) 100%)}
+.hs-curve{position:absolute;top:0;right:-1px;width:220px;height:100%;z-index:2}
+.hs-curve svg{width:100%;height:100%}
+.hs-content{position:absolute;right:0;top:0;bottom:0;width:48%;display:flex;flex-direction:column;justify-content:center;padding:0 72px 0 48px;z-index:3}
+.hs-tag{display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:800;color:#1ABFA1;text-transform:uppercase;letter-spacing:3.5px;margin-bottom:20px}
+.hs-tag-line{width:36px;height:2px;background:#1ABFA1;flex-shrink:0}
+.hs-content h2{font-size:clamp(26px,3vw,46px);font-weight:900;color:#fff;line-height:1.08;letter-spacing:-1px;margin-bottom:16px}
+.hs-content h2 em{font-style:normal;color:#1ABFA1}
+.hs-content p{font-size:15px;color:rgba(255,255,255,.72);line-height:1.85;margin-bottom:24px;max-width:400px}
+.hs-bullets{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+.hs-bullets li{font-size:13px;color:rgba(255,255,255,.85);display:flex;align-items:center;gap:10px}
+.hs-chk{width:20px;height:20px;border-radius:50%;background:rgba(26,191,161,.15);border:1.5px solid #1ABFA1;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;color:#1ABFA1;font-weight:900}
+.hs-cta{display:inline-flex;align-items:center;gap:10px;background:#1ABFA1;color:#062E26;font-weight:800;font-size:14px;padding:13px 28px;border-radius:6px;transition:all .25s;width:fit-content;box-shadow:0 8px 28px rgba(26,191,161,.35)}
+.hs-cta:hover{background:#fff;transform:translateY(-2px)}
+.hs-ghost{display:inline-flex;align-items:center;color:rgba(255,255,255,.65);font-size:13px;font-weight:600;margin-left:16px;border-bottom:1px solid rgba(255,255,255,.25);padding-bottom:2px;transition:all .2s}
+.hs-ghost:hover{color:#1ABFA1;border-color:#1ABFA1}
+.hs-progress{position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,.1);z-index:10}
+.hs-bar{height:100%;background:#1ABFA1;width:0%;transition:none}
+.hs-bar.run{transition:width 5.5s linear;width:100%}
+.hs-nav{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:10}
+.hs-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);border:none;cursor:pointer;padding:0;transition:all .3s}
+.hs-dot.on{background:#1ABFA1;width:32px;border-radius:4px}
+.hs-arr{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:52px;height:52px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;transition:all .25s;backdrop-filter:blur(8px)}
+.hs-prev{left:32px;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.hs-next{right:32px;background:#1ABFA1;color:#062E26}
+.hs-prev:hover{background:rgba(255,255,255,.22)}
+.hs-next:hover{background:#fff}
+.hs-count{position:absolute;top:32px;right:40px;z-index:10;font-size:11px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:2px}
+
+/* ── TICKER ── */
+.ticker{background:#0E5C4B;padding:20px 0}
+.ticker-in{max-width:1280px;margin:0 auto;padding:0 48px;display:flex;gap:28px;align-items:center;flex-wrap:wrap;justify-content:center}
+.ticker-lbl{font-size:10px;font-weight:700;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:3px;flex-shrink:0}
+.ticker-i{font-size:12px;font-weight:700;color:#1ABFA1;display:flex;align-items:center;gap:8px}
+.ticker-i::before{content:'◆';font-size:7px;opacity:.6}
+
+/* ── LAYOUT ── */
+.section{padding:88px 0}
+.section-alt{background:#F0FBF8}
+.container{max-width:1280px;margin:0 auto;padding:0 48px}
+.stag{font-size:11px;font-weight:700;color:#1ABFA1;text-transform:uppercase;letter-spacing:3px;margin-bottom:10px}
+.sline{width:44px;height:4px;background:linear-gradient(90deg,#1ABFA1,#0E5C4B);border-radius:2px;margin-bottom:20px}
+h2.sh{font-size:clamp(28px,3vw,42px);font-weight:900;color:#0E5C4B;line-height:1.15;letter-spacing:-1px}
+.sdesc{font-size:16px;color:#64748b;line-height:1.8;margin-top:12px}
+
+/* ── DIENSTEN GRID ── */
+.dgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
+.dcard{background:#fff;border-radius:10px;box-shadow:0 1px 12px rgba(14,92,75,.08);transition:all .3s;border-top:4px solid transparent;padding:28px}
+.dcard:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(14,92,75,.14);border-top-color:#1ABFA1}
+.dcard-icon{width:48px;height:48px;border-radius:12px;background:#F0FBF8;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px}
+.dcard h3{font-size:17px;font-weight:800;color:#0E5C4B;margin-bottom:8px}
+.dcard p{font-size:13px;color:#64748b;line-height:1.75;margin-bottom:14px}
+.dcard-tags{display:flex;flex-wrap:wrap;gap:6px}
+.dtag{font-size:11px;font-weight:600;color:#0E5C4B;background:#F0FBF8;border:1px solid #b2e8dc;padding:3px 10px;border-radius:20px}
+
+/* ── SECTOREN STRIP ── */
+.sectors{background:#0E5C4B;padding:40px 0;margin-top:52px}
+.sectors-in{max-width:1280px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.sector-item{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:20px;text-align:center;transition:all .2s}
+.sector-item:hover{background:rgba(26,191,161,.15);border-color:#1ABFA1}
+.sector-icon{font-size:28px;margin-bottom:8px}
+.sector-name{font-size:13px;font-weight:700;color:#fff}
+.sector-sub{font-size:11px;color:rgba(255,255,255,.5);margin-top:3px}
+
+/* ── OVER ONS ── */
+.over-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.over-img-wrap{position:relative}
+.over-img{width:100%;border-radius:10px;box-shadow:0 24px 64px rgba(14,92,75,.18);display:block;object-fit:cover;aspect-ratio:4/3}
+.over-badge{position:absolute;bottom:-24px;right:-24px;background:#0E5C4B;border-radius:10px;padding:22px 26px;text-align:center;box-shadow:0 12px 32px rgba(14,92,75,.4);border:3px solid #1ABFA1}
+.badge-n{font-size:36px;font-weight:900;color:#1ABFA1;display:block;line-height:1}
+.badge-t{font-size:10px;color:rgba(255,255,255,.75);margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:1px}
+.usps{display:flex;flex-direction:column;gap:0;margin-top:28px;border-radius:10px;overflow:hidden;border:1px solid #d1ede7}
+.usp{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;background:#fff;border-bottom:1px solid #d1ede7;transition:background .2s}
+.usp:last-child{border-bottom:none}
+.usp:hover{background:#F0FBF8}
+.usp-icon{width:38px;height:38px;border-radius:8px;background:#F0FBF8;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;margin-top:2px}
+.usp h4{font-size:14px;font-weight:700;color:#0E5C4B;margin-bottom:3px}
+.usp p{font-size:13px;color:#64748b;line-height:1.6}
+blockquote.bq{background:#F0FBF8;border-left:4px solid #1ABFA1;border-radius:0 8px 8px 0;padding:18px 22px;font-style:italic;color:#334155;font-size:15px;line-height:1.8;margin-top:24px}
+
+/* ── GALLERY STRIP ── */
+.gallery-bg{background:#062E26;padding:64px 0}
+.gallery-head{margin-bottom:32px}
+.gallery-head .stag{color:#1ABFA1}
+.gallery-head h2{color:#fff}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:260px 260px;gap:6px}
+.pitem{overflow:hidden;border-radius:4px;position:relative}
+.pitem.wide{grid-column:span 2}
+.pitem img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.pitem:hover img{transform:scale(1.06)}
+.pitem::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(6,46,38,.5),transparent 55%);opacity:0;transition:opacity .3s}
+.pitem:hover::after{opacity:1}
+
+/* ── OPLEIDING ── */
+.opl-bg{background:#0E5C4B}
+.opl-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;padding-top:8px}
+.opl-bg .stag{color:#1ABFA1}
+.opl-bg h2{color:#fff}
+.opl-bg .sdesc{color:rgba(255,255,255,.7)}
+.sbb-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(26,191,161,.12);border:1px solid rgba(26,191,161,.3);border-radius:4px;padding:7px 14px;font-size:11px;font-weight:700;color:#1ABFA1;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:24px}
+.opl-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin:20px 0 28px}
+.opl-list li{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:rgba(255,255,255,.82);line-height:1.7}
+.opl-ck{width:22px;height:22px;border-radius:50%;background:#1ABFA1;color:#062E26;font-weight:900;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.btn-opl{display:inline-flex;align-items:center;gap:8px;background:#1ABFA1;color:#062E26;font-weight:800;font-size:14px;padding:12px 26px;border-radius:4px;transition:all .2s}
+.btn-opl:hover{background:#fff;transform:translateY(-2px)}
+.steps{display:flex;flex-direction:column;gap:0}
+.step{display:flex;gap:18px;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.step:last-child{border-bottom:none}
+.step-n{width:38px;height:38px;border-radius:50%;background:#1ABFA1;color:#062E26;font-weight:900;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step h4{font-size:14px;font-weight:700;color:#fff;margin-bottom:5px}
+.step p{font-size:13px;color:rgba(255,255,255,.58);line-height:1.7}
+
+/* ── BRANDWACHT SPECIAL ── */
+.bw-bg{background:#F0FBF8;border-top:1px solid #b2e8dc;border-bottom:1px solid #b2e8dc}
+.bw-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:center}
+.bw-label{display:inline-flex;align-items:center;gap:8px;background:#fff2e5;border:1px solid #f5a623;border-radius:4px;padding:6px 14px;font-size:11px;font-weight:700;color:#c77700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:18px}
+.bw-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin:20px 0 28px}
+.bw-list li{font-size:14px;color:#334155;display:flex;align-items:flex-start;gap:10px;line-height:1.65}
+.bw-list li::before{content:'🔥';font-size:14px;flex-shrink:0;margin-top:1px}
+.bw-badges{display:flex;flex-direction:column;gap:12px}
+.bw-badge{background:#fff;border:1px solid #d1ede7;border-radius:8px;padding:16px 20px;display:flex;align-items:center;gap:14px}
+.bw-badge-icon{font-size:28px;flex-shrink:0}
+.bw-badge h4{font-size:13px;font-weight:700;color:#0E5C4B;margin-bottom:3px}
+.bw-badge p{font-size:12px;color:#64748b;line-height:1.5}
+.btn-bw{display:inline-flex;align-items:center;gap:8px;background:#0E5C4B;color:#fff;font-weight:700;font-size:13px;padding:11px 22px;border-radius:4px;transition:all .2s}
+.btn-bw:hover{background:#1ABFA1;color:#062E26}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;margin-top:52px}
+.cform-wrap{background:#fff;border-radius:12px;padding:36px;box-shadow:0 2px 20px rgba(14,92,75,.08);border:1px solid #d1ede7}
+.cform-wrap h3{font-size:20px;font-weight:800;color:#0E5C4B;margin-bottom:24px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.fg{margin-bottom:16px}
+label{display:block;font-size:11px;font-weight:700;color:#0E5C4B;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+input,textarea,select{width:100%;background:#F0FBF8;border:1.5px solid #b2e8dc;border-radius:6px;padding:11px 14px;font-size:14px;color:#1e293b;font-family:inherit;outline:none;transition:border-color .2s}
+input:focus,textarea:focus,select:focus{border-color:#0E5C4B;background:#fff}
+.btn-sub{width:100%;background:#0E5C4B;color:#fff;font-weight:700;font-size:14px;padding:14px;border-radius:6px;border:none;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-sub:hover{background:#1ABFA1;color:#062E26}
+#form-ok{display:none;text-align:center;padding:40px 0}
+#form-ok .oi{font-size:52px;margin-bottom:12px}
+#form-ok h3{color:#0E5C4B;font-size:20px;margin-bottom:8px}
+#form-ok p{color:#64748b;font-size:14px}
+.csidebar h3{font-size:20px;font-weight:800;color:#0E5C4B;margin-bottom:20px}
+.ci{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid #e2e8f0}
+.ci:last-of-type{border-bottom:none}
+.ci-ico{width:40px;height:40px;border-radius:8px;background:#F0FBF8;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.ci-lbl{font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;font-weight:600}
+.ci-val{font-size:14px;color:#0E5C4B;font-weight:700;transition:color .2s}
+.ci:hover .ci-val{color:#1ABFA1}
+.cbox{margin-top:24px;padding:20px;background:#F0FBF8;border-radius:10px;border:1px solid #b2e8dc}
+.cbox-t{font-size:11px;font-weight:700;color:#1ABFA1;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.cbox p{font-size:13px;color:#334155;line-height:1.6;margin-bottom:12px}
+.btn-sec-link{display:inline-flex;align-items:center;gap:6px;background:#1A2B6D;color:#fff;font-size:12px;font-weight:700;padding:9px 16px;border-radius:4px;transition:all .2s}
+.btn-sec-link:hover{background:#11CFE7;color:#1A2B6D}
+
+/* ── SECURITY BANNER ── */
+.sec-banner{background:#1A2B6D;padding:48px 0}
+.sec-in{max-width:1280px;margin:0 auto;padding:0 48px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.sec-left{display:flex;align-items:center;gap:20px}
+.sec-left img{height:50px;width:auto;filter:brightness(0) invert(1)}
+.sec-tag{font-size:10px;font-weight:700;color:#11CFE7;text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sec-name{font-size:20px;font-weight:900;color:#fff;margin-bottom:4px}
+.sec-desc{font-size:14px;color:rgba(255,255,255,.6)}
+.btn-sec-banner{background:#11CFE7;color:#0f1f5c;font-weight:800;font-size:13px;padding:12px 24px;border-radius:4px;transition:all .2s;white-space:nowrap}
+.btn-sec-banner:hover{background:#fff;transform:translateY(-2px)}
+
+/* ── FOOTER ── */
+footer{background:#062E26;color:rgba(255,255,255,.7)}
+.footer-top{padding:56px 0 40px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
+.fl-logo{height:44px;width:auto;margin-bottom:16px;filter:brightness(0) invert(1)}
+.fl-desc{font-size:13px;line-height:1.8;color:rgba(255,255,255,.45);margin-bottom:20px}
+.fl-socials{display:flex;gap:8px}
+.sp{background:rgba(255,255,255,.08);border-radius:4px;padding:6px 12px;font-size:12px;color:rgba(255,255,255,.55);transition:all .2s;display:flex;align-items:center;gap:6px}
+.sp:hover{background:#1ABFA1;color:#062E26}
+.fc h4{font-size:11px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
+.fc a{display:block;font-size:13px;color:rgba(255,255,255,.45);margin-bottom:8px;transition:color .2s}
+.fc a:hover{color:#1ABFA1}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding:20px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.fc-copy{font-size:12px;color:rgba(255,255,255,.25)}
+
+/* ── CHATBOT ── */
+#cfab{position:fixed;bottom:28px;right:28px;z-index:500;width:56px;height:56px;border-radius:50%;background:#0E5C4B;border:3px solid #1ABFA1;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 8px 28px rgba(14,92,75,.5);transition:all .2s;animation:cpulse 2.5s infinite}
+#cfab:hover{background:#1ABFA1;transform:scale(1.08)}
+@keyframes cpulse{0%,100%{box-shadow:0 8px 28px rgba(14,92,75,.5),0 0 0 0 rgba(26,191,161,.4)}50%{box-shadow:0 8px 28px rgba(14,92,75,.5),0 0 0 10px rgba(26,191,161,0)}}
+#cwin{position:fixed;bottom:96px;right:28px;z-index:500;width:360px;background:#fff;border-radius:14px;overflow:hidden;display:none;flex-direction:column;box-shadow:0 20px 60px rgba(14,92,75,.22);border:1px solid #d1ede7;height:490px}
+#cwin.open{display:flex}
+.chdr{background:#0E5C4B;padding:16px 20px;display:flex;align-items:center;gap:12px}
+.cav{width:36px;height:36px;border-radius:50%;background:#1ABFA1;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.chdr-name{font-weight:700;font-size:14px;color:#fff}
+.chdr-status{font-size:11px;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:5px}
+.chdr-status::before{content:'';width:6px;height:6px;border-radius:50%;background:#4ade80;display:inline-block}
+.cmsgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:#f8fafc}
+.cm{max-width:83%;padding:10px 14px;font-size:13px;line-height:1.65;white-space:pre-line;border-radius:12px}
+.bot{background:#fff;border:1px solid #e2e8f0;color:#1e293b;align-self:flex-start;border-radius:4px 12px 12px 12px}
+.usr{background:#0E5C4B;color:#fff;align-self:flex-end;border-radius:12px 4px 12px 12px}
+.cquick{padding:8px 12px;display:flex;gap:6px;flex-wrap:wrap;background:#f8fafc;border-top:1px solid #e2e8f0}
+.qb{font-size:11px;color:#0E5C4B;border:1px solid #0E5C4B;border-radius:20px;padding:4px 10px;background:none;cursor:pointer;font-weight:600;transition:all .2s}
+.qb:hover{background:#0E5C4B;color:#fff}
+.cinp-row{display:flex;gap:8px;padding:10px 12px;border-top:1px solid #e2e8f0}
+#cinp{flex:1;background:#F0FBF8;border:1.5px solid #b2e8dc;border-radius:6px;padding:9px 12px;font-size:13px;color:#1e293b;font-family:inherit;outline:none;transition:border-color .2s}
+#cinp:focus{border-color:#0E5C4B}
+#csnd{width:36px;height:36px;border-radius:6px;flex-shrink:0;background:#0E5C4B;border:none;cursor:pointer;color:#fff;font-size:14px;transition:all .2s}
+#csnd:hover{background:#1ABFA1;color:#062E26}
+.tdots{display:flex;gap:4px;align-items:center;padding:4px 0}
+.d{width:6px;height:6px;background:#94a3b8;border-radius:50%;animation:bl 1.2s infinite}
+.d:nth-child(2){animation-delay:.2s}.d:nth-child(3){animation-delay:.4s}
+@keyframes bl{0%,60%,100%{transform:translateY(0);opacity:.3}30%{transform:translateY(-5px);opacity:1}}
+
+@media(max-width:960px){
+  .topbar,.nav-inner,.container,.sec-in,.footer-top .container{padding-left:20px;padding-right:20px}
+  .nav-links{display:none}
+  .dgrid,.over-grid,.opl-grid,.contact-grid,.footer-grid,.bw-grid{grid-template-columns:1fr}
+  .sectors-in{grid-template-columns:repeat(2,1fr)}
+  .hs{height:auto;min-height:560px}
+  .hs-photo{width:100%;height:280px;position:relative}
+  .hs-curve{display:none}
+  .hs-photo::after{background:linear-gradient(to bottom,rgba(6,46,38,.1),rgba(6,46,38,.92))}
+  .hs-content{position:relative;width:100%;padding:28px 24px 80px}
+  .hs-slide{flex-direction:column}
+  .hs-arr{display:none}
+  .over-badge{position:static;display:inline-block;margin-top:16px}
+  .pgrid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .pitem.wide{grid-column:span 1}
+  .pitem{height:200px}
+  .form-row{grid-template-columns:1fr}
+  #cwin{width:calc(100vw - 32px);right:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <a href="tel:0645398678">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.89 10.8 19.79 19.79 0 01.82 2.18 2 2 0 012.81 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.16 6.16l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      06 45398678
+    </a>
+    <a href="mailto:info@monra-support.nl">✉ info@monra-support.nl</a>
+    <a href="#">📍 Schuttersstraat 7, Linne</a>
+  </div>
+  <div class="topbar-right">
+    <a class="back-pill" href="monra-website-preview.html">🛡️ Monra Security</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo-wrap">
+      <img src="https://static.wixstatic.com/media/b8fe10_e54855bb2e9345209d735478ea2aa610~mv2.webp/v1/fill/w_320,h_316,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/logosupport.webp"
+           alt="Monra Support" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div style="display:none;align-items:center;gap:10px">
+        <div style="width:44px;height:44px;background:#0E5C4B;border-radius:50%;display:flex;align-items:center;justify-content:center">
+          <span style="color:#1ABFA1;font-weight:900;font-size:18px">S</span>
+        </div>
+        <div style="font-size:18px;font-weight:900;color:#0E5C4B">MONRA <span style="color:#1ABFA1">SUPPORT</span></div>
+      </div>
+      <div class="nav-sep"></div>
+      <div class="nav-brand">
+        <span>Hospitality · Toezicht · Zorg</span>
+        <span>monra-support BV</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#diensten">Diensten</a>
+      <a href="#brandwacht">Brandwacht</a>
+      <a href="#over">Over ons</a>
+      <a href="#opleiding">Opleiding</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="btn-nav-cta">Personeel aanvragen</a>
+  </div>
+</nav>
+
+<!-- HERO SLIDER -->
+<section class="hs" id="home">
+  <div class="hs-viewport" id="hsVP">
+
+    <!-- SLIDE 1 -->
+    <div class="hs-slide active">
+      <div class="hs-photo">
+        <img src="https://static.wixstatic.com/media/b8fe10_7f17cf1054234d36bf8dc0eaf3f082b7~mv2.jpeg/v1/fill/w_1400,h_700,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-02-22%20at%2016_04_58.jpeg" alt="Monra Support professionals" onerror="this.parentElement.style.background='#062E26'"/>
+        <div class="hs-curve"><svg viewBox="0 0 220 620" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 C80,0 140,180 120,310 C100,440 60,560 0,620 L220,620 L220,0 Z" fill="#062E26"/></svg></div>
+      </div>
+      <div class="hs-content">
+        <div class="hs-tag"><span class="hs-tag-line"></span>Hospitality & Veiligheid</div>
+        <h2>Gastvrije professionals<br>voor elk <em>evenement</em></h2>
+        <p>Monra Support levert gecertificeerde medewerkers voor hospitality, toezicht en zorg — snel geregeld, altijd betrouwbaar.</p>
+        <ul class="hs-bullets">
+          <li><span class="hs-chk">✓</span>Snel opschalen, 24/7 beschikbaar</li>
+          <li><span class="hs-chk">✓</span>Gescreend, VOG-gecertificeerd personeel</li>
+          <li><span class="hs-chk">✓</span>BHV & EHBO medewerkers beschikbaar</li>
+        </ul>
+        <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px">
+          <a href="#contact" class="hs-cta">Personeel aanvragen →</a>
+          <a href="#diensten" class="hs-ghost">Bekijk diensten</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="hs-slide">
+      <div class="hs-photo">
+        <img src="https://static.wixstatic.com/media/b8fe10_77ee4d9e34434948b51b5076cab20e2d~mv2.jpg/v1/fill/w_1400,h_700,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/636926960_891171093660733_518372891806277317_n.jpg" alt="Support in actie" onerror="this.parentElement.style.background='#062E26'"/>
+        <div class="hs-curve"><svg viewBox="0 0 220 620" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 C80,0 140,180 120,310 C100,440 60,560 0,620 L220,620 L220,0 Z" fill="#062E26"/></svg></div>
+      </div>
+      <div class="hs-content">
+        <div class="hs-tag"><span class="hs-tag-line"></span>Toezicht & Bewaking</div>
+        <h2>Toezichthouders met<br><em>gastvrije aanpak</em></h2>
+        <p>Onze toezichthouders zorgen voor veiligheid en naleving van huisregels, met altijd aandacht voor de bezoekerbeleving.</p>
+        <ul class="hs-bullets">
+          <li><span class="hs-chk">✓</span>Preventief toezicht en crowd management</li>
+          <li><span class="hs-chk">✓</span>Nachtbewaking en object surveillance</li>
+          <li><span class="hs-chk">✓</span>Flexibel inzetbaar per uur of project</li>
+        </ul>
+        <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px">
+          <a href="#contact" class="hs-cta">Vrijblijvend advies →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div class="hs-slide">
+      <div class="hs-photo">
+        <img src="https://static.wixstatic.com/media/b8fe10_6fbe7d71b2ec488798f5590eee0af6d5~mv2.jpg/v1/fill/w_1400,h_700,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Afbeelding%20van%20WhatsApp%20op%202024-06-18%20om.jpg" alt="EHBO en zorg" onerror="this.parentElement.style.background='#062E26'"/>
+        <div class="hs-curve"><svg viewBox="0 0 220 620" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 C80,0 140,180 120,310 C100,440 60,560 0,620 L220,620 L220,0 Z" fill="#062E26"/></svg></div>
+      </div>
+      <div class="hs-content">
+        <div class="hs-tag"><span class="hs-tag-line"></span>BHV & EHBO</div>
+        <h2>Gecertificeerde zorg<br>op <em>elke locatie</em></h2>
+        <p>Van BHV-ers tot EHBO-ers en brandwachten — Monra Support zorgt voor de veilige opvang bij incidenten.</p>
+        <ul class="hs-bullets">
+          <li><span class="hs-chk">✓</span>BHV met ontruimingsscenario's</li>
+          <li><span class="hs-chk">✓</span>EHBO met AED, wondzorg en nazorg</li>
+          <li><span class="hs-chk">✓</span>Brandwachten 24/7 inzetbaar</li>
+        </ul>
+        <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px">
+          <a href="#contact" class="hs-cta">Offerte aanvragen →</a>
+          <a href="#brandwacht" class="hs-ghost">Brandwacht info</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4 -->
+    <div class="hs-slide">
+      <div class="hs-photo">
+        <img src="https://static.wixstatic.com/media/b8fe10_d3b22fc71aa942fdb690bca9d5b8cb11~mv2.jpeg/v1/fill/w_1400,h_700,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8.jpeg" alt="Horeca support" onerror="this.parentElement.style.background='#062E26'"/>
+        <div class="hs-curve"><svg viewBox="0 0 220 620" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 C80,0 140,180 120,310 C100,440 60,560 0,620 L220,620 L220,0 Z" fill="#062E26"/></svg></div>
+      </div>
+      <div class="hs-content">
+        <div class="hs-tag"><span class="hs-tag-line"></span>Horeca & Events</div>
+        <h2>Horeca personeel voor<br><em>elk type event</em></h2>
+        <p>Serveersters, serveerders en barpersoneel met ervaring in banqueting, festivals en zakelijke events — representatief en betrouwbaar.</p>
+        <ul class="hs-bullets">
+          <li><span class="hs-chk">✓</span>Barpersoneel met HACCP-kennis</li>
+          <li><span class="hs-chk">✓</span>Serveerders voor banqueting & events</li>
+          <li><span class="hs-chk">✓</span>Gastheren & VIP-begeleiding</li>
+        </ul>
+        <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px">
+          <a href="#contact" class="hs-cta">Personeel aanvragen →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="hs-progress"><div class="hs-bar" id="hsBar"></div></div>
+  <div class="hs-count" id="hsCnt">01 / 04</div>
+  <button class="hs-arr hs-prev" id="hsPrev">&#8592;</button>
+  <button class="hs-arr hs-next" id="hsNext">&#8594;</button>
+  <div class="hs-nav">
+    <button class="hs-dot on" data-s="0"></button>
+    <button class="hs-dot" data-s="1"></button>
+    <button class="hs-dot" data-s="2"></button>
+    <button class="hs-dot" data-s="3"></button>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-in">
+    <span class="ticker-lbl">Inzetbaar voor</span>
+    <span class="ticker-i">Evenementen</span>
+    <span class="ticker-i">Horeca</span>
+    <span class="ticker-i">Retail</span>
+    <span class="ticker-i">Zakelijk</span>
+    <span class="ticker-i">Festivals</span>
+    <span class="ticker-i">Beurzen</span>
+    <span class="ticker-i">Bouwlocaties</span>
+    <span class="ticker-i">Industrie</span>
+    <span class="ticker-i">Zorgomgeving</span>
+  </div>
+</div>
+
+<!-- DIENSTEN -->
+<section id="diensten" class="section section-alt">
+  <div class="container">
+    <div class="stag">Wat wij leveren</div>
+    <div class="sline"></div>
+    <h2 class="sh">Onze 9 diensten</h2>
+    <p class="sdesc">Van gastheer tot brandwacht — Monra Support heeft voor elke situatie de juiste gecertificeerde professional.</p>
+    <div class="dgrid">
+
+      <div class="dcard">
+        <div class="dcard-icon">🤝</div>
+        <h3>Servicemedewerkers</h3>
+        <p>Vriendelijke frontoffice-ondersteuning voor kaartcontrole, informatieverstrekking en publieksbeGeleiding op elke locatie.</p>
+        <div class="dcard-tags"><span class="dtag">Evenementen</span><span class="dtag">Retail</span><span class="dtag">Zakelijk</span></div>
+      </div>
+
+      <div class="dcard">
+        <div class="dcard-icon">👁️</div>
+        <h3>Toezichthouders</h3>
+        <p>Gastvrije veiligheid met focus op preventie, naleving huisregels en bewaking van doorstroom — zichtbaar en benaderbaar.</p>
+        <div class="dcard-tags"><span class="dtag">Evenementen</span><span class="dtag">Horeca</span><span class="dtag">Retail</span></div>
+      </div>
+
+      <div class="dcard">
+        <div class="dcard-icon">🎩</div>
+        <h3>Gastheren & -vrouwen</h3>
+        <p>Professioneel ontvangst, crowd management en VIP-begeleiding. Het visitekaartje van uw evenement of locatie.</p>
+        <div class="dcard-tags"><span class="dtag">VIP</span><span class="dtag">Zakelijk</span><span class="dtag">Events</span></div>
+      </div>
+
+      <div class="dcard">
+        <div class="dcard-icon">🌙</div>
+        <h3>Nachtbewaking</h3>
+        <p>Discrete object- en terreinbewaking buiten openingstijden. Zichtbare aanwezigheid die afschrikt en geruststelt.</p>
+        <div class="dcard-tags"><span class="dtag">Objecten</span><span class="dtag">Terreinen</span><span class="dtag">24/7</span></div>
+      </div>
+
+      <div class="dcard">
+        <div class="dcard-icon">🍽️</div>
+        <h3>Serveersters & serveerders</h3>
+        <p>Representatief horecapersoneel voor bediening, banqueting en events. Ervaren, gastgericht en professioneel.</p>
+        <div class="dcard-tags"><span class="dtag">Banqueting</span><span class="dtag">Horeca</span><span class="dtag">Events</span></div>
+      </div>
+
+      <div class="dcard">
+        <div class="dcard-icon">🍺</div>
+        <h3>Barpersoneel</h3>
+        <p>Ervaren barcrew met kennis van mise-en-place, cocktailbasis, voorraadbeheer en hygiëneregels (HACCP).</p>
+        <div class="dcard-tags"><span class="dtag">Festivals</span><span class="dtag">Horeca</span><span class="dtag">HACCP</span></div>
+      </div>
+
+      <div class="dcard">
+        <div class="dcard-icon">🦺</div>
+        <h3>BHV'ers</h3>
+        <p>Bedrijfshulpverlening met kennis van ontruiming, noodscenario's en communicatieprotocollen. Altijd paraat.</p>
+        <div class="dcard-tags"><span class="dtag">BHV</span><span class="dtag">Ontruiming</span><span class="dtag">Zakelijk</span></div>
+      </div>
+
+      <div class="dcard">
+        <div class="dcard-icon">❤️</div>
+        <h3>EHBO'ers</h3>
+        <p>Gecertificeerde eerstehulpverleners met AED-gebruik, wondzorg en nazorg. Voor evenementen van elk formaat.</p>
+        <div class="dcard-tags"><span class="dtag">EHBO</span><span class="dtag">AED</span><span class="dtag">Evenementen</span></div>
+      </div>
+
+      <div class="dcard">
+        <div class="dcard-icon">🔥</div>
+        <h3>Brandwachten</h3>
+        <p>Gecertificeerde brandwacht voor toezicht, preventie en directe inzet bij risico- en heetwerkzaamheden. 24/7 landelijk inzetbaar.</p>
+        <div class="dcard-tags"><span class="dtag">Bouw</span><span class="dtag">Industrie</span><span class="dtag">24/7</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTOREN -->
+  <div class="sectors">
+    <div class="sectors-in">
+      <div class="sector-item">
+        <div class="sector-icon">🎪</div>
+        <div class="sector-name">Evenementen</div>
+        <div class="sector-sub">Festivals, concerten, sport</div>
+      </div>
+      <div class="sector-item">
+        <div class="sector-icon">🍷</div>
+        <div class="sector-name">Horeca</div>
+        <div class="sector-sub">Restaurants, clubs, catering</div>
+      </div>
+      <div class="sector-item">
+        <div class="sector-icon">🏪</div>
+        <div class="sector-name">Retail</div>
+        <div class="sector-sub">Winkels, winkelcentra</div>
+      </div>
+      <div class="sector-item">
+        <div class="sector-icon">💼</div>
+        <div class="sector-name">Zakelijk</div>
+        <div class="sector-sub">Congressen, beurzen, VIP</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDWACHT SPECIAL -->
+<section id="brandwacht" class="section bw-bg">
+  <div class="container">
+    <div class="bw-grid">
+      <div>
+        <div class="bw-label">🔥 Speciale dienst</div>
+        <div class="stag">Brandwacht</div>
+        <div class="sline"></div>
+        <h2 class="sh">Snel inzetbare brandwachten — landelijk, 24/7</h2>
+        <p class="sdesc" style="margin-bottom:0">Gecertificeerde brandwachten voor bouwlocaties, industrie, utiliteit en evenementen. Onze professionals houden toezicht, voeren preventieve controles uit en treden direct op bij (brand)incidenten.</p>
+        <ul class="bw-list">
+          <li>Toezicht tijdens heetwerkzaamheden (hot work)</li>
+          <li>Brand- en evacuatiebewaking bij storingen of werkzaamheden</li>
+          <li>Controle vluchtwegen, blusmiddelen en afsluiters</li>
+          <li>Rapportage & afstemming met BHV en veiligheidscoördinatie</li>
+          <li>Snel geregeld: vaak binnen enkele uren op locatie</li>
+          <li>Optioneel: ploegleider/coördinator op locatie</li>
+        </ul>
+        <a href="#contact" class="btn-bw">🔥 Spoedinzet of offerte aanvragen</a>
+      </div>
+      <div class="bw-badges">
+        <div class="bw-badge">
+          <div class="bw-badge-icon">⚡</div>
+          <div>
+            <h4>Spoedservice</h4>
+            <p>Vaak binnen enkele uren op locatie — ook 's nachts en in het weekend.</p>
+          </div>
+        </div>
+        <div class="bw-badge">
+          <div class="bw-badge-icon">🗺️</div>
+          <div>
+            <h4>Landelijke dekking</h4>
+            <p>Inzetbaar door heel Nederland, ook voor langere periodes of projecten.</p>
+          </div>
+        </div>
+        <div class="bw-badge">
+          <div class="bw-badge-icon">📋</div>
+          <div>
+            <h4>Gecertificeerd</h4>
+            <p>Alle brandwachten zijn gecertificeerd en werken conform NEN-normen.</p>
+          </div>
+        </div>
+        <div class="bw-badge">
+          <div class="bw-badge-icon">📞</div>
+          <div>
+            <h4>24/7 bereikbaar</h4>
+            <p>Vaste aanspreekpunten, ook buiten kantooruren voor spoed en planning.</p>
+          </div>
+        </div>
+        <div class="bw-badge">
+          <div class="bw-badge-icon">💶</div>
+          <div>
+            <h4>Flexibel tarief</h4>
+            <p>Inzetbaar per uur, dag of project — altijd een passende offerte op maat.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOTO GALLERY -->
+<div class="gallery-bg">
+  <div class="container">
+    <div class="gallery-head">
+      <div class="stag">Monra Support in actie</div>
+      <div class="sline"></div>
+      <h2 style="color:#fff">Onze mensen, elke dag in het veld</h2>
+    </div>
+    <div class="pgrid">
+      <div class="pitem wide">
+        <img src="https://static.wixstatic.com/media/b8fe10_7f17cf1054234d36bf8dc0eaf3f082b7~mv2.jpeg/v1/fill/w_1200,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-02-22%20at%2016_04_58.jpeg" alt="Team in actie" onerror="this.parentElement.style.background='#0E5C4B'"/>
+      </div>
+      <div class="pitem">
+        <img src="https://static.wixstatic.com/media/b8fe10_77ee4d9e34434948b51b5076cab20e2d~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/636926960_891171093660733_518372891806277317_n.jpg" alt="Support medewerkers" onerror="this.parentElement.style.background='#0E5C4B'"/>
+      </div>
+      <div class="pitem">
+        <img src="https://static.wixstatic.com/media/b8fe10_2305b014cb2e4168b25028c8c5718e18~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/654328443_27017350404534680_8802946859876802782_n.jpg" alt="Professional" onerror="this.parentElement.style.background='#0E5C4B'"/>
+      </div>
+      <div class="pitem">
+        <img src="https://static.wixstatic.com/media/b8fe10_6fbe7d71b2ec488798f5590eee0af6d5~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Afbeelding%20van%20WhatsApp%20op%202024-06-18%20om.jpg" alt="Op locatie" onerror="this.parentElement.style.background='#0E5C4B'"/>
+      </div>
+      <div class="pitem wide">
+        <img src="https://static.wixstatic.com/media/b8fe10_d3b22fc71aa942fdb690bca9d5b8cb11~mv2.jpeg/v1/fill/w_1200,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8.jpeg" alt="Evenement support" onerror="this.parentElement.style.background='#0E5C4B'"/>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OVER ONS -->
+<section id="over" class="section">
+  <div class="container">
+    <div class="over-grid">
+      <div class="over-img-wrap">
+        <img class="over-img"
+          src="https://static.wixstatic.com/media/b8fe10_7f17cf1054234d36bf8dc0eaf3f082b7~mv2.jpeg/v1/fill/w_900,h_680,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-02-22%20at%2016_04_58.jpeg"
+          alt="Monra Support team" onerror="this.style.background='#0E5C4B';this.src=''"/>
+        <div class="over-badge">
+          <span class="badge-n">24/7</span>
+          <span class="badge-t">Beschikbaar</span>
+        </div>
+      </div>
+      <div>
+        <div class="stag">Waarom Monra Support</div>
+        <div class="sline"></div>
+        <h2 class="sh">Geselecteerde professionals, altijd een cultuurfit</h2>
+        <p class="sdesc">Monra Support BV levert ondersteuningsprofessionals voor hospitality, veiligheid en zorg. Wij selecteren op referenties, stellen VOG verplicht en zorgen voor een duidelijke briefing en inwerkprogramma zodat onze mensen altijd passen bij uw merk en cultuur.</p>
+        <div class="usps">
+          <div class="usp"><div class="usp-icon">🔍</div><div><h4>Screening & VOG</h4><p>Alle medewerkers worden gescreend en beschikken over een geldig Verklaring Omtrent Gedrag.</p></div></div>
+          <div class="usp"><div class="usp-icon">⚡</div><div><h4>Snel opschalen</h4><p>Dankzij onze back-uppool kunnen wij snel opschalen — ook op korte termijn of bij uitval.</p></div></div>
+          <div class="usp"><div class="usp-icon">🎯</div><div><h4>Cultuur- & merkfit</h4><p>Duidelijke briefing en inwerkprogramma zodat onze mensen naadloos aansluiten bij uw organisatie.</p></div></div>
+          <div class="usp"><div class="usp-icon">📞</div><div><h4>Vaste aanspreekpunten</h4><p>U heeft altijd één contactpersoon voor planning, operatie en nazorg — geen wisselende aanspreekpunten.</p></div></div>
+          <div class="usp"><div class="usp-icon">🤝</div><div><h4>Combineerbaar met Security</h4><p>Combineer met Monra Security voor een compleet team: beveiliging én ondersteuning, één aanspreekpunt.</p></div></div>
+        </div>
+        <blockquote class="bq">"Ondersteuningsprofessionals voor hospitality, veiligheid en zorg – flexibel inzetbaar, altijd gastvrij."</blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPLEIDING -->
+<section id="opleiding" class="section opl-bg">
+  <div class="container">
+    <div class="stag">Groei & Ontwikkeling</div>
+    <div class="sline"></div>
+    <h2 class="sh" style="color:#fff">Opleidingen & Certificering</h2>
+    <p class="sdesc">Monra Support investeert in haar medewerkers. Alle professionals worden getraind, bijgeschoold en gecertificeerd voor hun specifieke rol.</p>
+    <div class="opl-grid" style="margin-top:40px">
+      <div>
+        <div class="sbb-badge">🎓 Erkend opleidingspartner</div>
+        <ul class="opl-list">
+          <li><span class="opl-ck">✓</span>BHV-opleiding: brandpreventie, EHBO, ontruiming en communicatieprotocollen voor inzet op locatie</li>
+          <li><span class="opl-ck">✓</span>EHBO-certificering met AED-gebruik, wondzorg en nazorgprotocollen — geldig voor evenementen en bedrijven</li>
+          <li><span class="opl-ck">✓</span>Brandwacht-certificering conform NEN-normen voor inzet bij heetwerkzaamheden en risicolocaties</li>
+          <li><span class="opl-ck">✓</span>Hospitality & servicegerichtheid: klantgerichtheid, conflicthantering en gastontvangst</li>
+          <li><span class="opl-ck">✓</span>HACCP-training voor horecamedewerkers: hygiëne, voedselveiligheid en barkennis</li>
+          <li><span class="opl-ck">✓</span>Doorgroeimogelijkheden naar coördinator of ploegleider binnen de Monra organisatie</li>
+        </ul>
+        <a href="mailto:info@monra-support.nl?subject=Opleiding%20informatie" class="btn-opl">✉ Meer info over opleidingen</a>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div><h4>Intake & screening</h4><p>VOG-check, referentieonderzoek en kennismakingsgesprek om de juiste match te maken.</p></div></div>
+        <div class="step"><div class="step-n">2</div><div><h4>Training & briefing</h4><p>Functiespecifieke training en locatie-briefing voor aanvang van elke opdracht.</p></div></div>
+        <div class="step"><div class="step-n">3</div><div><h4>Certificering</h4><p>BHV, EHBO, brandwacht of hospitality — alle relevante certificaten worden behaald en bijgehouden.</p></div></div>
+        <div class="step"><div class="step-n">4</div><div><h4>Evaluatie & doorgroei</h4><p>Na elke opdracht evaluatie, met mogelijkheid tot doorgroei naar teamleider of coördinator.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="stag">Vrijblijvend en snel</div>
+    <div class="sline"></div>
+    <h2 class="sh">Offerte of personeel aanvragen</h2>
+    <p class="sdesc">Vertel kort wat u nodig heeft en wanneer. We reageren doorgaans binnen één werkdag.</p>
+    <div class="contact-grid">
+      <div class="cform-wrap">
+        <h3>Vraag een offerte aan</h3>
+        <div id="form-ok">
+          <div class="oi">✅</div>
+          <h3>Bericht verzonden!</h3>
+          <p>We nemen zo snel mogelijk contact op, normaal binnen één werkdag.</p>
+        </div>
+        <form id="cform">
+          <div class="form-row">
+            <div><label>Naam *</label><input type="text" placeholder="Jan de Vries" required/></div>
+            <div><label>E-mail *</label><input type="email" placeholder="uw@email.nl" required/></div>
+          </div>
+          <div class="fg"><label>Telefoon</label><input type="tel" placeholder="06..."/></div>
+          <div class="fg"><label>Gewenste dienst *</label>
+            <select required>
+              <option value="">Selecteer een dienst...</option>
+              <option>Servicemedewerkers</option>
+              <option>Toezichthouders</option>
+              <option>Gastheren / -vrouwen</option>
+              <option>Nachtbewaking</option>
+              <option>Serveersters & serveerders</option>
+              <option>Barpersoneel</option>
+              <option>BHV'ers</option>
+              <option>EHBO'ers</option>
+              <option>Brandwachten</option>
+              <option>Meerdere diensten</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div><label>Datum & tijden</label><input type="text" placeholder="bv. 14 aug, 18:00–24:00"/></div>
+            <div><label>Aantal personen</label><input type="number" min="1" placeholder="bv. 4"/></div>
+          </div>
+          <div class="fg"><label>Locatie</label><input type="text" placeholder="Stad of adres"/></div>
+          <div class="fg"><label>Bericht *</label><textarea rows="4" placeholder="Beschrijf kort uw wens of evenement..." required></textarea></div>
+          <button type="submit" class="btn-sub">✉ Offerte aanvragen</button>
+        </form>
+      </div>
+      <div class="csidebar">
+        <h3>Direct contact</h3>
+        <a href="tel:0645398678" class="ci"><div class="ci-ico">📞</div><div><div class="ci-lbl">Telefoon</div><div class="ci-val">06 45398678</div></div></a>
+        <a href="mailto:info@monra-support.nl" class="ci"><div class="ci-ico">✉️</div><div><div class="ci-lbl">E-mail</div><div class="ci-val">info@monra-support.nl</div></div></a>
+        <div class="ci"><div class="ci-ico">📍</div><div><div class="ci-lbl">Adres</div><div class="ci-val">Schuttersstraat 7, 6067 GE Linne</div></div></div>
+        <div class="ci"><div class="ci-ico">🕐</div><div><div class="ci-lbl">Bereikbaar</div><div class="ci-val">24/7 voor spoed & planning</div></div></div>
+        <div class="cbox">
+          <div class="cbox-t">Ook beveiliging nodig?</div>
+          <p>Combineer Monra Support met Monra Security voor volledige ontzorging — één aanspreekpunt, één factuur.</p>
+          <a href="monra-website-preview.html" class="btn-sec-link">🛡️ Naar Monra Security →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY BANNER -->
+<div class="sec-banner">
+  <div class="sec-in">
+    <div class="sec-left">
+      <img src="https://static.wixstatic.com/media/cc1283_dea11d631ca44c47a0b79d176bc721ca~mv2.png/v1/fill/w_664,h_256,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/246399639_4962935193736184_5264466054426007896_n.png" alt="Monra Security" onerror="this.style.display='none'"/>
+      <div>
+        <div class="sec-tag">Zusterorganisatie</div>
+        <div class="sec-name">Monra Security BV</div>
+        <div class="sec-desc">SVPB gecertificeerde evenementenbeveiliging — 24/7 bereikbaar, vaste gecertificeerde teams.</div>
+      </div>
+    </div>
+    <a href="monra-website-preview.html" class="btn-sec-banner">🛡️ Bezoek monra-security.nl →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img class="fl-logo" src="https://static.wixstatic.com/media/b8fe10_e54855bb2e9345209d735478ea2aa610~mv2.webp/v1/fill/w_320,h_316,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/logosupport.webp" alt="Monra Support" onerror="this.style.display='none'"/>
+          <p class="fl-desc">Ondersteuningsprofessionals voor hospitality, veiligheid en zorg — flexibel inzetbaar, altijd gastvrij.</p>
+          <div class="fl-socials">
+            <a class="sp" href="#">f Facebook</a>
+            <a class="sp" href="#">📷 Instagram</a>
+          </div>
+        </div>
+        <div class="fc">
+          <h4>Navigatie</h4>
+          <a href="#home">Home</a>
+          <a href="#diensten">Diensten</a>
+          <a href="#brandwacht">Brandwacht</a>
+          <a href="#over">Over ons</a>
+          <a href="#opleiding">Opleiding</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="fc">
+          <h4>Diensten</h4>
+          <a href="#diensten">Servicemedewerkers</a>
+          <a href="#diensten">Toezichthouders</a>
+          <a href="#diensten">BHV & EHBO</a>
+          <a href="#brandwacht">Brandwachten</a>
+          <a href="#diensten">Barpersoneel</a>
+          <a href="#diensten">Nachtbewaking</a>
+        </div>
+        <div class="fc">
+          <h4>Contact</h4>
+          <a href="#">Schuttersstraat 7, Linne</a>
+          <a href="tel:0645398678">06 45398678</a>
+          <a href="mailto:info@monra-support.nl">info@monra-support.nl</a>
+          <a href="monra-website-preview.html">→ Monra Security</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="footer-bottom">
+      <span class="fc-copy">© 2024 monra-support BV · Alle rechten voorbehouden</span>
+      <span class="fc-copy">KVK: 98875825 · Ondernemingsnummer: 000064008908 · Linne, Nederland</span>
+    </div>
+  </div>
+</footer>
+
+<!-- CHATBOT -->
+<button id="cfab" onclick="tc()" aria-label="Chat">💬</button>
+<div id="cwin">
+  <div class="chdr">
+    <div class="cav">🤝</div>
+    <div>
+      <div class="chdr-name">Monra Support</div>
+      <div class="chdr-status">Online — reageert direct</div>
+    </div>
+  </div>
+  <div class="cmsgs" id="cmsgs"><div class="cm bot">Goeiedag! Ik ben de assistent van Monra Support. Waarmee kan ik u helpen?</div></div>
+  <div class="cquick">
+    <button class="qb" onclick="qs('Personeel aanvragen')">Personeel</button>
+    <button class="qb" onclick="qs('Welke diensten hebben jullie')">Diensten</button>
+    <button class="qb" onclick="qs('Brandwacht inzet')">Brandwacht</button>
+    <button class="qb" onclick="qs('Contactgegevens')">Contact</button>
+  </div>
+  <div class="cinp-row">
+    <input id="cinp" placeholder="Typ uw vraag..." onkeydown="if(event.key==='Enter')sc()"/>
+    <button id="csnd" onclick="sc()">➤</button>
+  </div>
+</div>
+
+<script>
+/* SLIDER */
+(function(){
+  var slides=document.querySelectorAll('.hs-slide');
+  var dots=document.querySelectorAll('.hs-dot');
+  var bar=document.getElementById('hsBar');
+  var cnt=document.getElementById('hsCnt');
+  var total=slides.length,cur=0,timer,bt;
+  function pad(n){return n<10?'0'+n:''+n}
+  function goTo(n){
+    slides[cur].classList.remove('active');
+    slides[cur].classList.add('prev');
+    setTimeout(function(){slides[cur].classList.remove('prev')},900);
+    cur=(n+total)%total;
+    slides[cur].classList.add('active');
+    dots.forEach(function(d,i){d.classList.toggle('on',i===cur)});
+    cnt.textContent=pad(cur+1)+' / '+pad(total);
+    bar.style.transition='none';bar.classList.remove('run');bar.style.width='0%';
+    clearTimeout(bt);bt=setTimeout(function(){bar.classList.add('run')},30);
+  }
+  function reset(){clearInterval(timer);timer=setInterval(function(){goTo(cur+1)},5500)}
+  document.getElementById('hsNext').addEventListener('click',function(){goTo(cur+1);reset()});
+  document.getElementById('hsPrev').addEventListener('click',function(){goTo(cur-1);reset()});
+  dots.forEach(function(d){d.addEventListener('click',function(){goTo(parseInt(d.dataset.s));reset()})});
+  var sx=0,vp=document.getElementById('hsVP');
+  vp.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
+  vp.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>48){goTo(dx<0?cur+1:cur-1);reset()}});
+  goTo(0);reset();
+})();
+
+/* FORM */
+document.getElementById('cform').addEventListener('submit',function(e){
+  e.preventDefault();this.style.display='none';document.getElementById('form-ok').style.display='block';
+});
+
+/* CHATBOT */
+function tc(){var w=document.getElementById('cwin');w.classList.toggle('open');document.getElementById('cfab').textContent=w.classList.contains('open')?'✕':'💬'}
+function qs(t){document.getElementById('cinp').value=t;sc()}
+var FAQ={
+  personeel:'Voor personeel aanvragen:\n📞 06 45398678\n✉ info@monra-support.nl\n\nOf gebruik het contactformulier — reactie binnen één werkdag.',
+  diensten:'Onze 9 diensten:\n• Servicemedewerkers\n• Toezichthouders\n• Gastheren & -vrouwen\n• Nachtbewaking\n• Serveersters & serveerders\n• Barpersoneel\n• BHV\'ers\n• EHBO\'ers\n• Brandwachten',
+  brandwacht:'Brandwachten inzetten?\nWij zijn 24/7 bereikbaar en vaak binnen enkele uren op locatie — ook voor spoed.\n📞 06 45398678\n✉ info@monra-support.nl',
+  contact:'📞 06 45398678\n✉ info@monra-support.nl\n📍 Schuttersstraat 7, 6067 GE Linne\n⏰ 24/7 bereikbaar',
+  prijs:'Onze tarieven zijn altijd op maat — afhankelijk van dienst, aantal personen en duur. Vraag een vrijblijvende offerte aan via het formulier of bel 06 45398678.',
+  security:'Monra Security is onze zusterorganisatie voor evenementenbeveiliging. U kunt beveiliging en support perfect combineren — één aanspreekpunt!'
+};
+function reply(m){
+  var l=m.toLowerCase();
+  if(l.includes('personeel')||l.includes('aanvrag')||l.includes('offerte'))return FAQ.personeel;
+  if(l.includes('dienst')||l.includes('service')||l.includes('hospitality')||l.includes('ehbo')||l.includes('bhv'))return FAQ.diensten;
+  if(l.includes('brandwacht')||l.includes('brand')||l.includes('heet'))return FAQ.brandwacht;
+  if(l.includes('contact')||l.includes('bellen')||l.includes('mail')||l.includes('adres'))return FAQ.contact;
+  if(l.includes('prijs')||l.includes('tarief')||l.includes('kost'))return FAQ.prijs;
+  if(l.includes('security')||l.includes('beveiliging'))return FAQ.security;
+  return 'Bedankt voor uw vraag! Neem contact op via info@monra-support.nl of bel 06 45398678. We helpen u graag verder.';
+}
+function addMsg(t,r){var m=document.getElementById('cmsgs');var d=document.createElement('div');d.className='cm '+r;d.textContent=t;m.appendChild(d);m.scrollTop=m.scrollHeight}
+function sc(){
+  var inp=document.getElementById('cinp'),t=inp.value.trim();if(!t)return;
+  addMsg(t,'usr');inp.value='';
+  var m=document.getElementById('cmsgs');
+  var typ=document.createElement('div');typ.className='cm bot';typ.id='typ';
+  typ.innerHTML='<div class="tdots"><div class="d"></div><div class="d"></div><div class="d"></div></div>';
+  m.appendChild(typ);m.scrollTop=m.scrollHeight;
+  setTimeout(function(){var e=document.getElementById('typ');if(e)e.remove();addMsg(reply(t),'bot')},800);
+}
+</script>
+</body>
+</html>

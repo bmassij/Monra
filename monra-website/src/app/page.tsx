@@ -164,12 +164,14 @@ function Hero() {
         src={IMAGES.team}
         alt=""
         fill
-        className="object-cover object-center opacity-30"
+        className="object-cover object-center"
         priority
         sizes="100vw"
         aria-hidden
       />
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a1540]/80 via-[#1A2B6D]/70 to-[#0f1f5c]/90" />
+      {/* Links: foto zichtbaar, rechts/onder: navy overlay — zelfde effect als HTML preview */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1A2B6D]/40 via-[#1A2B6D]/60 to-[#0a1540]/95" />
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#1A2B6D]/30 to-[#0a1540]/80" />
 
       {/* Cyan glow */}
       <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] rounded-full bg-[#11CFE7]/10 blur-[120px] pointer-events-none" />
@@ -651,6 +653,106 @@ function Chatbot() {
   )
 }
 
+// ─── MONRA FAMILIE BANNER ────────────────────────────────
+function MonraFamilie() {
+  return (
+    <section className="py-20 bg-white border-t border-slate-100" aria-label="Monra familie">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* SEO-vriendelijke intro met interne links */}
+        <div className="text-center mb-14">
+          <div className="text-xs font-bold text-[#11CFE7] tracking-[4px] uppercase mb-3">De Monra Groep</div>
+          <div className="w-10 h-1 bg-[#11CFE7] mx-auto mb-5 rounded" />
+          <h2 className="text-3xl md:text-4xl font-black text-[#1A2B6D] mb-4">
+            Meer dan beveiliging — <span className="text-[#11CFE7]">één familie</span>
+          </h2>
+          {/* SEO tekst met interne links naar zusterbedrijven */}
+          <p className="text-slate-500 max-w-2xl mx-auto leading-relaxed text-sm">
+            Naast professionele <strong className="text-[#1A2B6D]">evenementenbeveiliging</strong> biedt de Monra-groep ook{' '}
+            <a href="/support" className="text-[#0E5C4B] font-bold underline underline-offset-2 hover:text-[#1ABFA1] transition-colors">
+              hospitality- en zorgondersteuning via Monra Support
+            </a>{' '}
+            en{' '}
+            <a href="/events-security" className="text-[#8B6914] font-bold underline underline-offset-2 hover:text-[#C9A84C] transition-colors">
+              gespecialiseerde evenementenbeveiliging via Monra Events Security
+            </a>.
+            Samen bieden wij een compleet pakket voor elk evenement — één aanspreekpunt, drie expertises.
+          </p>
+        </div>
+
+        {/* Zuster-kaarten */}
+        <div className="grid md:grid-cols-2 gap-6">
+
+          {/* Monra Support */}
+          <a href="/support"
+            className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white hover:border-[#1ABFA1] hover:shadow-xl transition-all p-8">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0E5C4B] to-[#1ABFA1] opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="flex items-start gap-5">
+              <div className="w-14 h-14 rounded-xl bg-[#0E5C4B]/8 border border-[#0E5C4B]/15 flex items-center justify-center text-2xl flex-shrink-0 group-hover:bg-[#1ABFA1]/15 transition-colors">
+                🤝
+              </div>
+              <div>
+                <div className="text-[9px] font-bold text-[#1ABFA1] uppercase tracking-[3px] mb-1">Zusterorganisatie</div>
+                <h3 className="text-xl font-black text-[#0E5C4B] mb-2">Monra Support BV</h3>
+                <p className="text-slate-500 text-sm leading-relaxed mb-4">
+                  Ondersteuningsprofessionals voor <strong className="text-slate-700">hospitality, toezicht en zorg</strong> — servicemedewerkers, gastheren, EHBO&apos;ers, BHV&apos;ers en brandwachten. Flexibel inzetbaar, altijd gastvrij.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-5">
+                  {['Servicemedewerkers', 'BHV & EHBO', 'Brandwachten', 'Barpersoneel'].map(t => (
+                    <span key={t} className="text-[10px] font-semibold text-[#0E5C4B] bg-[#0E5C4B]/6 border border-[#0E5C4B]/15 px-2.5 py-1 rounded-full">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-sm font-bold text-[#0E5C4B] group-hover:text-[#1ABFA1] transition-colors">
+                  Bezoek monra-support.nl →
+                </span>
+              </div>
+            </div>
+          </a>
+
+          {/* Monra Events Security */}
+          <a href="/events-security"
+            className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-[#080808] hover:border-[#C9A84C] hover:shadow-xl transition-all p-8">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#C9A84C] to-[#E8C76A] opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="flex items-start gap-5">
+              <div className="w-14 h-14 rounded-xl bg-[#C9A84C]/10 border border-[#C9A84C]/20 flex items-center justify-center text-2xl flex-shrink-0">
+                ✨
+              </div>
+              <div>
+                <div className="text-[9px] font-bold text-[#C9A84C] uppercase tracking-[3px] mb-1">Nieuw bedrijf</div>
+                <h3 className="text-xl font-black text-white mb-2">Monra Events Security</h3>
+                <p className="text-[#888] text-sm leading-relaxed mb-4">
+                  Opgericht door <strong className="text-white">Senna Monsigneur</strong> — gespecialiseerde <strong className="text-white">evenementenbeveiliging</strong> met een eigen stijl. SVPB gecertificeerd, vaste teams, 24/7 inzetbaar.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-5">
+                  {['Festival', 'Concert', 'VIP Beveiliging', 'ESO Opleiding'].map(t => (
+                    <span key={t} className="text-[10px] font-semibold text-[#C9A84C] bg-[#C9A84C]/8 border border-[#C9A84C]/20 px-2.5 py-1 rounded-full">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-sm font-bold text-[#C9A84C] group-hover:text-[#E8C76A] transition-colors">
+                  Bezoek monra-events-security.nl →
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        {/* SEO-tekst onderaan — voor Google */}
+        <div className="mt-12 p-6 bg-[#f0f6ff] rounded-xl border border-[#1A2B6D]/10">
+          <p className="text-xs text-slate-400 leading-relaxed text-center">
+            <strong className="text-[#1A2B6D]">Monra Security BV</strong> is gespecialiseerd in evenementenbeveiliging in heel Nederland —
+            festivals, concerten, voetbal, congressen en VIP-events. Werkzaam in Limburg, Noord-Brabant, Gelderland en verder.
+            KVK: 89581806 · SVPB-keurmerk · Wpbr-vergund · SBB erkend leerbedrijf ·{' '}
+            <a href="mailto:info@monra-security.nl" className="text-[#11CFE7] hover:underline">info@monra-security.nl</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function Footer() {
   return (
     <footer className="bg-[#0a1540] border-t border-white/10 py-12">
@@ -714,6 +816,7 @@ export default function HomePage() {
       <WhyUs />
       <Education />
       <Contact />
+      <MonraFamilie />
       <Footer />
       <Chatbot />
     </main>

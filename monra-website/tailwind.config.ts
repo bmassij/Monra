@@ -11,15 +11,15 @@ const config: Config = {
       colors: {
         // Monra brand colors
         monra: {
-          black:   '#0A0A0A',
-          dark:    '#111111',
-          gray:    '#1A1A1A',
-          border:  '#2A2A2A',
-          gold:    '#C9A84C',
-          'gold-light': '#E8C96A',
-          'gold-dark':  '#A07A2A',
+          navy:    '#1A2B6D',
+          'navy-dark': '#0f1f5c',
+          'navy-deeper': '#0a1540',
+          cyan:    '#11CFE7',
+          'cyan-light': '#4DDFF3',
+          'cyan-dark':  '#0BADC2',
           white:   '#F5F5F5',
-          muted:   '#888888',
+          muted:   '#94a3b8',
+          light:   '#e8f4f8',
         },
       },
       fontFamily: {

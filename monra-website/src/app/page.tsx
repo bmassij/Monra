@@ -91,7 +91,9 @@ function Navbar() {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? 'bg-[#0A0A0A]/95 backdrop-blur-md border-b border-[#2A2A2A]' : 'bg-transparent'
+      scrolled
+        ? 'bg-white/95 backdrop-blur-md border-b-2 border-[#1A2B6D] shadow-md'
+        : 'bg-white border-b border-[#1A2B6D]/20'
     }`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
         {/* Logo */}
@@ -110,7 +112,7 @@ function Navbar() {
         <div className="hidden md:flex items-center gap-8">
           {links.map(l => (
             <a key={l.href} href={l.href}
-              className="text-sm text-[#888] hover:text-[#C9A84C] transition-colors tracking-wide uppercase">
+              className="text-xs font-bold text-[#1A2B6D] hover:text-[#11CFE7] transition-colors tracking-widest uppercase border-b-2 border-transparent hover:border-[#11CFE7] pb-0.5">
               {l.label}
             </a>
           ))}
@@ -119,33 +121,33 @@ function Navbar() {
         {/* CTA */}
         <div className="hidden md:flex items-center gap-4">
           <a href="tel:+31645398678"
-            className="flex items-center gap-2 text-sm text-[#C9A84C] hover:text-[#E8C96A] transition-colors">
-            <Phone size={16} />
+            className="flex items-center gap-2 text-sm text-[#1A2B6D] hover:text-[#11CFE7] transition-colors font-semibold">
+            <Phone size={15} />
             <span>+31 6 45398678</span>
           </a>
           <a href="#contact"
-            className="bg-gradient-to-r from-[#C9A84C] to-[#A07A2A] text-black font-semibold text-sm px-5 py-2.5 rounded-full hover:from-[#E8C96A] hover:to-[#C9A84C] transition-all">
+            className="bg-[#1A2B6D] text-white font-bold text-sm px-5 py-2.5 rounded hover:bg-[#11CFE7] hover:text-[#1A2B6D] transition-all">
             Offerte aanvragen
           </a>
         </div>
 
         {/* Mobile burger */}
-        <button className="md:hidden text-white" onClick={() => setOpen(!open)}>
+        <button className="md:hidden text-[#1A2B6D]" onClick={() => setOpen(!open)}>
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-[#111] border-t border-[#2A2A2A] px-6 py-6 flex flex-col gap-4">
+        <div className="md:hidden bg-white border-t border-[#1A2B6D]/20 px-6 py-6 flex flex-col gap-4">
           {links.map(l => (
             <a key={l.href} href={l.href} onClick={() => setOpen(false)}
-              className="text-sm text-[#888] hover:text-[#C9A84C] transition-colors uppercase tracking-wide">
+              className="text-sm text-[#1A2B6D] hover:text-[#11CFE7] transition-colors uppercase tracking-wide font-bold">
               {l.label}
             </a>
           ))}
           <a href="#contact" onClick={() => setOpen(false)}
-            className="mt-2 bg-gradient-to-r from-[#C9A84C] to-[#A07A2A] text-black font-semibold text-sm px-5 py-3 rounded-full text-center">
+            className="mt-2 bg-[#1A2B6D] text-white font-bold text-sm px-5 py-3 rounded text-center hover:bg-[#11CFE7] hover:text-[#1A2B6D] transition-all">
             Offerte aanvragen
           </a>
         </div>
@@ -156,47 +158,38 @@ function Navbar() {
 
 function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#1A2B6D]">
       {/* Background photo */}
       <Image
         src={IMAGES.team}
         alt=""
         fill
-        className="object-cover object-center opacity-50"
+        className="object-cover object-center opacity-30"
         priority
         sizes="100vw"
         aria-hidden
       />
-      <div className="absolute inset-0 bg-[#0A0A0A]/70" />
-      <div className="absolute inset-0 bg-gradient-radial from-[#1A1A1A]/60 via-[#0A0A0A]/90 to-[#0A0A0A]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0a1540]/80 via-[#1A2B6D]/70 to-[#0f1f5c]/90" />
 
-      {/* Grid pattern */}
-      <div className="absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage: `linear-gradient(#C9A84C 1px, transparent 1px), linear-gradient(90deg, #C9A84C 1px, transparent 1px)`,
-          backgroundSize: '60px 60px',
-        }}
-      />
-
-      {/* Gold glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#C9A84C]/5 blur-[100px] pointer-events-none" />
+      {/* Cyan glow */}
+      <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] rounded-full bg-[#11CFE7]/10 blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 bg-[#1A1A1A] border border-[#C9A84C]/30 rounded-full px-4 py-2 mb-8">
-          <Award size={14} className="text-[#C9A84C]" />
-          <span className="text-[#C9A84C] text-xs font-medium tracking-widest uppercase">SVPB Gecertificeerd · 25+ Jaar Ervaring</span>
+        <div className="inline-flex items-center gap-2 bg-white/10 border border-[#11CFE7]/40 rounded-full px-4 py-2 mb-8">
+          <Award size={14} className="text-[#11CFE7]" />
+          <span className="text-[#11CFE7] text-xs font-bold tracking-widest uppercase">SVPB Gecertificeerd · 25+ Jaar Ervaring</span>
         </div>
 
         {/* Headline */}
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-none mb-6 tracking-tight">
           VEILIGHEID IS{' '}
-          <span className="bg-gradient-to-r from-[#C9A84C] to-[#E8C96A] bg-clip-text text-transparent">
+          <span className="text-[#11CFE7]">
             GEEN TOEVAL
           </span>
         </h1>
 
-        <p className="text-lg md:text-xl text-[#888] max-w-2xl mx-auto mb-10 leading-relaxed">
+        <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed">
           Monra Security levert professionele evenementenbeveiliging met vaste, gecertificeerde medewerkers.
           24/7 bereikbaar. Klantgericht. Flexibel inzetbaar.
         </p>
@@ -204,25 +197,25 @@ function Hero() {
         {/* CTA buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
           <a href="#contact"
-            className="group inline-flex items-center gap-2 bg-gradient-to-r from-[#C9A84C] to-[#A07A2A] text-black font-bold px-8 py-4 rounded-full hover:from-[#E8C96A] hover:to-[#C9A84C] transition-all shadow-lg shadow-[#C9A84C]/20">
+            className="group inline-flex items-center gap-2 bg-[#11CFE7] text-[#1A2B6D] font-black px-8 py-4 rounded hover:bg-white transition-all shadow-lg shadow-[#11CFE7]/20">
             Vrijblijvende offerte
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </a>
           <a href="#diensten"
-            className="inline-flex items-center gap-2 border border-[#2A2A2A] text-white font-medium px-8 py-4 rounded-full hover:border-[#C9A84C]/50 hover:text-[#C9A84C] transition-all">
+            className="inline-flex items-center gap-2 border-2 border-white/30 text-white font-bold px-8 py-4 rounded hover:border-[#11CFE7] hover:text-[#11CFE7] transition-all">
             Bekijk diensten
             <ChevronDown size={18} />
           </a>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[#2A2A2A] rounded-2xl overflow-hidden max-w-3xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10 rounded-xl overflow-hidden max-w-3xl mx-auto">
           {STATS.map((s) => (
-            <div key={s.label} className="bg-[#111] px-6 py-6 text-center">
-              <div className="text-3xl font-black bg-gradient-to-r from-[#C9A84C] to-[#E8C96A] bg-clip-text text-transparent mb-1">
+            <div key={s.label} className="bg-white/5 backdrop-blur px-6 py-6 text-center border border-white/5">
+              <div className="text-3xl font-black text-[#11CFE7] mb-1">
                 {s.value}
               </div>
-              <div className="text-xs text-[#888] uppercase tracking-widest">{s.label}</div>
+              <div className="text-xs text-white/50 uppercase tracking-widest">{s.label}</div>
             </div>
           ))}
         </div>
@@ -230,8 +223,8 @@ function Hero() {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
-        <span className="text-xs text-[#888] uppercase tracking-widest">Scroll</span>
-        <div className="w-px h-8 bg-gradient-to-b from-[#C9A84C] to-transparent" />
+        <span className="text-xs text-white/60 uppercase tracking-widest">Scroll</span>
+        <div className="w-px h-8 bg-gradient-to-b from-[#11CFE7] to-transparent" />
       </div>
     </section>
   )
@@ -239,15 +232,16 @@ function Hero() {
 
 function Services() {
   return (
-    <section id="diensten" className="py-24 bg-[#0A0A0A]">
+    <section id="diensten" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="gold-line mx-auto mb-6" />
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-            ONZE <span className="text-[#C9A84C]">DIENSTEN</span>
+          <div className="text-xs font-bold text-[#11CFE7] tracking-[4px] uppercase mb-3">Wat wij bieden</div>
+          <div className="w-10 h-1 bg-[#11CFE7] mx-auto mb-5 rounded" />
+          <h2 className="text-4xl md:text-5xl font-black text-[#1A2B6D] mb-4">
+            ONZE <span className="text-[#11CFE7]">DIENSTEN</span>
           </h2>
-          <p className="text-[#888] max-w-xl mx-auto">
+          <p className="text-slate-500 max-w-xl mx-auto">
             Van evenementenbeveiliging tot opleiding — wij ontzorgen u volledig op het gebied van veiligheid.
           </p>
         </div>
@@ -258,16 +252,16 @@ function Services() {
             const Icon = s.icon
             return (
               <div key={s.title}
-                className="glass-card rounded-2xl p-8 hover:border-[#C9A84C]/40 transition-all group">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#C9A84C]/20 to-[#C9A84C]/5 flex items-center justify-center mb-6 group-hover:from-[#C9A84C]/30 transition-all">
-                  <Icon size={24} className="text-[#C9A84C]" />
+                className="border border-slate-200 rounded-xl p-8 hover:border-[#11CFE7] hover:shadow-lg transition-all group bg-white">
+                <div className="w-12 h-12 rounded-xl bg-[#1A2B6D]/5 flex items-center justify-center mb-6 group-hover:bg-[#11CFE7]/10 transition-all">
+                  <Icon size={24} className="text-[#1A2B6D] group-hover:text-[#11CFE7] transition-colors" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">{s.title}</h3>
-                <p className="text-[#888] text-sm mb-6 leading-relaxed">{s.desc}</p>
+                <h3 className="text-xl font-bold text-[#1A2B6D] mb-3">{s.title}</h3>
+                <p className="text-slate-500 text-sm mb-6 leading-relaxed">{s.desc}</p>
                 <ul className="space-y-2">
                   {s.items.map(item => (
-                    <li key={item} className="flex items-center gap-2 text-sm text-[#aaa]">
-                      <CheckCircle size={14} className="text-[#C9A84C] flex-shrink-0" />
+                    <li key={item} className="flex items-center gap-2 text-sm text-slate-600">
+                      <CheckCircle size={14} className="text-[#11CFE7] flex-shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -278,11 +272,11 @@ function Services() {
         </div>
 
         {/* References ticker */}
-        <div className="border-t border-b border-[#2A2A2A] py-6 overflow-hidden">
+        <div className="border-t border-b border-slate-200 py-6 overflow-hidden bg-slate-50 -mx-6 px-6">
           <div className="flex gap-8 items-center flex-wrap justify-center">
-            <span className="text-xs text-[#888] uppercase tracking-widest whitespace-nowrap">Wij beveiligen o.a.:</span>
+            <span className="text-xs text-slate-400 uppercase tracking-widest whitespace-nowrap">Wij beveiligen o.a.:</span>
             {REFERENCES.map(r => (
-              <span key={r} className="text-sm font-medium text-[#C9A84C] whitespace-nowrap">
+              <span key={r} className="text-sm font-bold text-[#1A2B6D] whitespace-nowrap">
                 ◆ {r}
               </span>
             ))}
@@ -304,12 +298,12 @@ function WhyUs() {
   ]
 
   return (
-    <section id="over-ons" className="py-24 bg-[#111]">
+    <section id="over-ons" className="py-24 bg-[#f0f6ff]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-start mb-12">
           {/* Left — team photo + certificeringen */}
           <div className="relative">
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/3] border border-[#C9A84C]/20">
+            <div className="relative rounded-xl overflow-hidden aspect-[4/3] border-2 border-[#1A2B6D]/20 shadow-xl">
               <Image
                 src={IMAGES.team}
                 alt="Monra Security team"
@@ -318,28 +312,29 @@ function WhyUs() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
-            <div className="absolute -bottom-5 -right-5 bg-[#111] border border-[#C9A84C]/30 rounded-xl px-6 py-4 text-center shadow-xl">
-              <div className="text-3xl font-black bg-gradient-to-r from-[#C9A84C] to-[#E8C96A] bg-clip-text text-transparent">25+</div>
-              <div className="text-[10px] text-[#888] uppercase tracking-widest mt-1">Jaar ervaring</div>
+            <div className="absolute -bottom-5 -right-5 bg-[#1A2B6D] border-2 border-[#11CFE7] rounded-xl px-6 py-4 text-center shadow-xl">
+              <div className="text-3xl font-black text-[#11CFE7]">25+</div>
+              <div className="text-[10px] text-white/70 uppercase tracking-widest mt-1">Jaar ervaring</div>
             </div>
             <div className="flex gap-4 mt-10 flex-wrap">
               <Image src={IMAGES.svpb} alt="SVPB Keurmerk" width={80} height={72} className="h-14 w-auto object-contain opacity-90" />
-              <Image src={IMAGES.keurmerk} alt="Keurmerk Beveiliging" width={80} height={72} className="h-14 w-auto object-contain opacity-90 brightness-200" />
+              <Image src={IMAGES.keurmerk} alt="Keurmerk Beveiliging" width={80} height={72} className="h-14 w-auto object-contain opacity-90" />
             </div>
           </div>
 
           {/* Right — copy */}
           <div>
-            <div className="gold-line mb-6" />
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
-              WAAROM <span className="text-[#C9A84C]">MONRA</span>?
+            <div className="text-xs font-bold text-[#11CFE7] tracking-[4px] uppercase mb-3">Over ons</div>
+            <div className="w-10 h-1 bg-[#11CFE7] mb-5 rounded" />
+            <h2 className="text-4xl md:text-5xl font-black text-[#1A2B6D] mb-6">
+              WAAROM <span className="text-[#11CFE7]">MONRA</span>?
             </h2>
-            <p className="text-[#888] leading-relaxed mb-8">
+            <p className="text-slate-500 leading-relaxed mb-8">
               Monra Security werkt met veel vaste medewerkers in eigen dienstverband — zo min mogelijk oproepkrachten
               of ZZP-ers. Dit verbetert de communicatie, vergroot de onderlinge cohesie en stelt ons in staat
-              hetzelfde werk te leveren als andere beveiligingsbedrijven, maar met tot wel <strong className="text-white">30 à 40% minder personeel</strong>.
+              hetzelfde werk te leveren als andere beveiligingsbedrijven, maar met tot wel <strong className="text-[#1A2B6D]">30 à 40% minder personeel</strong>.
             </p>
-            <blockquote className="border-l-2 border-[#C9A84C] pl-6 italic text-[#aaa] mb-8">
+            <blockquote className="border-l-4 border-[#11CFE7] pl-6 italic text-slate-600 mb-8 bg-white py-3 pr-4 rounded-r-lg">
               &ldquo;Een goede Event Security Officer zorgt voor veiligheid, overzicht en een gastvrije uitstraling tegelijk.&rdquo;
             </blockquote>
             <div className="flex items-center gap-4">
@@ -348,11 +343,11 @@ function WhyUs() {
                 alt="Raf Monsieur"
                 width={48}
                 height={48}
-                className="w-12 h-12 rounded-full object-cover border-2 border-[#C9A84C]/50"
+                className="w-12 h-12 rounded-full object-cover border-2 border-[#11CFE7]"
               />
               <div>
-                <div className="text-white font-semibold">Raf Monsieur</div>
-                <div className="text-[#888] text-sm">CEO, Monra Security B.V.</div>
+                <div className="text-[#1A2B6D] font-bold">Raf Monsieur</div>
+                <div className="text-slate-500 text-sm">CEO, Monra Security B.V.</div>
               </div>
             </div>
           </div>
@@ -362,10 +357,10 @@ function WhyUs() {
           {reasons.map(r => {
             const Icon = r.icon
             return (
-              <div key={r.title} className="glass-card rounded-xl p-5 hover:border-[#C9A84C]/30 transition-all">
-                <Icon size={20} className="text-[#C9A84C] mb-3" />
-                <div className="text-white font-semibold text-sm mb-1">{r.title}</div>
-                <div className="text-[#888] text-xs leading-relaxed">{r.desc}</div>
+              <div key={r.title} className="bg-white border border-slate-200 rounded-xl p-5 hover:border-[#11CFE7] hover:shadow-md transition-all">
+                <Icon size={20} className="text-[#11CFE7] mb-3" />
+                <div className="text-[#1A2B6D] font-bold text-sm mb-1">{r.title}</div>
+                <div className="text-slate-500 text-xs leading-relaxed">{r.desc}</div>
               </div>
             )
           })}
@@ -377,19 +372,19 @@ function WhyUs() {
 
 function Education() {
   return (
-    <section id="opleiding" className="py-24 bg-[#0A0A0A]">
+    <section id="opleiding" className="py-24 bg-[#1A2B6D]">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="glass-card rounded-3xl p-8 md:p-12 border border-[#C9A84C]/20">
+        <div className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 bg-[#C9A84C]/10 border border-[#C9A84C]/30 rounded-full px-4 py-1.5 mb-6">
-                <Award size={14} className="text-[#C9A84C]" />
-                <span className="text-[#C9A84C] text-xs font-medium uppercase tracking-widest">SBB Erkend Leerbedrijf</span>
+              <div className="inline-flex items-center gap-2 bg-[#11CFE7]/10 border border-[#11CFE7]/40 rounded-full px-4 py-1.5 mb-6">
+                <Award size={14} className="text-[#11CFE7]" />
+                <span className="text-[#11CFE7] text-xs font-bold uppercase tracking-widest">SBB Erkend Leerbedrijf</span>
               </div>
               <h2 className="text-4xl font-black text-white mb-4">
-                ESO <span className="text-[#C9A84C]">OPLEIDING</span>
+                ESO <span className="text-[#11CFE7]">OPLEIDING</span>
               </h2>
-              <p className="text-[#888] leading-relaxed mb-6">
+              <p className="text-white/60 leading-relaxed mb-6">
                 De opleiding tot <strong className="text-white">Event Security Officer</strong> is de ideale route voor mensen
                 die willen werken in de dynamische wereld van evenementenbeveiliging. Leren in de praktijk
                 bij een professioneel en erkend leerbedrijf.
@@ -401,14 +396,14 @@ function Education() {
                   'Officieel ESO-certificaat na afronding',
                   'Sterke basis voor een loopbaan in beveiliging',
                 ].map(item => (
-                  <div key={item} className="flex items-start gap-3 text-sm text-[#aaa]">
-                    <CheckCircle size={16} className="text-[#C9A84C] flex-shrink-0 mt-0.5" />
+                  <div key={item} className="flex items-start gap-3 text-sm text-white/70">
+                    <CheckCircle size={16} className="text-[#11CFE7] flex-shrink-0 mt-0.5" />
                     {item}
                   </div>
                 ))}
               </div>
               <a href="mailto:info@monra-security.nl?subject=Interesse ESO Opleiding"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-[#C9A84C] to-[#A07A2A] text-black font-bold px-6 py-3 rounded-full hover:from-[#E8C96A] hover:to-[#C9A84C] transition-all">
+                className="inline-flex items-center gap-2 bg-[#11CFE7] text-[#1A2B6D] font-black px-6 py-3 rounded hover:bg-white transition-all">
                 Start nu met aanmelden
                 <ArrowRight size={16} />
               </a>
@@ -420,11 +415,11 @@ function Education() {
                 { step: '02', title: 'Praktijkervaring', desc: 'Meelopen op echte evenementen onder begeleiding van professionals.' },
                 { step: '03', title: 'Certificering', desc: 'Behaal het officiële ESO-certificaat en start uw carrière.' },
               ].map(item => (
-                <div key={item.step} className="flex gap-4 items-start bg-[#1A1A1A] rounded-xl p-5">
-                  <span className="text-3xl font-black text-[#C9A84C]/30">{item.step}</span>
+                <div key={item.step} className="flex gap-4 items-start bg-white/5 border border-white/10 rounded-xl p-5">
+                  <span className="text-3xl font-black text-[#11CFE7]/40">{item.step}</span>
                   <div>
-                    <div className="text-white font-semibold mb-1">{item.title}</div>
-                    <div className="text-[#888] text-sm">{item.desc}</div>
+                    <div className="text-white font-bold mb-1">{item.title}</div>
+                    <div className="text-white/50 text-sm">{item.desc}</div>
                   </div>
                 </div>
               ))}
@@ -442,64 +437,64 @@ function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // In productie: POST naar /api/contact
     setSent(true)
   }
 
   return (
-    <section id="contact" className="py-24 bg-[#111]">
+    <section id="contact" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <div className="gold-line mx-auto mb-6" />
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-            NEEM <span className="text-[#C9A84C]">CONTACT OP</span>
+          <div className="text-xs font-bold text-[#11CFE7] tracking-[4px] uppercase mb-3">Vrijblijvend en snel</div>
+          <div className="w-10 h-1 bg-[#11CFE7] mx-auto mb-5 rounded" />
+          <h2 className="text-4xl md:text-5xl font-black text-[#1A2B6D] mb-4">
+            NEEM <span className="text-[#11CFE7]">CONTACT OP</span>
           </h2>
-          <p className="text-[#888]">Vrijblijvend kennismaken? Wij reageren binnen 24 uur.</p>
+          <p className="text-slate-500">Vrijblijvend kennismaken? Wij reageren binnen 24 uur.</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Form */}
-          <div className="glass-card rounded-2xl p-8">
+          <div className="border border-slate-200 rounded-2xl p-8 shadow-sm">
             {sent ? (
               <div className="flex flex-col items-center justify-center h-full gap-4 py-12">
-                <CheckCircle size={48} className="text-[#C9A84C]" />
-                <h3 className="text-xl font-bold text-white">Bericht verzonden!</h3>
-                <p className="text-[#888] text-center">Wij nemen zo snel mogelijk contact met u op.</p>
+                <CheckCircle size={48} className="text-[#11CFE7]" />
+                <h3 className="text-xl font-bold text-[#1A2B6D]">Bericht verzonden!</h3>
+                <p className="text-slate-500 text-center">Wij nemen zo snel mogelijk contact met u op.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="text-xs text-[#888] uppercase tracking-wide mb-1.5 block">Naam *</label>
+                    <label className="text-xs text-[#1A2B6D] font-bold uppercase tracking-wide mb-1.5 block">Naam *</label>
                     <input required type="text"
-                      className="w-full bg-[#1A1A1A] border border-[#2A2A2A] rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#C9A84C]/50 transition-colors"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-[#1A2B6D] text-sm focus:outline-none focus:border-[#11CFE7] transition-colors"
                       value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })}
                       placeholder="Uw naam" />
                   </div>
                   <div>
-                    <label className="text-xs text-[#888] uppercase tracking-wide mb-1.5 block">Telefoon</label>
+                    <label className="text-xs text-[#1A2B6D] font-bold uppercase tracking-wide mb-1.5 block">Telefoon</label>
                     <input type="tel"
-                      className="w-full bg-[#1A1A1A] border border-[#2A2A2A] rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#C9A84C]/50 transition-colors"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-[#1A2B6D] text-sm focus:outline-none focus:border-[#11CFE7] transition-colors"
                       value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="+31 6..." />
                   </div>
                 </div>
                 <div>
-                  <label className="text-xs text-[#888] uppercase tracking-wide mb-1.5 block">E-mail *</label>
+                  <label className="text-xs text-[#1A2B6D] font-bold uppercase tracking-wide mb-1.5 block">E-mail *</label>
                   <input required type="email"
-                    className="w-full bg-[#1A1A1A] border border-[#2A2A2A] rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#C9A84C]/50 transition-colors"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-[#1A2B6D] text-sm focus:outline-none focus:border-[#11CFE7] transition-colors"
                     value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })}
                     placeholder="uw@email.nl" />
                 </div>
                 <div>
-                  <label className="text-xs text-[#888] uppercase tracking-wide mb-1.5 block">Bericht *</label>
+                  <label className="text-xs text-[#1A2B6D] font-bold uppercase tracking-wide mb-1.5 block">Bericht *</label>
                   <textarea required rows={5}
-                    className="w-full bg-[#1A1A1A] border border-[#2A2A2A] rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#C9A84C]/50 transition-colors resize-none"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-[#1A2B6D] text-sm focus:outline-none focus:border-[#11CFE7] transition-colors resize-none"
                     value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Vertel ons over uw evenement of vraag..." />
                 </div>
                 <button type="submit"
-                  className="w-full bg-gradient-to-r from-[#C9A84C] to-[#A07A2A] text-black font-bold py-3.5 rounded-xl hover:from-[#E8C96A] hover:to-[#C9A84C] transition-all flex items-center justify-center gap-2">
+                  className="w-full bg-[#1A2B6D] text-white font-black py-3.5 rounded-lg hover:bg-[#11CFE7] hover:text-[#1A2B6D] transition-all flex items-center justify-center gap-2">
                   <Send size={16} />
                   Bericht versturen
                 </button>
@@ -508,7 +503,7 @@ function Contact() {
           </div>
 
           {/* Contact info */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
             {[
               { icon: Phone, label: 'Directie', value: '+31 (0)6 45398678', href: 'tel:+31645398678' },
               { icon: Phone, label: 'Planning', value: '+31 (0)6 23624789', href: 'tel:+31623624789' },
@@ -519,24 +514,24 @@ function Contact() {
               const Icon = item.icon
               return (
                 <a key={item.value} href={item.href}
-                  className="flex items-center gap-4 glass-card rounded-xl p-5 hover:border-[#C9A84C]/30 transition-all group">
-                  <div className="w-10 h-10 rounded-lg bg-[#C9A84C]/10 flex items-center justify-center flex-shrink-0">
-                    <Icon size={18} className="text-[#C9A84C]" />
+                  className="flex items-center gap-4 border border-slate-200 rounded-xl p-4 hover:border-[#11CFE7] hover:shadow-md transition-all group bg-white">
+                  <div className="w-10 h-10 rounded-lg bg-[#1A2B6D]/5 flex items-center justify-center flex-shrink-0 group-hover:bg-[#11CFE7]/10 transition-colors">
+                    <Icon size={18} className="text-[#1A2B6D] group-hover:text-[#11CFE7] transition-colors" />
                   </div>
                   <div>
-                    <div className="text-xs text-[#888] uppercase tracking-wide">{item.label}</div>
-                    <div className="text-white text-sm group-hover:text-[#C9A84C] transition-colors">{item.value}</div>
+                    <div className="text-xs text-slate-400 uppercase tracking-wide">{item.label}</div>
+                    <div className="text-[#1A2B6D] font-bold text-sm group-hover:text-[#11CFE7] transition-colors">{item.value}</div>
                   </div>
                 </a>
               )
             })}
 
             {/* Certifications */}
-            <div className="glass-card rounded-xl p-5">
-              <div className="text-xs text-[#888] uppercase tracking-wide mb-3">Certificeringen</div>
+            <div className="border border-slate-200 rounded-xl p-5 bg-[#f0f6ff]">
+              <div className="text-xs text-[#1A2B6D] font-bold uppercase tracking-wide mb-3">Certificeringen</div>
               <div className="flex flex-wrap gap-2">
                 {['SVPB Keurmerk', 'Wpbr Vergunning', 'SBB Leerbedrijf', 'KVK 89581806'].map(c => (
-                  <span key={c} className="text-xs bg-[#C9A84C]/10 text-[#C9A84C] px-3 py-1 rounded-full border border-[#C9A84C]/20">
+                  <span key={c} className="text-xs bg-[#1A2B6D] text-white px-3 py-1 rounded-full font-semibold">
                     {c}
                   </span>
                 ))}
@@ -579,32 +574,35 @@ function Chatbot() {
       {/* Floating button */}
       <button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-br from-[#C9A84C] to-[#A07A2A] rounded-full flex items-center justify-center shadow-xl shadow-[#C9A84C]/30 hover:from-[#E8C96A] hover:to-[#C9A84C] transition-all animate-pulse-gold"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#1A2B6D] border-2 border-[#11CFE7] rounded-full flex items-center justify-center shadow-xl hover:bg-[#11CFE7] transition-all"
         aria-label="Open chat">
-        {open ? <X size={22} className="text-black" /> : <MessageCircle size={22} className="text-black" />}
+        {open ? <X size={22} className="text-white" /> : <MessageCircle size={22} className="text-white" />}
       </button>
 
       {/* Chat window */}
       {open && (
-        <div className="fixed bottom-24 right-6 z-50 w-80 md:w-96 bg-[#111] border border-[#2A2A2A] rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+        <div className="fixed bottom-24 right-6 z-50 w-80 md:w-96 bg-white border border-slate-200 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
           style={{ height: '460px' }}>
           {/* Header */}
-          <div className="bg-gradient-to-r from-[#C9A84C] to-[#A07A2A] px-5 py-4 flex items-center gap-3">
-            <Shield size={18} className="text-black" />
+          <div className="bg-[#1A2B6D] px-5 py-4 flex items-center gap-3 border-b-2 border-[#11CFE7]">
+            <Shield size={18} className="text-[#11CFE7]" />
             <div>
-              <div className="text-black font-bold text-sm">Monra Security</div>
-              <div className="text-black/70 text-xs">Assistent • Online</div>
+              <div className="text-white font-bold text-sm">Monra Security</div>
+              <div className="text-white/60 text-xs flex items-center gap-1">
+                <span className="w-1.5 h-1.5 bg-green-400 rounded-full inline-block" />
+                Assistent • Online
+              </div>
             </div>
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3">
+          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-slate-50">
             {messages.map((m, i) => (
               <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed whitespace-pre-line ${
                   m.role === 'user'
-                    ? 'bg-gradient-to-br from-[#C9A84C] to-[#A07A2A] text-black font-medium'
-                    : 'bg-[#1A1A1A] text-[#ddd] border border-[#2A2A2A]'
+                    ? 'bg-[#1A2B6D] text-white font-medium rounded-br-sm'
+                    : 'bg-white text-slate-700 border border-slate-200 rounded-bl-sm'
                 }`}>
                   {m.text}
                 </div>
@@ -612,10 +610,10 @@ function Chatbot() {
             ))}
             {typing && (
               <div className="flex justify-start">
-                <div className="bg-[#1A1A1A] border border-[#2A2A2A] rounded-2xl px-4 py-3 flex gap-1.5 items-center">
-                  <span className="typing-dot w-1.5 h-1.5 bg-[#C9A84C] rounded-full" />
-                  <span className="typing-dot w-1.5 h-1.5 bg-[#C9A84C] rounded-full" />
-                  <span className="typing-dot w-1.5 h-1.5 bg-[#C9A84C] rounded-full" />
+                <div className="bg-white border border-slate-200 rounded-2xl px-4 py-3 flex gap-1.5 items-center rounded-bl-sm">
+                  <span className="w-1.5 h-1.5 bg-[#11CFE7] rounded-full animate-bounce" style={{animationDelay:'0ms'}} />
+                  <span className="w-1.5 h-1.5 bg-[#11CFE7] rounded-full animate-bounce" style={{animationDelay:'150ms'}} />
+                  <span className="w-1.5 h-1.5 bg-[#11CFE7] rounded-full animate-bounce" style={{animationDelay:'300ms'}} />
                 </div>
               </div>
             )}
@@ -623,28 +621,28 @@ function Chatbot() {
           </div>
 
           {/* Quick replies */}
-          <div className="px-4 pb-2 flex gap-2 flex-wrap">
+          <div className="px-4 pb-2 pt-2 flex gap-2 flex-wrap border-t border-slate-100">
             {['Offerte aanvragen', 'ESO Opleiding', 'Contact info'].map(q => (
               <button key={q} onClick={() => { setInput(q); }}
-                className="text-xs text-[#C9A84C] border border-[#C9A84C]/30 rounded-full px-3 py-1 hover:bg-[#C9A84C]/10 transition-colors">
+                className="text-xs text-[#1A2B6D] border border-[#1A2B6D]/30 rounded-full px-3 py-1 hover:bg-[#11CFE7]/10 hover:border-[#11CFE7] transition-colors font-semibold">
                 {q}
               </button>
             ))}
           </div>
 
           {/* Input */}
-          <div className="p-4 border-t border-[#2A2A2A] flex gap-2">
+          <div className="p-4 border-t border-slate-200 flex gap-2">
             <input
               type="text"
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && send()}
               placeholder="Stel een vraag..."
-              className="flex-1 bg-[#1A1A1A] border border-[#2A2A2A] rounded-xl px-4 py-2.5 text-sm text-white placeholder-[#555] focus:outline-none focus:border-[#C9A84C]/40 transition-colors"
+              className="flex-1 bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-[#1A2B6D] placeholder-slate-400 focus:outline-none focus:border-[#11CFE7] transition-colors"
             />
             <button onClick={send}
-              className="w-10 h-10 bg-gradient-to-br from-[#C9A84C] to-[#A07A2A] rounded-xl flex items-center justify-center hover:from-[#E8C96A] hover:to-[#C9A84C] transition-all flex-shrink-0">
-              <Send size={15} className="text-black" />
+              className="w-10 h-10 bg-[#1A2B6D] rounded-lg flex items-center justify-center hover:bg-[#11CFE7] transition-all flex-shrink-0">
+              <Send size={15} className="text-white" />
             </button>
           </div>
         </div>
@@ -655,48 +653,48 @@ function Chatbot() {
 
 function Footer() {
   return (
-    <footer className="bg-[#0A0A0A] border-t border-[#2A2A2A] py-12">
+    <footer className="bg-[#0a1540] border-t border-white/10 py-12">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#C9A84C] to-[#A07A2A] flex items-center justify-center">
-                <Shield size={14} className="text-black" />
+              <div className="w-8 h-8 rounded-full bg-[#11CFE7] flex items-center justify-center">
+                <Shield size={14} className="text-[#1A2B6D]" />
               </div>
-              <span className="text-white font-bold">MONRA <span className="text-[#C9A84C]">SECURITY</span></span>
+              <span className="text-white font-black">MONRA <span className="text-[#11CFE7]">SECURITY</span></span>
             </div>
-            <p className="text-[#888] text-sm leading-relaxed">
+            <p className="text-white/40 text-sm leading-relaxed">
               Professionele evenementenbeveiliging. SVPB gecertificeerd. 25+ jaar ervaring.
             </p>
           </div>
           <div>
-            <div className="text-white font-semibold mb-4 text-sm uppercase tracking-widest">Navigatie</div>
+            <div className="text-white font-bold mb-4 text-xs uppercase tracking-widest">Navigatie</div>
             <div className="flex flex-col gap-2">
               {['Home', 'Diensten', "Foto's", 'Over ons', 'Opleiding', 'Contact'].map(l => (
                 <a key={l} href={`#${l.toLowerCase().replace(' ', '-').replace("'", '')}`}
-                  className="text-[#888] text-sm hover:text-[#C9A84C] transition-colors">
+                  className="text-white/40 text-sm hover:text-[#11CFE7] transition-colors">
                   {l}
                 </a>
               ))}
             </div>
           </div>
           <div>
-            <div className="text-white font-semibold mb-4 text-sm uppercase tracking-widest">Contact</div>
-            <div className="flex flex-col gap-2 text-sm text-[#888]">
+            <div className="text-white font-bold mb-4 text-xs uppercase tracking-widest">Contact</div>
+            <div className="flex flex-col gap-2 text-sm text-white/40">
               <span>Schuttersstraat 7, 6067 GE Linne</span>
-              <a href="tel:+31645398678" className="hover:text-[#C9A84C] transition-colors">+31 (0)6 45398678</a>
-              <a href="mailto:info@monra-security.nl" className="hover:text-[#C9A84C] transition-colors">info@monra-security.nl</a>
+              <a href="tel:+31645398678" className="hover:text-[#11CFE7] transition-colors">+31 (0)6 45398678</a>
+              <a href="mailto:info@monra-security.nl" className="hover:text-[#11CFE7] transition-colors">info@monra-security.nl</a>
               <span className="text-xs mt-2">KVK: 89581806 · BTW: NL865029283B01</span>
             </div>
           </div>
         </div>
-        <div className="border-t border-[#2A2A2A] pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <span className="text-[#555] text-xs">© 2024 Monra Security B.V. · Alle rechten voorbehouden</span>
+        <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+          <span className="text-white/25 text-xs">© 2024 Monra Security B.V. · Alle rechten voorbehouden</span>
           <div className="flex gap-4">
             <a href="https://www.facebook.com/MonraBeveiliging" target="_blank" rel="noopener noreferrer"
-              className="text-[#555] hover:text-[#C9A84C] transition-colors text-xs">Facebook</a>
+              className="text-white/25 hover:text-[#11CFE7] transition-colors text-xs">Facebook</a>
             <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"
-              className="text-[#555] hover:text-[#C9A84C] transition-colors text-xs">Instagram</a>
+              className="text-white/25 hover:text-[#11CFE7] transition-colors text-xs">Instagram</a>
           </div>
         </div>
       </div>

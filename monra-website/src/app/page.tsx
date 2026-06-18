@@ -304,7 +304,7 @@ function WhyUs() {
               hetzelfde werk te leveren als andere beveiligingsbedrijven, maar met tot wel <strong className="text-white">30 à 40% minder personeel</strong>.
             </p>
             <blockquote className="border-l-2 border-[#C9A84C] pl-6 italic text-[#aaa] mb-8">
-              "Een goede Event Security Officer zorgt voor veiligheid, overzicht en een gastvrije uitstraling tegelijk."
+              &ldquo;Een goede Event Security Officer zorgt voor veiligheid, overzicht en een gastvrije uitstraling tegelijk.&rdquo;
             </blockquote>
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-full bg-[#C9A84C]/20 flex items-center justify-center">

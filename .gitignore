@@ -1,13 +1,9 @@
 # Dependencies
 node_modules/
-.pnp
-.pnp.js
 
 # Next.js build output
 .next/
 out/
-
-# Production build
 build/
 dist/
 
@@ -21,7 +17,6 @@ dist/
 
 # TypeScript
 *.tsbuildinfo
-next-env.d.ts
 
 # OS bestanden
 .DS_Store
@@ -29,21 +24,13 @@ Thumbs.db
 desktop.ini
 
 # Logs
+*.log
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
 
 # Editor
 .vscode/
 .idea/
-*.swp
-*.swo
 
-# Test coverage
-coverage/
-.nyc_output
-
-# Temp bestanden
+# Temp
 *.tmp
 *.temp

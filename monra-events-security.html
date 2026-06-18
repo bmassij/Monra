@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Monra Events Security — Evenementenbeveiliging</title>
+<meta name="description" content="Monra Events Security door Senna Monsigneur — professionele evenementenbeveiliging met stijl, passie en vakmanschap."/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:#f0e6c8;background:#080808;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+
+/*
+  MONRA EVENTS SECURITY — eigen identiteit
+  Zwart:    #080808  (diep zwart)
+  Goud:     #C9A84C  (warm goud)
+  Goud licht: #E8C76A
+  Goud donker: #8B6914
+  Crème:    #F5EDD6
+  Grijs:    #1A1A1A  (kaart achtergrond)
+  Accent:   #2A2A2A  (subtiele panels)
+*/
+
+/* ── TOPBAR ── */
+.topbar{background:#000;padding:10px 48px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(201,168,76,.2)}
+.topbar-left{display:flex;gap:24px}
+.topbar a{font-size:12px;color:rgba(245,237,214,.5);display:flex;align-items:center;gap:6px;transition:color .2s}
+.topbar a:hover{color:#C9A84C}
+.topbar-right{display:flex;gap:10px;align-items:center}
+.sibling-pill{font-size:11px;display:flex;align-items:center;gap:6px;padding:4px 12px;border:1px solid rgba(201,168,76,.25);border-radius:20px;color:rgba(245,237,214,.45);transition:all .2s}
+.sibling-pill:hover{color:#C9A84C;border-color:#C9A84C}
+
+/* ── NAV ── */
+nav{background:rgba(8,8,8,.95);border-bottom:1px solid rgba(201,168,76,.15);position:sticky;top:0;z-index:200;backdrop-filter:blur(16px)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 48px;height:80px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:14px}
+.logo-emblem{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#8B6914);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:#000;flex-shrink:0;box-shadow:0 0 0 2px rgba(201,168,76,.2),0 4px 20px rgba(201,168,76,.3)}
+.logo-emblem img{width:48px;height:48px;border-radius:50%;object-fit:contain}
+.logo-text{display:flex;flex-direction:column}
+.logo-text span:first-child{font-size:9px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:3px}
+.logo-text span:last-child{font-size:16px;font-weight:900;color:#fff;letter-spacing:.5px;font-family:'Playfair Display',serif}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:12px;font-weight:700;color:rgba(245,237,214,.55);text-transform:uppercase;letter-spacing:1.2px;padding:6px 0;border-bottom:2px solid transparent;transition:all .2s}
+.nav-links a:hover{color:#C9A84C;border-bottom-color:#C9A84C}
+.btn-nav-gold{background:linear-gradient(135deg,#C9A84C,#8B6914);color:#000;font-weight:800;font-size:12px;padding:10px 22px;border-radius:4px;transition:all .2s;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap;box-shadow:0 4px 16px rgba(201,168,76,.25)}
+.btn-nav-gold:hover{background:linear-gradient(135deg,#E8C76A,#C9A84C);transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,168,76,.4)}
+
+/* ── HERO SLIDER ── */
+.hs{position:relative;height:680px;overflow:hidden;background:#000}
+.hs-slide{position:absolute;inset:0;display:flex;align-items:stretch;opacity:0;transition:opacity .9s ease;pointer-events:none}
+.hs-slide.active{opacity:1;pointer-events:auto;z-index:2}
+.hs-slide.prev{opacity:0;z-index:1}
+.hs-photo{position:absolute;inset:0;width:65%;overflow:hidden}
+.hs-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transform:scale(1.05);transition:transform 7s ease;filter:brightness(.75) contrast(1.1)}
+.hs-slide.active .hs-photo img{transform:scale(1)}
+.hs-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(8,8,8,.08) 0%,rgba(8,8,8,.35) 45%,rgba(8,8,8,.85) 68%,rgba(8,8,8,1) 100%)}
+/* Goud lijn overlay */
+.hs-photo::before{content:'';position:absolute;top:0;right:0;bottom:0;width:3px;background:linear-gradient(to bottom,transparent,#C9A84C 30%,#E8C76A 50%,#C9A84C 70%,transparent);z-index:3;filter:blur(1px)}
+.hs-curve{position:absolute;top:0;right:-1px;width:240px;height:100%;z-index:2}
+.hs-curve svg{width:100%;height:100%}
+.hs-content{position:absolute;right:0;top:0;bottom:0;width:46%;display:flex;flex-direction:column;justify-content:center;padding:0 72px 0 56px;z-index:3}
+.hs-tag{display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:800;color:#C9A84C;text-transform:uppercase;letter-spacing:4px;margin-bottom:22px}
+.hs-tag-line{width:40px;height:1px;background:linear-gradient(90deg,#C9A84C,transparent);flex-shrink:0}
+.hs-content h2{font-family:'Playfair Display',serif;font-size:clamp(28px,3.2vw,52px);font-weight:900;color:#fff;line-height:1.06;letter-spacing:-1px;margin-bottom:18px}
+.hs-content h2 em{font-style:normal;background:linear-gradient(135deg,#E8C76A,#C9A84C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hs-content p{font-size:14px;color:rgba(245,237,214,.65);line-height:1.9;margin-bottom:28px;max-width:380px}
+.hs-bullets{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:34px}
+.hs-bullets li{font-size:13px;color:rgba(245,237,214,.82);display:flex;align-items:center;gap:12px}
+.hs-chk{width:20px;height:20px;border-radius:50%;background:rgba(201,168,76,.1);border:1.5px solid #C9A84C;display:flex;align-items:center;justify-content:center;font-size:9px;color:#C9A84C;font-weight:900;flex-shrink:0}
+.hs-cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#C9A84C,#8B6914);color:#000;font-weight:800;font-size:13px;padding:14px 30px;border-radius:4px;transition:all .25s;width:fit-content;letter-spacing:.3px;box-shadow:0 8px 32px rgba(201,168,76,.3)}
+.hs-cta:hover{background:linear-gradient(135deg,#E8C76A,#C9A84C);transform:translateY(-2px);box-shadow:0 14px 40px rgba(201,168,76,.45)}
+.hs-ghost{display:inline-flex;align-items:center;color:rgba(245,237,214,.5);font-size:12px;font-weight:600;margin-left:18px;border-bottom:1px solid rgba(201,168,76,.3);padding-bottom:2px;transition:all .2s;letter-spacing:.3px}
+.hs-ghost:hover{color:#C9A84C;border-color:#C9A84C}
+.hs-progress{position:absolute;bottom:0;left:0;right:0;height:2px;background:rgba(255,255,255,.05);z-index:10}
+.hs-bar{height:100%;background:linear-gradient(90deg,#C9A84C,#E8C76A);width:0%;transition:none}
+.hs-bar.run{transition:width 5.5s linear;width:100%}
+.hs-nav{position:absolute;bottom:32px;right:48px;display:flex;gap:10px;z-index:10;align-items:center}
+.hs-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2);border:none;cursor:pointer;padding:0;transition:all .3s}
+.hs-dot.on{background:#C9A84C;width:28px;border-radius:3px}
+.hs-arr{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:52px;height:52px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;transition:all .25s}
+.hs-prev{left:32px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.1)}
+.hs-next{right:32px;background:rgba(201,168,76,.15);color:#C9A84C;border:1px solid rgba(201,168,76,.3)}
+.hs-prev:hover{background:rgba(255,255,255,.12);color:#fff}
+.hs-next:hover{background:#C9A84C;color:#000}
+.hs-count{position:absolute;top:36px;right:48px;z-index:10;font-size:11px;font-weight:700;color:rgba(201,168,76,.4);letter-spacing:3px;font-family:'Playfair Display',serif}
+
+/* ── GOUD DIVIDER ── */
+.gold-strip{background:linear-gradient(90deg,transparent,#C9A84C 20%,#E8C76A 50%,#C9A84C 80%,transparent);height:1px;opacity:.4}
+.stat-bar{background:#0d0d0d;border-bottom:1px solid rgba(201,168,76,.1);padding:28px 0}
+.stats-row{max-width:1280px;margin:0 auto;padding:0 48px;display:flex;justify-content:space-around;align-items:center;gap:32px;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-n{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:#C9A84C;line-height:1;display:block}
+.stat-l{font-size:11px;color:rgba(245,237,214,.4);text-transform:uppercase;letter-spacing:2px;margin-top:6px;display:block}
+.stat-sep{width:1px;height:40px;background:rgba(201,168,76,.15)}
+
+/* ── TICKER ── */
+.ticker{background:#0d0d0d;padding:18px 0;border-top:1px solid rgba(201,168,76,.08)}
+.ticker-in{max-width:1280px;margin:0 auto;padding:0 48px;display:flex;gap:24px;align-items:center;flex-wrap:wrap;justify-content:center}
+.ticker-lbl{font-size:9px;font-weight:700;color:rgba(201,168,76,.35);text-transform:uppercase;letter-spacing:3px;flex-shrink:0}
+.ticker-i{font-size:11px;font-weight:700;color:rgba(245,237,214,.4);display:flex;align-items:center;gap:8px}
+.ticker-i span{color:#C9A84C}
+
+/* ── SECTIONS ── */
+.section{padding:96px 0}
+.section-dark{background:#0d0d0d}
+.container{max-width:1280px;margin:0 auto;padding:0 48px}
+.stag{font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:4px;margin-bottom:10px}
+.sline{width:40px;height:2px;background:linear-gradient(90deg,#C9A84C,transparent);margin-bottom:20px}
+h2.sh{font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,48px);font-weight:900;color:#fff;line-height:1.12;letter-spacing:-.5px}
+h2.sh em{font-style:normal;background:linear-gradient(135deg,#E8C76A,#C9A84C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sdesc{font-size:15px;color:rgba(245,237,214,.55);line-height:1.85;margin-top:14px}
+
+/* ── DIENSTEN ── */
+.dgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.1);margin-top:52px;border-radius:8px;overflow:hidden}
+.dcard{background:#111;padding:36px 32px;transition:background .3s;position:relative;overflow:hidden}
+.dcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#C9A84C,transparent);opacity:0;transition:opacity .3s}
+.dcard:hover{background:#161616}
+.dcard:hover::before{opacity:1}
+.dcard-num{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;color:rgba(201,168,76,.08);position:absolute;top:12px;right:20px;line-height:1;pointer-events:none}
+.dcard-icon{font-size:32px;margin-bottom:18px;display:block}
+.dcard h3{font-size:17px;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:.2px}
+.dcard p{font-size:13px;color:rgba(245,237,214,.5);line-height:1.8}
+.dcard-arrow{margin-top:20px;font-size:12px;color:#C9A84C;font-weight:700;letter-spacing:.5px;opacity:0;transform:translateX(-8px);transition:all .2s}
+.dcard:hover .dcard-arrow{opacity:1;transform:translateX(0)}
+
+/* ── OVER SENNA ── */
+.senna-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center}
+.senna-img-wrap{position:relative}
+.senna-frame{border:1px solid rgba(201,168,76,.2);border-radius:8px;overflow:hidden;position:relative}
+.senna-frame img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top center;display:block;filter:brightness(.9) contrast(1.05)}
+.senna-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,.6) 0%,transparent 50%)}
+.senna-corner{position:absolute;top:-12px;left:-12px;width:60px;height:60px;border-top:2px solid #C9A84C;border-left:2px solid #C9A84C;border-radius:4px 0 0 0}
+.senna-corner-br{position:absolute;bottom:-12px;right:-12px;width:60px;height:60px;border-bottom:2px solid #C9A84C;border-right:2px solid #C9A84C;border-radius:0 0 4px 0}
+.senna-badge{position:absolute;bottom:24px;left:24px;background:rgba(8,8,8,.9);border:1px solid rgba(201,168,76,.3);border-radius:6px;padding:14px 20px;backdrop-filter:blur(8px)}
+.senna-badge-n{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#C9A84C}
+.senna-badge-t{font-size:10px;color:rgba(245,237,214,.5);text-transform:uppercase;letter-spacing:1.5px;margin-top:2px}
+.usps{display:flex;flex-direction:column;gap:0;margin-top:28px}
+.usp{display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid rgba(201,168,76,.08)}
+.usp:last-child{border-bottom:none}
+.usp-icon{width:42px;height:42px;border-radius:8px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;margin-top:2px}
+.usp h4{font-size:14px;font-weight:700;color:#fff;margin-bottom:4px}
+.usp p{font-size:13px;color:rgba(245,237,214,.48);line-height:1.65}
+blockquote.bq{border-left:2px solid #C9A84C;padding:20px 24px;font-style:italic;color:rgba(245,237,214,.7);font-size:16px;line-height:1.85;margin-top:28px;background:rgba(201,168,76,.04);border-radius:0 6px 6px 0;font-family:'Playfair Display',serif}
+blockquote.bq cite{display:block;margin-top:12px;font-size:11px;font-style:normal;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:2px;font-family:'Inter',sans-serif}
+
+/* ── GALLERY ── */
+.gallery-bg{background:#000;padding:72px 0}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:260px 260px;gap:4px;margin-top:36px}
+.pitem{overflow:hidden;position:relative}
+.pitem.wide{grid-column:span 2}
+.pitem.tall{grid-row:span 2}
+.pitem img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform .6s ease;filter:brightness(.8)}
+.pitem:hover img{transform:scale(1.07);filter:brightness(.95)}
+.pitem::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6),transparent 55%);opacity:0;transition:opacity .3s}
+.pitem:hover::after{opacity:1}
+.pitem-overlay{position:absolute;bottom:0;left:0;right:0;padding:16px;z-index:2;opacity:0;transform:translateY(8px);transition:all .3s}
+.pitem:hover .pitem-overlay{opacity:1;transform:translateY(0)}
+.pitem-overlay span{font-size:11px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:2px}
+/* Gold corner accent on hover */
+.pitem::before{content:'';position:absolute;top:0;left:0;width:0;height:0;border-top:3px solid #C9A84C;border-left:3px solid #C9A84C;z-index:3;transition:width .3s,height .3s}
+.pitem:hover::before{width:32px;height:32px}
+
+/* ── ESO OPLEIDING ── */
+.eso-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.eso-cert{display:flex;flex-direction:column;gap:16px;margin-top:28px}
+.cert{background:#111;border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:20px 22px;display:flex;align-items:center;gap:16px;transition:all .3s}
+.cert:hover{border-color:#C9A84C;background:#141414}
+.cert-icon{font-size:28px;flex-shrink:0}
+.cert h4{font-size:14px;font-weight:700;color:#fff;margin-bottom:3px}
+.cert p{font-size:12px;color:rgba(245,237,214,.45);line-height:1.6}
+.eso-steps{display:flex;flex-direction:column;gap:0;position:relative}
+.eso-steps::before{content:'';position:absolute;left:19px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,#C9A84C,rgba(201,168,76,.1))}
+.step{display:flex;gap:20px;padding:22px 0;position:relative}
+.step-n{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#8B6914);color:#000;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1;box-shadow:0 4px 16px rgba(201,168,76,.3)}
+.step h4{font-size:14px;font-weight:700;color:#fff;margin-bottom:5px}
+.step p{font-size:12px;color:rgba(245,237,214,.45);line-height:1.7}
+.btn-gold{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#C9A84C,#8B6914);color:#000;font-weight:800;font-size:13px;padding:13px 28px;border-radius:4px;transition:all .2s;letter-spacing:.3px;box-shadow:0 4px 20px rgba(201,168,76,.25)}
+.btn-gold:hover{background:linear-gradient(135deg,#E8C76A,#C9A84C);transform:translateY(-2px);box-shadow:0 10px 32px rgba(201,168,76,.4)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;color:#C9A84C;font-weight:700;font-size:13px;border:1px solid rgba(201,168,76,.3);padding:12px 24px;border-radius:4px;transition:all .2s}
+.btn-ghost:hover{background:rgba(201,168,76,.08);border-color:#C9A84C}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;margin-top:52px}
+.cform-wrap{background:#111;border-radius:10px;padding:40px;border:1px solid rgba(201,168,76,.12)}
+.cform-wrap h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#fff;margin-bottom:28px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.fg{margin-bottom:16px}
+label{display:block;font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:7px}
+input,textarea,select{width:100%;background:#0d0d0d;border:1px solid rgba(201,168,76,.15);border-radius:6px;padding:12px 16px;font-size:13px;color:#f0e6c8;font-family:inherit;outline:none;transition:border-color .2s}
+input:focus,textarea:focus,select:focus{border-color:#C9A84C;background:#111}
+input::placeholder,textarea::placeholder{color:rgba(245,237,214,.2)}
+select option{background:#111;color:#f0e6c8}
+.btn-sub{width:100%;background:linear-gradient(135deg,#C9A84C,#8B6914);color:#000;font-weight:800;font-size:14px;padding:15px;border-radius:6px;border:none;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;letter-spacing:.3px}
+.btn-sub:hover{background:linear-gradient(135deg,#E8C76A,#C9A84C);transform:translateY(-1px);box-shadow:0 8px 28px rgba(201,168,76,.35)}
+#form-ok{display:none;text-align:center;padding:48px 0}
+#form-ok .oi{font-size:56px;margin-bottom:14px}
+#form-ok h3{color:#C9A84C;font-family:'Playfair Display',serif;font-size:22px;margin-bottom:8px}
+#form-ok p{color:rgba(245,237,214,.5);font-size:14px}
+.csidebar h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#fff;margin-bottom:24px}
+.ci{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid rgba(201,168,76,.08)}
+.ci:last-of-type{border-bottom:none}
+.ci-ico{width:42px;height:42px;border-radius:8px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.12);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.ci-lbl{font-size:10px;color:rgba(245,237,214,.3);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;font-weight:600}
+.ci-val{font-size:14px;color:#fff;font-weight:700;transition:color .2s}
+.ci:hover .ci-val{color:#C9A84C}
+.cbox{margin-top:24px;padding:22px;background:rgba(201,168,76,.04);border-radius:10px;border:1px solid rgba(201,168,76,.15)}
+.cbox-t{font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px}
+.cbox p{font-size:13px;color:rgba(245,237,214,.5);line-height:1.65;margin-bottom:14px}
+.btn-sib{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(201,168,76,.25);color:#C9A84C;font-size:12px;font-weight:700;padding:9px 16px;border-radius:4px;transition:all .2s}
+.btn-sib:hover{background:rgba(201,168,76,.08);border-color:#C9A84C}
+
+/* ── SENNA BANNER ── */
+.senna-banner{background:linear-gradient(135deg,#0d0d0d 0%,#111 100%);border-top:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.1);padding:60px 0}
+.sb-in{max-width:1280px;margin:0 auto;padding:0 48px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.sb-left{max-width:600px}
+.sb-pretag{font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:4px;margin-bottom:14px}
+.sb-left h2{font-family:'Playfair Display',serif;font-size:clamp(24px,2.8vw,40px);font-weight:900;color:#fff;line-height:1.15;margin-bottom:12px}
+.sb-left p{font-size:14px;color:rgba(245,237,214,.5);line-height:1.8}
+
+/* ── SIBLING BANNER ── */
+.sib-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:32px}
+.sib-card{background:#111;border:1px solid rgba(201,168,76,.12);border-radius:8px;padding:20px 24px;flex:1;min-width:200px;transition:all .2s}
+.sib-card:hover{border-color:rgba(201,168,76,.3);background:#161616}
+.sib-card-tag{font-size:9px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px}
+.sib-card-name{font-size:16px;font-weight:900;color:#fff;margin-bottom:6px}
+.sib-card-desc{font-size:12px;color:rgba(245,237,214,.4);line-height:1.6;margin-bottom:14px}
+.sib-link{font-size:11px;font-weight:700;color:#C9A84C;display:flex;align-items:center;gap:6px}
+
+/* ── FOOTER ── */
+footer{background:#000;color:rgba(245,237,214,.4);border-top:1px solid rgba(201,168,76,.1)}
+.footer-top{padding:60px 0 44px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
+.fl-brand{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.fl-emblem{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#8B6914);display:flex;align-items:center;justify-content:center;color:#000;font-weight:900;font-size:16px}
+.fl-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:900;color:#fff}
+.fl-desc{font-size:12px;line-height:1.85;color:rgba(245,237,214,.3);margin-bottom:20px}
+.fl-socials{display:flex;gap:8px}
+.sp{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.12);border-radius:4px;padding:6px 12px;font-size:11px;color:rgba(245,237,214,.4);transition:all .2s;display:flex;align-items:center;gap:6px}
+.sp:hover{background:rgba(201,168,76,.12);color:#C9A84C;border-color:#C9A84C}
+.fc h4{font-size:10px;font-weight:700;color:rgba(201,168,76,.6);text-transform:uppercase;letter-spacing:2px;margin-bottom:18px}
+.fc a{display:block;font-size:12px;color:rgba(245,237,214,.35);margin-bottom:10px;transition:color .2s}
+.fc a:hover{color:#C9A84C}
+.footer-bottom{border-top:1px solid rgba(201,168,76,.06);padding:22px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.fc-copy{font-size:11px;color:rgba(245,237,214,.2)}
+
+/* ── CHATBOT ── */
+#cfab{position:fixed;bottom:28px;right:28px;z-index:500;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#8B6914);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 8px 32px rgba(201,168,76,.4);transition:all .2s;animation:gpulse 3s infinite}
+#cfab:hover{background:linear-gradient(135deg,#E8C76A,#C9A84C);transform:scale(1.08)}
+@keyframes gpulse{0%,100%{box-shadow:0 8px 32px rgba(201,168,76,.4),0 0 0 0 rgba(201,168,76,.3)}50%{box-shadow:0 8px 32px rgba(201,168,76,.4),0 0 0 12px rgba(201,168,76,0)}}
+#cwin{position:fixed;bottom:98px;right:28px;z-index:500;width:360px;background:#111;border-radius:14px;overflow:hidden;display:none;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,.8),0 0 0 1px rgba(201,168,76,.15);height:500px}
+#cwin.open{display:flex}
+.chdr{background:linear-gradient(135deg,#0d0d0d,#1a1400);padding:18px 20px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(201,168,76,.15)}
+.cav{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#8B6914);display:flex;align-items:center;justify-content:center;font-size:16px;color:#000;font-weight:900;flex-shrink:0}
+.chdr-name{font-weight:800;font-size:14px;color:#fff}
+.chdr-status{font-size:11px;color:rgba(245,237,214,.4);display:flex;align-items:center;gap:5px}
+.chdr-status::before{content:'';width:6px;height:6px;border-radius:50%;background:#4ade80;display:inline-block}
+.cmsgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:#0d0d0d}
+.cm{max-width:85%;padding:10px 14px;font-size:13px;line-height:1.65;white-space:pre-line;border-radius:12px}
+.bot{background:#1a1a1a;border:1px solid rgba(201,168,76,.1);color:rgba(245,237,214,.85);align-self:flex-start;border-radius:4px 12px 12px 12px}
+.usr{background:linear-gradient(135deg,#C9A84C,#8B6914);color:#000;align-self:flex-end;border-radius:12px 4px 12px 12px;font-weight:600}
+.cquick{padding:8px 12px;display:flex;gap:6px;flex-wrap:wrap;background:#111;border-top:1px solid rgba(201,168,76,.08)}
+.qb{font-size:11px;color:#C9A84C;border:1px solid rgba(201,168,76,.3);border-radius:20px;padding:4px 10px;background:none;cursor:pointer;font-weight:600;transition:all .2s}
+.qb:hover{background:rgba(201,168,76,.1)}
+.cinp-row{display:flex;gap:8px;padding:10px 12px;border-top:1px solid rgba(201,168,76,.08)}
+#cinp{flex:1;background:#0d0d0d;border:1px solid rgba(201,168,76,.15);border-radius:6px;padding:10px 12px;font-size:13px;color:#f0e6c8;font-family:inherit;outline:none;transition:border-color .2s}
+#cinp:focus{border-color:#C9A84C}
+#csnd{width:38px;height:38px;border-radius:6px;flex-shrink:0;background:linear-gradient(135deg,#C9A84C,#8B6914);border:none;cursor:pointer;color:#000;font-size:14px;transition:all .2s;font-weight:900}
+#csnd:hover{background:linear-gradient(135deg,#E8C76A,#C9A84C)}
+.tdots{display:flex;gap:4px;align-items:center;padding:4px 0}
+.d{width:5px;height:5px;background:#C9A84C;border-radius:50%;animation:bl 1.2s infinite;opacity:.5}
+.d:nth-child(2){animation-delay:.2s}.d:nth-child(3){animation-delay:.4s}
+@keyframes bl{0%,60%,100%{transform:translateY(0);opacity:.3}30%{transform:translateY(-5px);opacity:1}}
+
+@media(max-width:960px){
+  .topbar,.nav-inner,.container,.sb-in,.footer-top .container{padding-left:20px;padding-right:20px}
+  .nav-links{display:none}
+  .dgrid{grid-template-columns:1fr}
+  .senna-grid,.eso-grid,.contact-grid,.footer-grid{grid-template-columns:1fr}
+  .pgrid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .pitem.wide,.pitem.tall{grid-column:span 1;grid-row:span 1;height:200px}
+  .form-row{grid-template-columns:1fr}
+  .hs{height:auto;min-height:560px}
+  .hs-photo{width:100%;height:280px;position:relative}
+  .hs-curve{display:none}
+  .hs-photo::after{background:linear-gradient(to bottom,rgba(8,8,8,.15),rgba(8,8,8,.95))}
+  .hs-content{position:relative;width:100%;padding:32px 24px 80px}
+  .hs-slide{flex-direction:column}
+  .hs-arr{display:none}
+  .senna-corner,.senna-corner-br{display:none}
+  #cwin{width:calc(100vw - 32px);right:16px}
+  .stats-row{gap:20px}
+  .stat-sep{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <a href="tel:0645398678">☎ 06 45398678</a>
+    <a href="mailto:info@monra-events-security.nl">✉ info@monra-events-security.nl</a>
+  </div>
+  <div class="topbar-right">
+    <a class="sibling-pill" href="monra-website-preview.html">🛡️ Monra Security</a>
+    <a class="sibling-pill" href="monra-support.html">🤝 Monra Support</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="logo-emblem">S</div>
+      <div class="logo-text">
+        <span>Evenementenbeveiliging</span>
+        <span>Monra Events Security</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#diensten">Diensten</a>
+      <a href="#senna">Over ons</a>
+      <a href="#opleiding">ESO Opleiding</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="btn-nav-gold">Offerte aanvragen</a>
+  </div>
+</nav>
+
+<!-- HERO SLIDER -->
+<section class="hs" id="home">
+  <div id="hsVP">
+
+    <!-- SLIDE 1 -->
+    <div class="hs-slide active">
+      <div class="hs-photo">
+        <img src="https://static.wixstatic.com/media/b8fe10_7f17cf1054234d36bf8dc0eaf3f082b7~mv2.jpeg/v1/fill/w_1400,h_700,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-02-22%20at%2016_04_58.jpeg" alt="Evenementenbeveiliging" onerror="this.parentElement.style.background='#1a1400'"/>
+        <div class="hs-curve"><svg viewBox="0 0 240 680" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#080808"/><stop offset="100%" stop-color="#080808"/></linearGradient></defs><path d="M0,0 C90,0 150,200 130,340 C110,480 65,600 0,680 L240,680 L240,0 Z" fill="#080808"/><path d="M0,0 C90,0 150,200 130,340 C110,480 65,600 0,680" fill="none" stroke="url(#g1)" stroke-width="0"/></svg></div>
+      </div>
+      <div class="hs-content">
+        <div class="hs-tag"><span class="hs-tag-line"></span>Monra Events Security</div>
+        <h2>Beveiliging met<br>stijl & <em>passie</em></h2>
+        <p>Professionele evenementenbeveiliging door Senna Monsigneur — veiligheid, hospitality en vakmanschap in één.</p>
+        <ul class="hs-bullets">
+          <li><span class="hs-chk">✓</span>SVPB gecertificeerde beveiligers</li>
+          <li><span class="hs-chk">✓</span>Festivals, concerten & congressen</li>
+          <li><span class="hs-chk">✓</span>24/7 bereikbaar, snel inzetbaar</li>
+        </ul>
+        <div style="display:flex;align-items:center;flex-wrap:wrap;gap:10px">
+          <a href="#contact" class="hs-cta">Offerte aanvragen →</a>
+          <a href="#diensten" class="hs-ghost">Bekijk diensten</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="hs-slide">
+      <div class="hs-photo">
+        <img src="https://static.wixstatic.com/media/b8fe10_77ee4d9e34434948b51b5076cab20e2d~mv2.jpg/v1/fill/w_1400,h_700,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/636926960_891171093660733_518372891806277317_n.jpg" alt="Security professionals" onerror="this.parentElement.style.background='#1a1400'"/>
+        <div class="hs-curve"><svg viewBox="0 0 240 680" preserveAspectRatio="none"><path d="M0,0 C90,0 150,200 130,340 C110,480 65,600 0,680 L240,680 L240,0 Z" fill="#080808"/></svg></div>
+      </div>
+      <div class="hs-content">
+        <div class="hs-tag"><span class="hs-tag-line"></span>Vaste Teams</div>
+        <h2>Op elkaar<br>ingespeeld <em>team</em></h2>
+        <p>Wij werken met vaste medewerkers die elkaar door en door kennen — meer cohesie, betere communicatie, minder personeel nodig.</p>
+        <ul class="hs-bullets">
+          <li><span class="hs-chk">✓</span>Tot 30-40% minder personeel nodig</li>
+          <li><span class="hs-chk">✓</span>Vaste gecertificeerde teams</li>
+          <li><span class="hs-chk">✓</span>Proactief én repressief opgeleid</li>
+        </ul>
+        <a href="#contact" class="hs-cta">Vrijblijvend kennismaken →</a>
+      </div>
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div class="hs-slide">
+      <div class="hs-photo">
+        <img src="https://static.wixstatic.com/media/b8fe10_2305b014cb2e4168b25028c8c5718e18~mv2.jpg/v1/fill/w_1400,h_700,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/654328443_27017350404534680_8802946859876802782_n.jpg" alt="Evenement" onerror="this.parentElement.style.background='#1a1400'"/>
+        <div class="hs-curve"><svg viewBox="0 0 240 680" preserveAspectRatio="none"><path d="M0,0 C90,0 150,200 130,340 C110,480 65,600 0,680 L240,680 L240,0 Z" fill="#080808"/></svg></div>
+      </div>
+      <div class="hs-content">
+        <div class="hs-tag"><span class="hs-tag-line"></span>ESO Opleiding</div>
+        <h2>Word <em>Event Security</em><br>Officer</h2>
+        <p>Monra Events Security is erkend leerbedrijf. Leer het vak in de praktijk, behaal uw ESO-certificaat en groei door in de beveiliging.</p>
+        <ul class="hs-bullets">
+          <li><span class="hs-chk">✓</span>Theorie én praktijk bij echte events</span></li>
+          <li><span class="hs-chk">✓</span>Erkend leerbedrijf (Stagemarkt/SBB)</li>
+          <li><span class="hs-chk">✓</span>Begeleiding door ervaren professionals</li>
+        </ul>
+        <div style="display:flex;align-items:center;flex-wrap:wrap;gap:10px">
+          <a href="#opleiding" class="hs-cta">Meer over ESO →</a>
+          <a href="#contact" class="hs-ghost">Direct aanmelden</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="hs-progress"><div class="hs-bar" id="hsBar"></div></div>
+  <div class="hs-count" id="hsCnt">01 / 03</div>
+  <button class="hs-arr hs-prev" id="hsPrev">&#8592;</button>
+  <button class="hs-arr hs-next" id="hsNext">&#8594;</button>
+  <div class="hs-nav">
+    <button class="hs-dot on" data-s="0"></button>
+    <button class="hs-dot" data-s="1"></button>
+    <button class="hs-dot" data-s="2"></button>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stat-bar">
+  <div class="stats-row">
+    <div class="stat"><span class="stat-n">25+</span><span class="stat-l">Jaar ervaring</span></div>
+    <div class="stat-sep"></div>
+    <div class="stat"><span class="stat-n">30–40%</span><span class="stat-l">Efficiënter team</span></div>
+    <div class="stat-sep"></div>
+    <div class="stat"><span class="stat-n">SVPB</span><span class="stat-l">Gecertificeerd</span></div>
+    <div class="stat-sep"></div>
+    <div class="stat"><span class="stat-n">24/7</span><span class="stat-l">Bereikbaar</span></div>
+    <div class="stat-sep"></div>
+    <div class="stat"><span class="stat-n">100%</span><span class="stat-l">Vaste medewerkers</span></div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-in">
+    <span class="ticker-lbl">Wij beveiligen</span>
+    <span class="ticker-i"><span>◆</span> Festivals</span>
+    <span class="ticker-i"><span>◆</span> Concerten</span>
+    <span class="ticker-i"><span>◆</span> Voetbalwedstrijden</span>
+    <span class="ticker-i"><span>◆</span> Congressen</span>
+    <span class="ticker-i"><span>◆</span> Sportevenementen</span>
+    <span class="ticker-i"><span>◆</span> Beurzen</span>
+    <span class="ticker-i"><span>◆</span> Bedrijfsfeesten</span>
+    <span class="ticker-i"><span>◆</span> VIP Events</span>
+  </div>
+</div>
+
+<!-- DIENSTEN -->
+<section id="diensten" class="section section-dark">
+  <div class="container">
+    <div class="stag">Wat wij bieden</div>
+    <div class="sline"></div>
+    <h2 class="sh">Diensten op maat voor <em>elk event</em></h2>
+    <p class="sdesc">Van kleine besloten events tot grote festivals — Monra Events Security schaalt mee met uw behoefte.</p>
+    <div class="dgrid">
+
+      <div class="dcard">
+        <div class="dcard-num">01</div>
+        <span class="dcard-icon">🎪</span>
+        <h3>Festival & Concertbeveiliging</h3>
+        <p>Crowd management, toegangscontrole en veilige publieksstromen bij grote evenementen. Wij zorgen dat uw bezoekers veilig genieten.</p>
+        <div class="dcard-arrow">Meer info →</div>
+      </div>
+
+      <div class="dcard">
+        <div class="dcard-num">02</div>
+        <span class="dcard-icon">⚽</span>
+        <h3>Sport & Voetbalbeveiliging</h3>
+        <p>Gecertificeerde sportbeveiligers met kennis van supporter management, escalatiepreventie en coördinatie met politie en organisatie.</p>
+        <div class="dcard-arrow">Meer info →</div>
+      </div>
+
+      <div class="dcard">
+        <div class="dcard-num">03</div>
+        <span class="dcard-icon">🏛️</span>
+        <h3>Congressen & Beurzen</h3>
+        <p>Discrete en representatieve beveiliging voor zakelijke events. Gastvrij, professioneel en altijd gericht op de beleving van uw gasten.</p>
+        <div class="dcard-arrow">Meer info →</div>
+      </div>
+
+      <div class="dcard">
+        <div class="dcard-num">04</div>
+        <span class="dcard-icon">👑</span>
+        <h3>VIP & Persoonlijke Beveiliging</h3>
+        <p>Close protection en VIP-begeleiding voor artiesten, sprekers en gasten. Discreet, betrouwbaar en met oog voor protocol.</p>
+        <div class="dcard-arrow">Meer info →</div>
+      </div>
+
+      <div class="dcard">
+        <div class="dcard-num">05</div>
+        <span class="dcard-icon">🗺️</span>
+        <h3>Veiligheidsplannen</h3>
+        <p>Wij verzorgen het volledige veiligheidsplan inclusief coördinatie met lokale overheden, politie en hulpdiensten.</p>
+        <div class="dcard-arrow">Meer info →</div>
+      </div>
+
+      <div class="dcard">
+        <div class="dcard-num">06</div>
+        <span class="dcard-icon">🎓</span>
+        <h3>ESO Opleiding & Leerbedrijf</h3>
+        <p>Erkend leerbedrijf voor de opleiding Event Security Officer — theorie, praktijk en doorgroeimogelijkheden in de beveiligingsbranche.</p>
+        <div class="dcard-arrow">Meer info →</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- OVER SENNA -->
+<section id="senna" class="section">
+  <div class="container">
+    <div class="senna-grid">
+      <div class="senna-img-wrap">
+        <div class="senna-corner"></div>
+        <div class="senna-corner-br"></div>
+        <div class="senna-frame">
+          <img src="https://static.wixstatic.com/media/b8fe10_6fbe7d71b2ec488798f5590eee0af6d5~mv2.jpg/v1/fill/w_900,h_1100,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Afbeelding%20van%20WhatsApp%20op%202024-06-18%20om.jpg"
+            alt="Senna Monsigneur" onerror="this.style.background='#1a1400';this.style.minHeight='480px'"/>
+          <div class="senna-badge">
+            <div class="senna-badge-n">Senna</div>
+            <div class="senna-badge-t">Oprichter & Directeur</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="stag">Over de oprichter</div>
+        <div class="sline"></div>
+        <h2 class="sh">Senna Monsigneur — <em>beveiliging</em> als roeping</h2>
+        <p class="sdesc">Monra Events Security is opgericht door Senna Monsigneur, met een achtergrond in de evenementenbeveiliging vanuit de Monra-familie. Zij combineert passie voor veiligheid met een scherp oog voor gastvrijheid en organisatie.</p>
+        <div class="usps">
+          <div class="usp"><div class="usp-icon">🏆</div><div><h4>Ervaring vanuit de basis</h4><p>Opgegroeid in de wereld van evenementenbeveiliging, met kennis van operatie tot strategie.</p></div></div>
+          <div class="usp"><div class="usp-icon">🎯</div><div><h4>Veiligheid mét hospitality</h4><p>Beveiligers die niet alleen bewaken, maar ook de bezoekersbeleving actief verbeteren.</p></div></div>
+          <div class="usp"><div class="usp-icon">📋</div><div><h4>Wpbr-vergunning</h4><p>Monra Events Security werkt met een geldige Wpbr-vergunning en gecertificeerde beveiligers.</p></div></div>
+          <div class="usp"><div class="usp-icon">🤝</div><div><h4>Netwerk & partners</h4><p>Nauwe samenwerking met Monra Security en Monra Support voor complete event-ontzorging.</p></div></div>
+        </div>
+        <blockquote class="bq">
+          "Een goede Event Security Officer zorgt voor veiligheid, overzicht en een gastvrije uitstraling tegelijk."
+          <cite>— Senna Monsigneur, oprichter</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<div class="gallery-bg">
+  <div class="container">
+    <div class="stag">Monra Events Security in actie</div>
+    <div class="sline"></div>
+    <h2 class="sh">Onze <em>mensen</em> op het veld</h2>
+    <div class="pgrid">
+      <div class="pitem wide tall">
+        <img src="https://static.wixstatic.com/media/b8fe10_7f17cf1054234d36bf8dc0eaf3f082b7~mv2.jpeg/v1/fill/w_1400,h_900,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-02-22%20at%2016_04_58.jpeg" alt="Security" onerror="this.parentElement.style.background='#1a1400'"/>
+        <div class="pitem-overlay"><span>Evenementenbeveiliging</span></div>
+      </div>
+      <div class="pitem">
+        <img src="https://static.wixstatic.com/media/b8fe10_77ee4d9e34434948b51b5076cab20e2d~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/636926960_891171093660733_518372891806277317_n.jpg" alt="Team" onerror="this.parentElement.style.background='#1a1400'"/>
+        <div class="pitem-overlay"><span>Ons team</span></div>
+      </div>
+      <div class="pitem">
+        <img src="https://static.wixstatic.com/media/b8fe10_2305b014cb2e4168b25028c8c5718e18~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/654328443_27017350404534680_8802946859876802782_n.jpg" alt="Professionals" onerror="this.parentElement.style.background='#1a1400'"/>
+        <div class="pitem-overlay"><span>Professionals</span></div>
+      </div>
+      <div class="pitem">
+        <img src="https://static.wixstatic.com/media/b8fe10_6fbe7d71b2ec488798f5590eee0af6d5~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Afbeelding%20van%20WhatsApp%20op%202024-06-18%20om.jpg" alt="Op locatie" onerror="this.parentElement.style.background='#1a1400'"/>
+        <div class="pitem-overlay"><span>Op locatie</span></div>
+      </div>
+      <div class="pitem">
+        <img src="https://static.wixstatic.com/media/b8fe10_d3b22fc71aa942fdb690bca9d5b8cb11~mv2.jpeg/v1/fill/w_600,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8.jpeg" alt="Event security" onerror="this.parentElement.style.background='#1a1400'"/>
+        <div class="pitem-overlay"><span>Event Security</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ESO OPLEIDING -->
+<section id="opleiding" class="section section-dark">
+  <div class="container">
+    <div class="stag">Erkend leerbedrijf</div>
+    <div class="sline"></div>
+    <h2 class="sh">ESO Opleiding — <em>Event Security Officer</em></h2>
+    <p class="sdesc">De opleiding tot Event Security Officer is de ideale route voor wie wil werken in de dynamische wereld van evenementenbeveiliging. Leer in de praktijk bij een professioneel en erkend leerbedrijf.</p>
+    <div class="eso-grid" style="margin-top:44px">
+      <div>
+        <p style="font-size:14px;color:rgba(245,237,214,.55);line-height:1.9;margin-bottom:28px">
+          Monra Events Security staat vermeld op Stagemarkt/SBB als erkend leerbedrijf. Tijdens de opleiding ontwikkel je kennis van crowd control, toegangscontrole, wettelijke kaders en incidentafhandeling — gevolgd door praktijk op echte evenementen.
+        </p>
+        <div class="eso-cert">
+          <div class="cert"><div class="cert-icon">📚</div><div><h4>Theorie & Wetgeving</h4><p>Event security, toezicht, publieksstromen, communicatie en wettelijke kaders binnen particuliere beveiliging.</p></div></div>
+          <div class="cert"><div class="cert-icon">🏟️</div><div><h4>Praktijk op echte locaties</h4><p>Na theorie-examen leer je verder in het veld — opdrachten en begeleiding op echte evenementen.</p></div></div>
+          <div class="cert"><div class="cert-icon">🏅</div><div><h4>Officieel ESO Certificaat</h4><p>Sterke basis voor een loopbaan in evenementenbeveiliging en verdere groei in de veiligheidsbranche.</p></div></div>
+          <div class="cert"><div class="cert-icon">📈</div><div><h4>Doorgroeimogelijkheden</h4><p>Van beveiliger naar teamleider, coördinator of ESO-instructeur binnen de Monra-organisatie.</p></div></div>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px">
+          <a href="#contact" class="btn-gold">🎓 Aanmelden ESO opleiding</a>
+          <a href="#contact" class="btn-ghost">Meer informatie</a>
+        </div>
+      </div>
+      <div class="eso-steps">
+        <div class="step"><div class="step-n">1</div><div><h4>Intake & kennismakingsgesprek</h4><p>Bespreek uw achtergrond, motivatie en verwachtingen. Wij zoeken samen de juiste instroom.</p></div></div>
+        <div class="step"><div class="step-n">2</div><div><h4>Theorieopleiding</h4><p>Leer de wettelijke en operationele kaders van evenementenbeveiliging, crowd control en communicatie.</p></div></div>
+        <div class="step"><div class="step-n">3</div><div><h4>Theorie-examen</h4><p>Officieel examen ter afsluiting van de theoretische component van de ESO-opleiding.</p></div></div>
+        <div class="step"><div class="step-n">4</div><div><h4>Praktijkstage op evenementen</h4><p>Draai mee op echte evenementen onder begeleiding van ervaren professionals. Handen-in-het-veld leren.</p></div></div>
+        <div class="step"><div class="step-n">5</div><div><h4>ESO Certificaat & Plaatsing</h4><p>Met uw certificaat kunt u direct aan de slag bij Monra Events Security of elders in de branche.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="stag">Neem contact op</div>
+    <div class="sline"></div>
+    <h2 class="sh">Offerte aanvragen of<br><em>meer informatie</em></h2>
+    <p class="sdesc">Vul het formulier in en we reageren binnen één werkdag. Spoed? Bel direct.</p>
+    <div class="contact-grid">
+      <div class="cform-wrap">
+        <h3>Offerte of informatie aanvragen</h3>
+        <div id="form-ok">
+          <div class="oi">✨</div>
+          <h3>Bericht ontvangen!</h3>
+          <p>We nemen zo snel mogelijk contact op — normaal binnen één werkdag.</p>
+        </div>
+        <form id="cform">
+          <div class="form-row">
+            <div><label>Naam *</label><input type="text" placeholder="Jan de Vries" required/></div>
+            <div><label>E-mail *</label><input type="email" placeholder="uw@email.nl" required/></div>
+          </div>
+          <div class="fg"><label>Telefoon</label><input type="tel" placeholder="06..."/></div>
+          <div class="fg"><label>Aanvraag type *</label>
+            <select required>
+              <option value="">Kies een optie...</option>
+              <option>Offerte evenementenbeveiliging</option>
+              <option>Festival / concertbeveiliging</option>
+              <option>Sportbeveiliging</option>
+              <option>Congres / beursbescherming</option>
+              <option>VIP / persoonlijke beveiliging</option>
+              <option>Veiligheidsplan opstellen</option>
+              <option>ESO Opleiding aanmelden</option>
+              <option>Andere vraag</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div><label>Datum evenement</label><input type="text" placeholder="bv. 14 augustus 2025"/></div>
+            <div><label>Verwacht aantal bezoekers</label><input type="text" placeholder="bv. 500"/></div>
+          </div>
+          <div class="fg"><label>Locatie</label><input type="text" placeholder="Stad of naam locatie"/></div>
+          <div class="fg"><label>Bericht *</label><textarea rows="4" placeholder="Beschrijf kort uw evenement of vraag..." required></textarea></div>
+          <button type="submit" class="btn-sub">✨ Verstuur aanvraag</button>
+        </form>
+      </div>
+      <div class="csidebar">
+        <h3>Direct contact</h3>
+        <a href="tel:0645398678" class="ci"><div class="ci-ico">📞</div><div><div class="ci-lbl">Telefoon</div><div class="ci-val">06 45398678</div></div></a>
+        <a href="mailto:info@monra-events-security.nl" class="ci"><div class="ci-ico">✉️</div><div><div class="ci-lbl">E-mail</div><div class="ci-val">info@monra-events-security.nl</div></div></a>
+        <div class="ci"><div class="ci-ico">📍</div><div><div class="ci-lbl">Adres</div><div class="ci-val">Schuttersstraat 7, 6067 GE Linne</div></div></div>
+        <div class="ci"><div class="ci-ico">🕐</div><div><div class="ci-lbl">Beschikbaarheid</div><div class="ci-val">24/7 voor spoed & planning</div></div></div>
+        <div class="cbox">
+          <div class="cbox-t">De Monra familie</div>
+          <p>Monra Events Security werkt nauw samen met Monra Security en Monra Support — één aanspreekpunt voor complete event-ontzorging.</p>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+            <a href="monra-website-preview.html" class="btn-sib">🛡️ Monra Security →</a>
+            <a href="monra-support.html" class="btn-sib">🤝 Monra Support →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SENNA BANNER / CTA -->
+<div class="senna-banner">
+  <div class="sb-in">
+    <div class="sb-left">
+      <div class="sb-pretag">✨ Nieuw bedrijf</div>
+      <h2>Monra Events Security — <em style="background:linear-gradient(135deg,#E8C76A,#C9A84C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal">veiligheid met karakter</em></h2>
+      <p>Opgericht door Senna Monsigneur. Professionele evenementenbeveiliging gecombineerd met een gastvrije aanpak — voor events die herinnerd worden om de goede redenen.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px">
+        <a href="#contact" class="btn-gold">Offerte aanvragen →</a>
+        <a href="#opleiding" class="btn-ghost">ESO Opleiding</a>
+      </div>
+    </div>
+    <div style="display:flex;gap:16px;flex-direction:column;min-width:200px">
+      <div style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:20px;text-align:center">
+        <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#C9A84C">SVPB</div>
+        <div style="font-size:10px;color:rgba(245,237,214,.35);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px">Keurmerk evenementenbeveiliging</div>
+      </div>
+      <div style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:20px;text-align:center">
+        <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#C9A84C">SBB</div>
+        <div style="font-size:10px;color:rgba(245,237,214,.35);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px">Erkend leerbedrijf</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="fl-brand">
+            <div class="fl-emblem">S</div>
+            <div class="fl-title">Monra Events Security</div>
+          </div>
+          <p class="fl-desc">Professionele evenementenbeveiliging door Senna Monsigneur — veiligheid, stijl en vakmanschap voor elk type event.</p>
+          <div class="fl-socials">
+            <a class="sp" href="#">f Facebook</a>
+            <a class="sp" href="#">📷 Instagram</a>
+          </div>
+        </div>
+        <div class="fc">
+          <h4>Navigatie</h4>
+          <a href="#home">Home</a>
+          <a href="#diensten">Diensten</a>
+          <a href="#senna">Over ons</a>
+          <a href="#opleiding">ESO Opleiding</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="fc">
+          <h4>Diensten</h4>
+          <a href="#diensten">Festival & Concert</a>
+          <a href="#diensten">Sport & Voetbal</a>
+          <a href="#diensten">Congressen & Beurzen</a>
+          <a href="#diensten">VIP Beveiliging</a>
+          <a href="#diensten">Veiligheidsplannen</a>
+          <a href="#opleiding">ESO Opleiding</a>
+        </div>
+        <div class="fc">
+          <h4>Contact</h4>
+          <a href="#">Schuttersstraat 7, Linne</a>
+          <a href="tel:0645398678">06 45398678</a>
+          <a href="mailto:info@monra-events-security.nl">info@monra-events-security.nl</a>
+          <a href="monra-website-preview.html">→ Monra Security</a>
+          <a href="monra-support.html">→ Monra Support</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="footer-bottom">
+      <span class="fc-copy">© 2024 Monra Events Security — Senna Monsigneur · Alle rechten voorbehouden</span>
+      <span class="fc-copy">Linne, Nederland · Wpbr-vergund</span>
+    </div>
+  </div>
+</footer>
+
+<!-- CHATBOT -->
+<button id="cfab" onclick="tc()" aria-label="Chat">✨</button>
+<div id="cwin">
+  <div class="chdr">
+    <div class="cav">S</div>
+    <div>
+      <div class="chdr-name">Monra Events Security</div>
+      <div class="chdr-status">Online — Senna's team helpt u</div>
+    </div>
+  </div>
+  <div class="cmsgs" id="cmsgs"><div class="cm bot">Welkom bij Monra Events Security! Waarmee kan ik u helpen vandaag?</div></div>
+  <div class="cquick">
+    <button class="qb" onclick="qs('Offerte aanvragen')">Offerte</button>
+    <button class="qb" onclick="qs('Welke evenementen beveiligen jullie')">Diensten</button>
+    <button class="qb" onclick="qs('ESO opleiding informatie')">ESO Opleiding</button>
+    <button class="qb" onclick="qs('Contactgegevens')">Contact</button>
+  </div>
+  <div class="cinp-row">
+    <input id="cinp" placeholder="Typ uw vraag..." onkeydown="if(event.key==='Enter')sc()"/>
+    <button id="csnd" onclick="sc()">➤</button>
+  </div>
+</div>
+
+<script>
+/* SLIDER */
+(function(){
+  var slides=document.querySelectorAll('.hs-slide');
+  var dots=document.querySelectorAll('.hs-dot');
+  var bar=document.getElementById('hsBar');
+  var cnt=document.getElementById('hsCnt');
+  var total=slides.length,cur=0,timer,bt;
+  function pad(n){return n<10?'0'+n:''+n}
+  function goTo(n){
+    slides[cur].classList.remove('active');
+    slides[cur].classList.add('prev');
+    setTimeout(function(){slides[cur].classList.remove('prev')},900);
+    cur=(n+total)%total;
+    slides[cur].classList.add('active');
+    dots.forEach(function(d,i){d.classList.toggle('on',i===cur)});
+    cnt.textContent=pad(cur+1)+' / '+pad(total);
+    bar.style.transition='none';bar.classList.remove('run');bar.style.width='0%';
+    clearTimeout(bt);bt=setTimeout(function(){bar.classList.add('run')},30);
+  }
+  function reset(){clearInterval(timer);timer=setInterval(function(){goTo(cur+1)},5500)}
+  document.getElementById('hsNext').addEventListener('click',function(){goTo(cur+1);reset()});
+  document.getElementById('hsPrev').addEventListener('click',function(){goTo(cur-1);reset()});
+  dots.forEach(function(d){d.addEventListener('click',function(){goTo(parseInt(d.dataset.s));reset()})});
+  var sx=0;
+  document.getElementById('hsVP').addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
+  document.getElementById('hsVP').addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>48){goTo(dx<0?cur+1:cur-1);reset()}});
+  goTo(0);reset();
+})();
+
+/* FORM */
+document.getElementById('cform').addEventListener('submit',function(e){
+  e.preventDefault();this.style.display='none';document.getElementById('form-ok').style.display='block';
+});
+
+/* CHATBOT */
+function tc(){var w=document.getElementById('cwin');w.classList.toggle('open');document.getElementById('cfab').textContent=w.classList.contains('open')?'✕':'✨'}
+function qs(t){document.getElementById('cinp').value=t;sc()}
+var FAQ={
+  offerte:'Voor een offerte:\n📞 06 45398678\n✉ info@monra-events-security.nl\n\nOf gebruik het formulier — we reageren binnen één werkdag.',
+  diensten:'Monra Events Security beveiligt:\n• Festivals & concerten\n• Voetbal & sportevenementen\n• Congressen & beurzen\n• VIP & persoonlijke beveiliging\n• Bedrijfsfeesten\n\nVoor elk type event hebben wij gecertificeerd personeel.',
+  eso:'De ESO-opleiding (Event Security Officer) omvat:\n✓ Theorie & wetgeving\n✓ Praktijk op echte evenementen\n✓ Officieel certificaat\n✓ Doorgroeimogelijkheden\n\nMonra Events Security is erkend leerbedrijf (SBB/Stagemarkt).',
+  contact:'📞 06 45398678\n✉ info@monra-events-security.nl\n📍 Schuttersstraat 7, Linne\n⏰ 24/7 bereikbaar voor spoed',
+  senna:'Monra Events Security is opgericht door Senna Monsigneur. Het bedrijf richt zich op evenementenbeveiliging met een gastvrije aanpak en gecertificeerde teams.'
+};
+function reply(m){
+  var l=m.toLowerCase();
+  if(l.includes('offerte')||l.includes('aanvrag')||l.includes('prijs')||l.includes('kost'))return FAQ.offerte;
+  if(l.includes('dienst')||l.includes('evenement')||l.includes('festival')||l.includes('concert')||l.includes('voetbal'))return FAQ.diensten;
+  if(l.includes('eso')||l.includes('opleid')||l.includes('certificaat')||l.includes('stage'))return FAQ.eso;
+  if(l.includes('contact')||l.includes('bellen')||l.includes('mail')||l.includes('adres'))return FAQ.contact;
+  if(l.includes('senna')||l.includes('oprichter')||l.includes('wie'))return FAQ.senna;
+  return 'Bedankt voor uw vraag! Neem contact op via info@monra-events-security.nl of bel 06 45398678.';
+}
+function addMsg(t,r){var m=document.getElementById('cmsgs');var d=document.createElement('div');d.className='cm '+r;d.textContent=t;m.appendChild(d);m.scrollTop=m.scrollHeight}
+function sc(){
+  var inp=document.getElementById('cinp'),t=inp.value.trim();if(!t)return;
+  addMsg(t,'usr');inp.value='';
+  var m=document.getElementById('cmsgs');
+  var typ=document.createElement('div');typ.className='cm bot';typ.id='typ';
+  typ.innerHTML='<div class="tdots"><div class="d"></div><div class="d"></div><div class="d"></div></div>';
+  m.appendChild(typ);m.scrollTop=m.scrollHeight;
+  setTimeout(function(){var e=document.getElementById('typ');if(e)e.remove();addMsg(reply(t),'bot')},800);
+}
+</script>
+</body>
+</html>

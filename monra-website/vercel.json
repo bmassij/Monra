@@ -1,11 +1,4 @@
 {
-  "framework": "nextjs",
-  "buildCommand": "npm run build",
-  "devCommand": "npm run dev",
-  "installCommand": "npm install",
-  "env": {
-    "SITE_BRAND": "security"
-  },
   "headers": [
     {
       "source": "/(.*)",

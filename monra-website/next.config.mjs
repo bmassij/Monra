@@ -1,6 +1,5 @@
-import type { NextConfig } from 'next'
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   images: {
     remotePatterns: [
       {
@@ -9,7 +8,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // Multi-site support via environment variable
   env: {
     SITE_BRAND: process.env.SITE_BRAND || 'security',
   },

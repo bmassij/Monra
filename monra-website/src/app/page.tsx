@@ -1,11 +1,15 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import Image from 'next/image'
 import {
   Shield, Phone, Mail, MapPin, ChevronDown, Menu, X,
   Award, Users, Clock, Star, ArrowRight, CheckCircle,
   MessageCircle, Send, Zap, Eye, Lock
 } from 'lucide-react'
+import { HeroSlider } from '@/components/HeroSlider'
+import { PhotoGallery } from '@/components/PhotoGallery'
+import { IMAGES } from '@/lib/images'
 
 // ─── TYPES ───────────────────────────────────────────────
 type ChatMessage = { role: 'user' | 'bot'; text: string }
@@ -79,6 +83,7 @@ function Navbar() {
   const links = [
     { label: 'Home', href: '#home' },
     { label: 'Diensten', href: '#diensten' },
+    { label: "Foto's", href: '#fotos' },
     { label: 'Over ons', href: '#over-ons' },
     { label: 'Opleiding', href: '#opleiding' },
     { label: 'Contact', href: '#contact' },
@@ -91,13 +96,14 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
         {/* Logo */}
         <a href="#home" className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#C9A84C] to-[#A07A2A] flex items-center justify-center">
-            <Shield size={20} className="text-black" />
-          </div>
-          <div>
-            <span className="text-white font-bold text-lg tracking-wide">MONRA</span>
-            <span className="text-[#C9A84C] font-bold text-lg tracking-wide ml-1">SECURITY</span>
-          </div>
+          <Image
+            src={IMAGES.logo}
+            alt="Monra Security"
+            width={120}
+            height={46}
+            className="h-10 w-auto object-contain"
+            priority
+          />
         </a>
 
         {/* Desktop links */}
@@ -151,9 +157,18 @@ function Navbar() {
 function Hero() {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-[#0A0A0A]" />
-      <div className="absolute inset-0 bg-gradient-radial from-[#1A1A1A] via-[#0A0A0A] to-[#0A0A0A]" />
+      {/* Background photo */}
+      <Image
+        src={IMAGES.team}
+        alt=""
+        fill
+        className="object-cover object-center opacity-50"
+        priority
+        sizes="100vw"
+        aria-hidden
+      />
+      <div className="absolute inset-0 bg-[#0A0A0A]/70" />
+      <div className="absolute inset-0 bg-gradient-radial from-[#1A1A1A]/60 via-[#0A0A0A]/90 to-[#0A0A0A]" />
 
       {/* Grid pattern */}
       <div className="absolute inset-0 opacity-[0.04]"
@@ -291,8 +306,29 @@ function WhyUs() {
   return (
     <section id="over-ons" className="py-24 bg-[#111]">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left */}
+        <div className="grid lg:grid-cols-2 gap-16 items-start mb-12">
+          {/* Left — team photo + certificeringen */}
+          <div className="relative">
+            <div className="relative rounded-2xl overflow-hidden aspect-[4/3] border border-[#C9A84C]/20">
+              <Image
+                src={IMAGES.team}
+                alt="Monra Security team"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
+            <div className="absolute -bottom-5 -right-5 bg-[#111] border border-[#C9A84C]/30 rounded-xl px-6 py-4 text-center shadow-xl">
+              <div className="text-3xl font-black bg-gradient-to-r from-[#C9A84C] to-[#E8C96A] bg-clip-text text-transparent">25+</div>
+              <div className="text-[10px] text-[#888] uppercase tracking-widest mt-1">Jaar ervaring</div>
+            </div>
+            <div className="flex gap-4 mt-10 flex-wrap">
+              <Image src={IMAGES.svpb} alt="SVPB Keurmerk" width={80} height={72} className="h-14 w-auto object-contain opacity-90" />
+              <Image src={IMAGES.keurmerk} alt="Keurmerk Beveiliging" width={80} height={72} className="h-14 w-auto object-contain opacity-90 brightness-200" />
+            </div>
+          </div>
+
+          {/* Right — copy */}
           <div>
             <div className="gold-line mb-6" />
             <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
@@ -307,29 +343,32 @@ function WhyUs() {
               &ldquo;Een goede Event Security Officer zorgt voor veiligheid, overzicht en een gastvrije uitstraling tegelijk.&rdquo;
             </blockquote>
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-[#C9A84C]/20 flex items-center justify-center">
-                <span className="text-[#C9A84C] font-bold text-lg">R</span>
-              </div>
+              <Image
+                src={IMAGES.ceo}
+                alt="Raf Monsieur"
+                width={48}
+                height={48}
+                className="w-12 h-12 rounded-full object-cover border-2 border-[#C9A84C]/50"
+              />
               <div>
                 <div className="text-white font-semibold">Raf Monsieur</div>
                 <div className="text-[#888] text-sm">CEO, Monra Security B.V.</div>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Right */}
-          <div className="grid grid-cols-2 gap-4">
-            {reasons.map(r => {
-              const Icon = r.icon
-              return (
-                <div key={r.title} className="glass-card rounded-xl p-5 hover:border-[#C9A84C]/30 transition-all">
-                  <Icon size={20} className="text-[#C9A84C] mb-3" />
-                  <div className="text-white font-semibold text-sm mb-1">{r.title}</div>
-                  <div className="text-[#888] text-xs leading-relaxed">{r.desc}</div>
-                </div>
-              )
-            })}
-          </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {reasons.map(r => {
+            const Icon = r.icon
+            return (
+              <div key={r.title} className="glass-card rounded-xl p-5 hover:border-[#C9A84C]/30 transition-all">
+                <Icon size={20} className="text-[#C9A84C] mb-3" />
+                <div className="text-white font-semibold text-sm mb-1">{r.title}</div>
+                <div className="text-[#888] text-xs leading-relaxed">{r.desc}</div>
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>
@@ -633,8 +672,8 @@ function Footer() {
           <div>
             <div className="text-white font-semibold mb-4 text-sm uppercase tracking-widest">Navigatie</div>
             <div className="flex flex-col gap-2">
-              {['Home', 'Diensten', 'Over ons', 'Opleiding', 'Contact'].map(l => (
-                <a key={l} href={`#${l.toLowerCase().replace(' ', '-')}`}
+              {['Home', 'Diensten', "Foto's", 'Over ons', 'Opleiding', 'Contact'].map(l => (
+                <a key={l} href={`#${l.toLowerCase().replace(' ', '-').replace("'", '')}`}
                   className="text-[#888] text-sm hover:text-[#C9A84C] transition-colors">
                   {l}
                 </a>
@@ -672,6 +711,8 @@ export default function HomePage() {
       <Navbar />
       <Hero />
       <Services />
+      <HeroSlider />
+      <PhotoGallery />
       <WhyUs />
       <Education />
       <Contact />

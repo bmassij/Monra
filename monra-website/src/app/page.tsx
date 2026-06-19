@@ -87,6 +87,7 @@ function Navbar() {
     { label: 'Over ons', href: '#over-ons' },
     { label: 'Opleiding', href: '#opleiding' },
     { label: 'Contact', href: '#contact' },
+    { label: 'Monra Groep', href: '/groep' },
   ]
 
   return (

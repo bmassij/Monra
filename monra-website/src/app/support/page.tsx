@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { SubsiteNav } from '@/components/SubsiteNav'
+import { MonraChat } from '@/components/MonraChat'
 import { SUPPORT_NAV, FAMILIE_FROM_SUPPORT } from '@/lib/subsite-nav'
 
 export default function SupportPage() {
@@ -169,6 +170,8 @@ export default function SupportPage() {
           <Link href="/groep" style={{ fontSize: 12, color: 'rgba(255,255,255,.4)', textDecoration: 'none' }}>Monra Groep</Link>
         </div>
       </div>
+
+      <MonraChat site="support" />
     </main>
   )
 }

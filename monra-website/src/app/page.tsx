@@ -1,19 +1,17 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
   Shield, Phone, Mail, MapPin, ChevronDown, Menu, X,
   Award, Users, Clock, Star, ArrowRight, CheckCircle,
-  MessageCircle, Send, Zap, Eye, Lock
+  Send, Zap, Eye, Lock
 } from 'lucide-react'
 import { HeroSlider } from '@/components/HeroSlider'
 import { PhotoGallery } from '@/components/PhotoGallery'
+import { MonraChat } from '@/components/MonraChat'
 import { IMAGES } from '@/lib/images'
-
-// ─── TYPES ───────────────────────────────────────────────
-type ChatMessage = { role: 'user' | 'bot'; text: string }
 
 // ─── DATA ────────────────────────────────────────────────
 const SERVICES = [
@@ -48,26 +46,6 @@ const REFERENCES = [
   'Festivals', 'Concerten', 'Voetbal', 'Congressen',
   'Beurzen', 'Sportevenementen', 'Bedrijfsfeesten', 'VIP Events',
 ]
-
-const FAQ_BOT: Record<string, string> = {
-  offerte: 'Voor een offerte op maat kunt u bellen naar +31 (0)6 45398678 of mailen naar info@monra-security.nl. Wij reageren altijd binnen 24 uur.',
-  prijs: 'Onze tarieven zijn afhankelijk van het type evenement, aantal beveiligers en duur. Neem contact op voor een vrijblijvende offerte.',
-  opleiding: 'Monra Security is een erkend leerbedrijf (SBB). De ESO-opleiding combineert theorie met praktijk op echte evenementen. Interesse? Mail naar info@monra-security.nl.',
-  certificaat: 'Wij beschikken over het SVPB-keurmerk en een geldige Wpbr-vergunning. Al onze beveiligers zijn gecertificeerd en gediplomeerd.',
-  contact: 'U kunt ons bereiken via:\n📞 Directie: +31 (0)6 45398678\n📞 Planning: +31 (0)6 23624789\n✉️ info@monra-security.nl',
-  ervaring: 'Monra Security heeft meer dan 25 jaar ervaring in evenementenbeveiliging. Wij werken met vaste medewerkers voor optimale cohesie en kwaliteit.',
-}
-
-function getBotResponse(msg: string): string {
-  const m = msg.toLowerCase()
-  if (m.includes('offerte') || m.includes('aanvraag') || m.includes('kosten') || m.includes('boek')) return FAQ_BOT.offerte
-  if (m.includes('prijs') || m.includes('tarief') || m.includes('betalen')) return FAQ_BOT.prijs
-  if (m.includes('opleid') || m.includes('eso') || m.includes('cursus') || m.includes('leer')) return FAQ_BOT.opleiding
-  if (m.includes('certifi') || m.includes('svpb') || m.includes('keurmerk') || m.includes('vergunning')) return FAQ_BOT.certificaat
-  if (m.includes('contact') || m.includes('bellen') || m.includes('mail') || m.includes('bereik')) return FAQ_BOT.contact
-  if (m.includes('ervaring') || m.includes('jaar') || m.includes('lang')) return FAQ_BOT.ervaring
-  return 'Goeie vraag! Voor een persoonlijk antwoord kunt u ons bereiken via info@monra-security.nl of +31 (0)6 45398678. Wij helpen u graag verder.'
-}
 
 // ─── COMPONENTS ──────────────────────────────────────────
 
@@ -572,113 +550,6 @@ function Contact() {
   )
 }
 
-function Chatbot() {
-  const [open, setOpen] = useState(false)
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: 'bot', text: 'Hallo! Ik ben de Monra Security assistent. Waarmee kan ik u helpen? U kunt vragen stellen over onze diensten, offerte, of de ESO-opleiding.' },
-  ])
-  const [input, setInput] = useState('')
-  const [typing, setTyping] = useState(false)
-  const bottomRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [messages, typing])
-
-  const send = () => {
-    if (!input.trim()) return
-    const userMsg = input.trim()
-    setInput('')
-    setMessages(prev => [...prev, { role: 'user', text: userMsg }])
-    setTyping(true)
-    setTimeout(() => {
-      setTyping(false)
-      setMessages(prev => [...prev, { role: 'bot', text: getBotResponse(userMsg) }])
-    }, 900)
-  }
-
-  return (
-    <>
-      {/* Floating button */}
-      <button
-        onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#1A2B6D] border-2 border-[#11CFE7] rounded-full flex items-center justify-center shadow-xl hover:bg-[#11CFE7] transition-all"
-        aria-label="Open chat">
-        {open ? <X size={22} className="text-white" /> : <MessageCircle size={22} className="text-white" />}
-      </button>
-
-      {/* Chat window */}
-      {open && (
-        <div className="fixed bottom-24 right-6 z-50 w-80 md:w-96 bg-white border border-slate-200 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
-          style={{ height: '460px' }}>
-          {/* Header */}
-          <div className="bg-[#1A2B6D] px-5 py-4 flex items-center gap-3 border-b-2 border-[#11CFE7]">
-            <Shield size={18} className="text-[#11CFE7]" />
-            <div>
-              <div className="text-white font-bold text-sm">Monra Security</div>
-              <div className="text-white/60 text-xs flex items-center gap-1">
-                <span className="w-1.5 h-1.5 bg-green-400 rounded-full inline-block" />
-                Assistent • Online
-              </div>
-            </div>
-          </div>
-
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-slate-50">
-            {messages.map((m, i) => (
-              <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed whitespace-pre-line ${
-                  m.role === 'user'
-                    ? 'bg-[#1A2B6D] text-white font-medium rounded-br-sm'
-                    : 'bg-white text-slate-700 border border-slate-200 rounded-bl-sm'
-                }`}>
-                  {m.text}
-                </div>
-              </div>
-            ))}
-            {typing && (
-              <div className="flex justify-start">
-                <div className="bg-white border border-slate-200 rounded-2xl px-4 py-3 flex gap-1.5 items-center rounded-bl-sm">
-                  <span className="w-1.5 h-1.5 bg-[#11CFE7] rounded-full animate-bounce" style={{animationDelay:'0ms'}} />
-                  <span className="w-1.5 h-1.5 bg-[#11CFE7] rounded-full animate-bounce" style={{animationDelay:'150ms'}} />
-                  <span className="w-1.5 h-1.5 bg-[#11CFE7] rounded-full animate-bounce" style={{animationDelay:'300ms'}} />
-                </div>
-              </div>
-            )}
-            <div ref={bottomRef} />
-          </div>
-
-          {/* Quick replies */}
-          <div className="px-4 pb-2 pt-2 flex gap-2 flex-wrap border-t border-slate-100">
-            {['Offerte aanvragen', 'ESO Opleiding', 'Contact info'].map(q => (
-              <button key={q} onClick={() => { setInput(q); }}
-                className="text-xs text-[#1A2B6D] border border-[#1A2B6D]/30 rounded-full px-3 py-1 hover:bg-[#11CFE7]/10 hover:border-[#11CFE7] transition-colors font-semibold">
-                {q}
-              </button>
-            ))}
-          </div>
-
-          {/* Input */}
-          <div className="p-4 border-t border-slate-200 flex gap-2">
-            <input
-              type="text"
-              value={input}
-              onChange={e => setInput(e.target.value)}
-              onKeyDown={e => e.key === 'Enter' && send()}
-              placeholder="Stel een vraag..."
-              className="flex-1 bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-[#1A2B6D] placeholder-slate-400 focus:outline-none focus:border-[#11CFE7] transition-colors"
-            />
-            <button onClick={send}
-              className="w-10 h-10 bg-[#1A2B6D] rounded-lg flex items-center justify-center hover:bg-[#11CFE7] transition-all flex-shrink-0">
-              <Send size={15} className="text-white" />
-            </button>
-          </div>
-        </div>
-      )}
-    </>
-  )
-}
-
 // ─── MONRA FAMILIE BANNER ────────────────────────────────
 function MonraFamilie() {
   return (
@@ -845,7 +716,7 @@ export default function HomePage() {
       <Contact />
       <MonraFamilie />
       <Footer />
-      <Chatbot />
+      <MonraChat site="security" />
     </main>
   )
 }

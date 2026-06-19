@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { EventsHeroSlider } from '@/components/EventsHeroSlider'
 import { EventsPhotoGallery } from '@/components/EventsPhotoGallery'
 import { SubsiteNav } from '@/components/SubsiteNav'
+import { MonraChat } from '@/components/MonraChat'
 import { EVENTS_NAV, FAMILIE_FROM_EVENTS } from '@/lib/subsite-nav'
 import { EVENTS_IMAGES } from '@/lib/events-images'
 
@@ -266,6 +267,8 @@ export default function EventsSecurityPage() {
           Onderdeel van de Monra-groep
         </div>
       </div>
+
+      <MonraChat site="events" />
     </main>
   )
 }

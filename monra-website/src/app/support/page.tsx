@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 
 export default function SupportPage() {
@@ -10,6 +8,18 @@ export default function SupportPage() {
       color: '#1e293b',
       minHeight: '100vh',
     }}>
+      <style>{`
+        .support-card {
+          background: #fff;
+          border: 1px solid #d1ede7;
+          border-radius: 10px;
+          padding: 24px 22px;
+          border-top: 3px solid transparent;
+          transition: border-top-color .2s;
+        }
+        .support-card:hover { border-top-color: #1ABFA1; }
+      `}</style>
+
       {/* Redirect banner */}
       <div style={{
         background: '#0E5C4B',
@@ -86,7 +96,7 @@ export default function SupportPage() {
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 20 }}>
           {[
-            { icon: '🤝', name: 'Servicemedewerkers', desc: 'Vriendelijke frontoffice-ondersteuning voor kaartcontrole, informatieverstrekking en publieksbeGeleiding.' },
+            { icon: '🤝', name: 'Servicemedewerkers', desc: 'Vriendelijke frontoffice-ondersteuning voor kaartcontrole, informatieverstrekking en publieksbegeleiding.' },
             { icon: '👁️', name: 'Toezichthouders', desc: 'Gastvrije veiligheid met focus op preventie en naleving van huisregels — zichtbaar en benaderbaar.' },
             { icon: '🎩', name: 'Gastheren & -vrouwen', desc: 'Professioneel ontvangst, crowd management en VIP-begeleiding. Het visitekaartje van uw evenement.' },
             { icon: '🌙', name: 'Nachtbewaking', desc: 'Discrete object- en terreinbewaking buiten openingstijden. Zichtbare aanwezigheid die afschrikt en geruststelt.' },
@@ -96,14 +106,7 @@ export default function SupportPage() {
             { icon: '❤️', name: "EHBO'ers", desc: 'Gecertificeerde eerstehulpverleners met AED-gebruik, wondzorg en nazorg.' },
             { icon: '🔥', name: 'Brandwachten', desc: 'Gecertificeerde brandwacht voor toezicht, preventie en directe inzet bij heetwerkzaamheden. 24/7 landelijk.' },
           ].map(d => (
-            <div key={d.name} style={{
-              background: '#fff', border: '1px solid #d1ede7', borderRadius: 10,
-              padding: '24px 22px', borderTop: '3px solid transparent',
-              transition: 'box-shadow .2s',
-            }}
-              onMouseEnter={e => (e.currentTarget.style.borderTopColor = '#1ABFA1')}
-              onMouseLeave={e => (e.currentTarget.style.borderTopColor = 'transparent')}
-            >
+            <div key={d.name} className="support-card">
               <div style={{ fontSize: 28, marginBottom: 12 }}>{d.icon}</div>
               <h3 style={{ fontSize: 16, fontWeight: 800, color: '#0E5C4B', marginBottom: 8 }}>{d.name}</h3>
               <p style={{ fontSize: 13, color: '#64748b', lineHeight: 1.75 }}>{d.desc}</p>
@@ -164,37 +167,15 @@ export default function SupportPage() {
         </div>
         <div style={{ flex: 1, minWidth: 280, background: '#fff', border: '1px solid #d1ede7', borderRadius: 12, padding: 32 }}>
           <h3 style={{ fontSize: 18, fontWeight: 800, color: '#0E5C4B', marginBottom: 20 }}>Personeel aanvragen</h3>
-          <form onSubmit={e => e.preventDefault()} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-            <div>
-              <label style={{ fontSize: 10, fontWeight: 700, color: '#0E5C4B', textTransform: 'uppercase', letterSpacing: 1, display: 'block', marginBottom: 5 }}>Naam *</label>
-              <input required placeholder="Uw naam" style={{ width: '100%', background: '#F0FBF8', border: '1.5px solid #b2e8dc', borderRadius: 6, padding: '10px 14px', fontSize: 13, color: '#1e293b', outline: 'none', boxSizing: 'border-box' }} />
-            </div>
-            <div>
-              <label style={{ fontSize: 10, fontWeight: 700, color: '#0E5C4B', textTransform: 'uppercase', letterSpacing: 1, display: 'block', marginBottom: 5 }}>E-mail *</label>
-              <input required type="email" placeholder="uw@email.nl" style={{ width: '100%', background: '#F0FBF8', border: '1.5px solid #b2e8dc', borderRadius: 6, padding: '10px 14px', fontSize: 13, color: '#1e293b', outline: 'none', boxSizing: 'border-box' }} />
-            </div>
-            <div>
-              <label style={{ fontSize: 10, fontWeight: 700, color: '#0E5C4B', textTransform: 'uppercase', letterSpacing: 1, display: 'block', marginBottom: 5 }}>Dienst</label>
-              <select style={{ width: '100%', background: '#F0FBF8', border: '1.5px solid #b2e8dc', borderRadius: 6, padding: '10px 14px', fontSize: 13, color: '#1e293b', outline: 'none', boxSizing: 'border-box' }}>
-                <option>Selecteer een dienst...</option>
-                <option>Servicemedewerkers</option>
-                <option>Toezichthouders</option>
-                <option>Gastheren / -vrouwen</option>
-                <option>Nachtbewaking</option>
-                <option>Barpersoneel</option>
-                <option>BHV&apos;ers</option>
-                <option>EHBO&apos;ers</option>
-                <option>Brandwachten</option>
-              </select>
-            </div>
-            <div>
-              <label style={{ fontSize: 10, fontWeight: 700, color: '#0E5C4B', textTransform: 'uppercase', letterSpacing: 1, display: 'block', marginBottom: 5 }}>Bericht</label>
-              <textarea rows={3} placeholder="Omschrijf uw wens..." style={{ width: '100%', background: '#F0FBF8', border: '1.5px solid #b2e8dc', borderRadius: 6, padding: '10px 14px', fontSize: 13, color: '#1e293b', outline: 'none', boxSizing: 'border-box', resize: 'vertical' }} />
-            </div>
-            <button type="submit" style={{ background: '#0E5C4B', color: '#fff', fontWeight: 800, fontSize: 14, padding: '13px', borderRadius: 6, border: 'none', cursor: 'pointer' }}>
-              ✉ Aanvraag versturen
-            </button>
-          </form>
+          <p style={{ fontSize: 14, color: '#64748b', lineHeight: 1.75, marginBottom: 20 }}>
+            Stuur ons een e-mail met uw wensen — wij reageren binnen 24 uur.
+          </p>
+          <a href="mailto:info@monra-support.nl?subject=Personeelsaanvraag%20Monra%20Support" style={{
+            display: 'inline-block', background: '#0E5C4B', color: '#fff', fontWeight: 800,
+            fontSize: 14, padding: '13px 24px', borderRadius: 6, textDecoration: 'none',
+          }}>
+            ✉ Aanvraag per e-mail
+          </a>
         </div>
       </div>
 

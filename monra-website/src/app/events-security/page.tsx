@@ -2,6 +2,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { EventsHeroSlider } from '@/components/EventsHeroSlider'
 import { EventsPhotoGallery } from '@/components/EventsPhotoGallery'
+import { SubsiteNav } from '@/components/SubsiteNav'
+import { EVENTS_NAV, FAMILIE_FROM_EVENTS } from '@/lib/subsite-nav'
 import { EVENTS_IMAGES } from '@/lib/events-images'
 
 export default function EventsSecurityPage() {
@@ -47,35 +49,16 @@ export default function EventsSecurityPage() {
         .es-card:hover { border-color: rgba(239,68,68,.4); }
       `}</style>
 
-      {/* Top banner */}
-      <div style={{
-        background: '#0a0a0a',
-        borderBottom: '1px solid rgba(220,38,38,.15)',
-        padding: '10px 32px',
-        display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10,
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-          <Image
-            src={EVENTS_IMAGES.logo}
-            alt="Monra Events Security"
-            width={140}
-            height={48}
-            style={{ height: 36, width: 'auto', objectFit: 'contain' }}
-            priority
-          />
-        </div>
-        <div style={{ display: 'flex', gap: 10 }}>
-          <Link href="/" style={{ fontSize: 11, color: 'rgba(255,255,255,.35)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 20, padding: '4px 12px', textDecoration: 'none' }}>
-            🛡️ Monra Security
-          </Link>
-          <Link href="/support" style={{ fontSize: 11, color: 'rgba(255,255,255,.35)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 20, padding: '4px 12px', textDecoration: 'none' }}>
-            🤝 Monra Support
-          </Link>
-          <Link href="/groep" style={{ fontSize: 11, color: 'rgba(255,255,255,.35)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 20, padding: '4px 12px', textDecoration: 'none' }}>
-            🏢 Monra Groep
-          </Link>
-        </div>
-      </div>
+      <SubsiteNav
+        theme="events"
+        siteName="Monra Events Security"
+        logoSrc={EVENTS_IMAGES.logo}
+        logoAlt="Monra Events Security"
+        navLinks={EVENTS_NAV}
+        ctaLabel="Offerte aanvragen"
+        ctaHref="mailto:info@monra-events-security.nl"
+        familieLinks={FAMILIE_FROM_EVENTS}
+      />
 
       {/* Hero slider */}
       <EventsHeroSlider />
@@ -135,7 +118,7 @@ export default function EventsSecurityPage() {
       <EventsPhotoGallery />
 
       {/* Over Senna */}
-      <div style={{ background: '#0d0d0d', borderTop: '1px solid rgba(220,38,38,.08)', borderBottom: '1px solid rgba(220,38,38,.08)', padding: '72px 48px' }}>
+      <div id="senna" style={{ background: '#0d0d0d', borderTop: '1px solid rgba(220,38,38,.08)', borderBottom: '1px solid rgba(220,38,38,.08)', padding: '72px 48px' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', gap: 56, flexWrap: 'wrap', alignItems: 'center' }}>
           <div style={{ flex: '1 1 300px', position: 'relative' }}>
             <div style={{ position: 'absolute', top: -10, left: -10, width: 50, height: 50, borderTop: '2px solid #DC2626', borderLeft: '2px solid #DC2626', borderRadius: '4px 0 0 0' }} />
@@ -182,7 +165,7 @@ export default function EventsSecurityPage() {
       </div>
 
       {/* ESO Opleiding */}
-      <div style={{ padding: '72px 48px', maxWidth: 1200, margin: '0 auto' }}>
+      <div id="opleiding" style={{ padding: '72px 48px', maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ fontSize: 10, fontWeight: 700, color: '#EF4444', textTransform: 'uppercase', letterSpacing: 4, marginBottom: 8 }}>
           ESO Opleiding
         </div>
@@ -221,7 +204,7 @@ export default function EventsSecurityPage() {
       </div>
 
       {/* Contact */}
-      <div style={{ background: '#0d0d0d', borderTop: '1px solid rgba(220,38,38,.08)', padding: '64px 48px' }}>
+      <div id="contact" style={{ background: '#0d0d0d', borderTop: '1px solid rgba(220,38,38,.08)', padding: '64px 48px' }}>
         <div style={{ maxWidth: 700, margin: '0 auto', textAlign: 'center' }}>
           <Image
             src={EVENTS_IMAGES.logo}

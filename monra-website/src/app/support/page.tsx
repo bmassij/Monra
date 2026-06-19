@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { SubsiteNav } from '@/components/SubsiteNav'
+import { SUPPORT_NAV, FAMILIE_FROM_SUPPORT } from '@/lib/subsite-nav'
 
 export default function SupportPage() {
   return (
@@ -20,47 +22,17 @@ export default function SupportPage() {
         .support-card:hover { border-top-color: #1ABFA1; }
       `}</style>
 
-      {/* Redirect banner */}
-      <div style={{
-        background: '#0E5C4B',
-        color: '#fff',
-        padding: '14px 32px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        gap: 12,
-      }}>
-        <span style={{ fontSize: 13 }}>
-          U bekijkt <strong>Monra Support BV</strong> — ondersteuningsprofessionals voor hospitality, veiligheid en zorg
-        </span>
-        <div style={{ display: 'flex', gap: 12 }}>
-          <Link href="/" style={{
-            fontSize: 12, color: 'rgba(255,255,255,.6)',
-            border: '1px solid rgba(255,255,255,.2)',
-            borderRadius: 20, padding: '4px 14px',
-          }}>
-            ← Monra Security
-          </Link>
-          <Link href="/events-security" style={{
-            fontSize: 12, color: 'rgba(255,255,255,.6)',
-            border: '1px solid rgba(255,255,255,.2)',
-            borderRadius: 20, padding: '4px 14px',
-          }}>
-            ✨ Events Security
-          </Link>
-          <Link href="/groep" style={{
-            fontSize: 12, color: 'rgba(255,255,255,.6)',
-            border: '1px solid rgba(255,255,255,.2)',
-            borderRadius: 20, padding: '4px 14px',
-          }}>
-            🏢 Monra Groep
-          </Link>
-        </div>
-      </div>
+      <SubsiteNav
+        theme="support"
+        siteName="Monra Support BV"
+        navLinks={SUPPORT_NAV}
+        ctaLabel="Personeel aanvragen"
+        ctaHref="mailto:info@monra-support.nl"
+        familieLinks={FAMILIE_FROM_SUPPORT}
+      />
 
       {/* Hero */}
-      <div style={{
+      <div id="home" style={{
         background: 'linear-gradient(135deg, #062E26 0%, #0E5C4B 60%, #0a3d30 100%)',
         padding: '80px 48px',
         textAlign: 'center',
@@ -77,15 +49,15 @@ export default function SupportPage() {
           Ondersteuningsprofessionals voor hospitality, veiligheid en zorg — flexibel inzetbaar, altijd gastvrij.
         </p>
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <a href="mailto:info@monra-support.nl" style={{
+          <a href="#contact" style={{
             background: '#1ABFA1', color: '#062E26', fontWeight: 800,
-            fontSize: 14, padding: '13px 28px', borderRadius: 6, display: 'inline-block',
+            fontSize: 14, padding: '13px 28px', borderRadius: 6, display: 'inline-block', textDecoration: 'none',
           }}>
             Personeel aanvragen →
           </a>
           <a href="tel:0645398678" style={{
             border: '1px solid rgba(26,191,161,.4)', color: '#1ABFA1', fontWeight: 700,
-            fontSize: 14, padding: '12px 24px', borderRadius: 6, display: 'inline-block',
+            fontSize: 14, padding: '12px 24px', borderRadius: 6, display: 'inline-block', textDecoration: 'none',
           }}>
             06 45398678
           </a>
@@ -93,7 +65,7 @@ export default function SupportPage() {
       </div>
 
       {/* 9 Diensten */}
-      <div style={{ padding: '72px 48px', maxWidth: 1200, margin: '0 auto' }}>
+      <div id="diensten" style={{ padding: '72px 48px', maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ fontSize: 10, fontWeight: 700, color: '#1ABFA1', textTransform: 'uppercase', letterSpacing: 4, marginBottom: 8 }}>
           Onze 9 diensten
         </div>
@@ -123,7 +95,7 @@ export default function SupportPage() {
       </div>
 
       {/* USPs */}
-      <div style={{ background: '#F0FBF8', padding: '64px 48px' }}>
+      <div id="over-ons" style={{ background: '#F0FBF8', padding: '64px 48px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <h2 style={{ fontSize: 28, fontWeight: 900, color: '#0E5C4B', marginBottom: 32, textAlign: 'center' }}>
             Waarom Monra Support?
@@ -146,7 +118,7 @@ export default function SupportPage() {
       </div>
 
       {/* Contact */}
-      <div style={{ padding: '64px 48px', maxWidth: 1200, margin: '0 auto', display: 'flex', gap: 48, flexWrap: 'wrap', alignItems: 'flex-start' }}>
+      <div id="contact" style={{ padding: '64px 48px', maxWidth: 1200, margin: '0 auto', display: 'flex', gap: 48, flexWrap: 'wrap', alignItems: 'flex-start' }}>
         <div style={{ flex: 1, minWidth: 280 }}>
           <h2 style={{ fontSize: 28, fontWeight: 900, color: '#0E5C4B', marginBottom: 8 }}>Direct contact</h2>
           <div style={{ width: 40, height: 3, background: '#1ABFA1', borderRadius: 2, marginBottom: 24 }} />
@@ -192,8 +164,9 @@ export default function SupportPage() {
           © 2024 monra-support BV · KVK: 98875825 · Linne
         </div>
         <div style={{ display: 'flex', gap: 16 }}>
-          <Link href="/" style={{ fontSize: 12, color: 'rgba(255,255,255,.4)', textDecoration: 'none' }}>← Monra Security</Link>
-          <Link href="/events-security" style={{ fontSize: 12, color: 'rgba(255,255,255,.4)', textDecoration: 'none' }}>✨ Events Security</Link>
+          <Link href="/" style={{ fontSize: 12, color: 'rgba(255,255,255,.4)', textDecoration: 'none' }}>Monra Security</Link>
+          <Link href="/events-security" style={{ fontSize: 12, color: 'rgba(255,255,255,.4)', textDecoration: 'none' }}>Events Security</Link>
+          <Link href="/groep" style={{ fontSize: 12, color: 'rgba(255,255,255,.4)', textDecoration: 'none' }}>Monra Groep</Link>
         </div>
       </div>
     </main>

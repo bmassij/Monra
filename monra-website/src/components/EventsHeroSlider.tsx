@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { EVENTS_HERO_SLIDES, EVENTS_IMAGES } from '@/lib/events-images'
+import { EVENTS_HERO_SLIDES } from '@/lib/events-images'
 
 const SLIDE_DELAY = 6000
 
@@ -39,19 +39,7 @@ export function EventsHeroSlider() {
   const pad = (n: number) => String(n).padStart(2, '0')
 
   return (
-    <section className="relative h-[520px] md:h-[640px] overflow-hidden bg-[#080808]" aria-label="Hero slider">
-      {/* Logo */}
-      <div className="absolute top-6 left-6 md:top-8 md:left-10 z-20">
-        <Image
-          src={EVENTS_IMAGES.logo}
-          alt="Monra Events Security"
-          width={200}
-          height={80}
-          className="h-12 md:h-16 w-auto object-contain drop-shadow-lg"
-          priority
-        />
-      </div>
-
+    <section id="home" className="relative h-[520px] md:h-[640px] overflow-hidden bg-[#080808]" aria-label="Hero slider">
       <div
         className="relative w-full h-full"
         onTouchStart={e => { touchStart.current = e.touches[0].clientX }}

@@ -1,10 +1,6 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
+'use client'
 
-export const metadata: Metadata = {
-  title: 'Monra Support BV — Hospitality, Toezicht & Zorg',
-  description: 'Ondersteuningsprofessionals voor hospitality, veiligheid en zorg – flexibel inzetbaar, altijd gastvrij. 9 diensten: BHV, EHBO, brandwachten, barpersoneel en meer.',
-}
+import Link from 'next/link'
 
 export default function SupportPage() {
   return (

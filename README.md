@@ -38,3 +38,15 @@ npm run dev
 ```
 
 Meer details: `monra-website/DEPLOY.md`
+
+## Vercel deploy lukt niet?
+
+De build-fix staat al op GitHub (commit `a84066a`). Je hoeft lokaal niets te pushen.
+
+1. Ga naar **vercel.com** → jouw project → **Deployments**
+2. Kijk bij de bovenste deploy welke **commit** staat — moet `a84066a` of nieuwer zijn
+3. Staat er een **oude** commit? Klik **Create Deployment** → branch `main` → **Deploy**
+   - **Niet** "Redeploy" op een oude mislukte deploy — dat bouwt dezelfde kapotte code opnieuw
+4. Controleer **Settings → General → Root Directory** = `monra-website`
+
+Build slaagt lokaal met alle routes: `/`, `/support`, `/events-security`, `/groep`.

@@ -63,3 +63,7 @@ body {
 .hero-bar-run {
   animation: heroBarRun 5.5s linear forwards;
 }
+
+.events-bar-run {
+  animation: heroBarRun 6s linear forwards;
+}

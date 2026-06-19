@@ -6,12 +6,21 @@ import {
 } from '@/lib/monra-chat'
 import { getModelTryOrder, shouldTryNextModel } from '@/lib/openrouter-models'
 
+export const maxDuration = 60
+export const dynamic = 'force-dynamic'
+
 type ChatHistoryItem = {
   role: 'user' | 'assistant'
   content: string
 }
 
 const VALID_SITES: MonraSite[] = ['security', 'support', 'events']
+
+function getSiteUrl(): string {
+  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`
+  return 'https://monra-security.nl'
+}
 
 async function callModel(
   apiKey: string,
@@ -36,8 +45,8 @@ async function callModel(
         ...history.slice(-8),
         { role: 'user', content: message },
       ],
-      max_tokens: 500,
-      temperature: 0.6,
+      max_tokens: 350,
+      temperature: 0.5,
     }),
   })
 
@@ -60,7 +69,7 @@ async function callOpenRouter(
   const apiKey = process.env.OPENROUTER_API_KEY
   if (!apiKey) return { text: null, model: null }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://monra-security.nl'
+  const siteUrl = getSiteUrl()
   const models = getModelTryOrder()
 
   for (const model of models) {

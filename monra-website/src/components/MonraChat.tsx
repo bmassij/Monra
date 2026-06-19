@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { MessageCircle, Send, X, Shield, Sparkles } from 'lucide-react'
+import { MessageCircle, Send, X, Shield, Sparkles, Bot } from 'lucide-react'
+import { ChatMessageBody } from '@/components/ChatMessageBody'
 import {
   type MonraSite,
   type ChatReply,
@@ -16,6 +17,7 @@ type ChatMessage = {
   role: 'user' | 'bot'
   text: string
   action?: { label: string; href: string }
+  source?: 'ai' | 'faq'
 }
 
 type MonraChatProps = {
@@ -26,11 +28,25 @@ function HandshakeIcon({ size = 18, className = '' }: { size?: number; className
   return <span className={className} style={{ fontSize: size }} aria-hidden>🤝</span>
 }
 
+function BotAvatar({ site }: { site: MonraSite }) {
+  const theme = getSiteTheme(site)
+  return (
+    <div
+      className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+      style={{ background: `${theme.accent}22`, border: `1px solid ${theme.accent}55` }}
+    >
+      {site === 'security' && <Shield size={13} style={{ color: theme.accent }} />}
+      {site === 'support' && <span style={{ fontSize: 11 }}>🤝</span>}
+      {site === 'events' && <Sparkles size={13} style={{ color: theme.accent }} />}
+    </div>
+  )
+}
+
 export function MonraChat({ site }: MonraChatProps) {
   const theme = getSiteTheme(site)
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: 'bot', text: CHAT_GREETINGS[site] },
+    { role: 'bot', text: CHAT_GREETINGS[site], source: 'faq' },
   ])
   const [input, setInput] = useState('')
   const [typing, setTyping] = useState(false)
@@ -40,8 +56,11 @@ export function MonraChat({ site }: MonraChatProps) {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, typing])
 
-  const addBotReply = (reply: ChatReply) => {
-    setMessages(prev => [...prev, { role: 'bot', text: reply.text, action: reply.action }])
+  const addBotReply = (reply: ChatReply & { source?: 'ai' | 'faq' }) => {
+    setMessages(prev => [
+      ...prev,
+      { role: 'bot', text: reply.text, action: reply.action, source: reply.source },
+    ])
   }
 
   const sendMessage = async (text: string) => {
@@ -65,10 +84,14 @@ export function MonraChat({ site }: MonraChatProps) {
 
       if (!res.ok) throw new Error('Chat request failed')
 
-      const data = (await res.json()) as ChatReply & { source?: string }
-      addBotReply({ text: data.text, action: data.action })
+      const data = (await res.json()) as ChatReply & { source?: 'ai' | 'faq' }
+      addBotReply({
+        text: data.text,
+        action: data.action,
+        source: data.source === 'ai' ? 'ai' : 'faq',
+      })
     } catch {
-      addBotReply(getMonraChatResponse(userMsg, site))
+      addBotReply({ ...getMonraChatResponse(userMsg, site), source: 'faq' })
     } finally {
       setTyping(false)
     }
@@ -79,10 +102,11 @@ export function MonraChat({ site }: MonraChatProps) {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-xl transition-all"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-xl transition-all hover:scale-105"
         style={{
           background: theme.primary,
           border: `2px solid ${theme.accent}`,
+          boxShadow: `0 8px 32px ${theme.accent}44`,
         }}
         aria-label="Open chat"
       >
@@ -95,80 +119,107 @@ export function MonraChat({ site }: MonraChatProps) {
 
       {open && (
         <div
-          className="fixed bottom-24 right-6 z-50 w-80 md:w-96 bg-white border border-slate-200 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
-          style={{ height: '480px' }}
+          className="fixed bottom-24 right-6 z-50 w-[22rem] md:w-[26rem] bg-white border border-slate-200 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+          style={{ height: '520px', boxShadow: `0 20px 60px ${theme.primary}22` }}
         >
           <div
             className="px-5 py-4 flex items-center gap-3"
             style={{ background: theme.primary, borderBottom: `2px solid ${theme.accent}` }}
           >
-            {site === 'security' && <Shield size={18} style={{ color: theme.accent }} />}
-            {site === 'support' && <HandshakeIcon size={20} className="text-[#1ABFA1]" />}
-            {site === 'events' && <Sparkles size={18} style={{ color: theme.accent }} />}
-            <div>
-              <div className="text-white font-bold text-sm">{theme.label}</div>
-              <div className="text-white/60 text-xs flex items-center gap-1">
-                <span className="w-1.5 h-1.5 bg-green-400 rounded-full inline-block" />
-                AI assistent • Kent alle 3 Monra-takken
+            <div
+              className="w-9 h-9 rounded-full flex items-center justify-center"
+              style={{ background: `${theme.accent}22`, border: `1px solid ${theme.accent}66` }}
+            >
+              <Bot size={18} style={{ color: theme.accent }} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-white font-bold text-sm tracking-wide">{theme.label}</div>
+              <div className="text-white/60 text-xs flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 bg-green-400 rounded-full inline-block animate-pulse" />
+                AI assistent · Kent alle 3 Monra-takken
               </div>
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-slate-50">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-slate-50 to-white">
             {messages.map((m, i) => (
-              <div key={i} className={`flex flex-col ${m.role === 'user' ? 'items-end' : 'items-start'}`}>
+              <div
+                key={i}
+                className={`flex gap-2 ${m.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
+              >
+                {m.role === 'bot' && <BotAvatar site={site} />}
+
                 <div
-                  className={`max-w-[88%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed whitespace-pre-line ${
-                    m.role === 'user'
-                      ? 'text-white font-medium rounded-br-sm'
-                      : 'bg-white text-slate-700 border border-slate-200 rounded-bl-sm'
-                  }`}
-                  style={m.role === 'user' ? { background: theme.primary } : undefined}
+                  className={`flex flex-col max-w-[85%] ${m.role === 'user' ? 'items-end' : 'items-start'}`}
                 >
-                  {m.text}
-                </div>
-                {m.action && (
-                  <Link
-                    href={m.action.href}
-                    onClick={() => setOpen(false)}
-                    className="mt-2 text-xs font-bold px-3 py-1.5 rounded-full border transition-colors"
-                    style={{
-                      color: theme.primary,
-                      borderColor: `${theme.accent}66`,
-                      background: `${theme.accent}11`,
-                    }}
+                  <div
+                    className={`rounded-2xl px-4 py-3 ${
+                      m.role === 'user'
+                        ? 'text-white font-medium rounded-br-md shadow-sm'
+                        : 'bg-white text-slate-700 border rounded-bl-md shadow-sm'
+                    }`}
+                    style={
+                      m.role === 'user'
+                        ? { background: `linear-gradient(135deg, ${theme.primary}, ${theme.primary}dd)` }
+                        : { borderColor: `${theme.accent}33`, borderLeftWidth: 3, borderLeftColor: theme.accent }
+                    }
                   >
-                    {m.action.label}
-                  </Link>
-                )}
+                    <ChatMessageBody text={m.text} site={site} role={m.role} />
+                  </div>
+
+                  {m.action && (
+                    <Link
+                      href={m.action.href}
+                      onClick={() => setOpen(false)}
+                      className="mt-2 text-xs font-bold px-4 py-2 rounded-full border transition-all hover:scale-[1.02]"
+                      style={{
+                        color: theme.primary,
+                        borderColor: `${theme.accent}66`,
+                        background: `linear-gradient(135deg, ${theme.accent}15, ${theme.accent}08)`,
+                      }}
+                    >
+                      {m.action.label}
+                    </Link>
+                  )}
+                </div>
               </div>
             ))}
+
             {typing && (
-              <div className="flex justify-start">
-                <div className="bg-white border border-slate-200 rounded-2xl px-4 py-3 flex gap-1.5 items-center rounded-bl-sm">
+              <div className="flex gap-2 items-start">
+                <BotAvatar site={site} />
+                <div
+                  className="bg-white border rounded-2xl rounded-bl-md px-4 py-3 flex gap-1.5 items-center shadow-sm"
+                  style={{ borderColor: `${theme.accent}33`, borderLeftWidth: 3, borderLeftColor: theme.accent }}
+                >
                   {[0, 150, 300].map(delay => (
                     <span
                       key={delay}
-                      className="w-1.5 h-1.5 rounded-full animate-bounce"
+                      className="w-2 h-2 rounded-full animate-bounce"
                       style={{ background: theme.accent, animationDelay: `${delay}ms` }}
                     />
                   ))}
+                  <span className="text-xs text-slate-400 ml-1">Denkt na...</span>
                 </div>
               </div>
             )}
             <div ref={bottomRef} />
           </div>
 
-          <div className="px-4 pb-2 pt-2 flex gap-2 flex-wrap border-t border-slate-100">
+          <div
+            className="px-4 py-2.5 flex gap-2 flex-wrap border-t"
+            style={{ borderColor: `${theme.accent}22`, background: `${theme.accent}06` }}
+          >
             {QUICK_REPLIES[site].map(q => (
               <button
                 key={q}
                 type="button"
                 onClick={() => sendMessage(q)}
-                className="text-xs font-semibold border rounded-full px-3 py-1 transition-colors"
+                className="text-xs font-bold border rounded-full px-3 py-1.5 transition-all hover:scale-[1.03]"
                 style={{
                   color: theme.primary,
-                  borderColor: `${theme.primary}40`,
+                  borderColor: `${theme.accent}55`,
+                  background: 'white',
                 }}
               >
                 {q}
@@ -176,20 +227,24 @@ export function MonraChat({ site }: MonraChatProps) {
             ))}
           </div>
 
-          <div className="p-4 border-t border-slate-200 flex gap-2">
+          <div className="p-4 border-t border-slate-200 flex gap-2 bg-white">
             <input
               type="text"
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && sendMessage(input)}
               placeholder="Stel een vraag..."
-              className="flex-1 bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none transition-colors"
-              style={{ color: theme.primary }}
+              className="flex-1 bg-slate-50 border rounded-xl px-4 py-2.5 text-sm focus:outline-none transition-all"
+              style={{
+                color: theme.primary,
+                borderColor: `${theme.accent}33`,
+              }}
             />
             <button
               type="button"
               onClick={() => sendMessage(input)}
-              className="w-10 h-10 rounded-lg flex items-center justify-center transition-all flex-shrink-0"
+              disabled={typing || !input.trim()}
+              className="w-10 h-10 rounded-xl flex items-center justify-center transition-all flex-shrink-0 disabled:opacity-40 hover:scale-105"
               style={{ background: theme.primary }}
             >
               <Send size={15} className="text-white" />

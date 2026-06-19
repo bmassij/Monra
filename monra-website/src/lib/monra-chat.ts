@@ -37,11 +37,11 @@ const SITES = {
 
 export const CHAT_GREETINGS: Record<MonraSite, string> = {
   security:
-    'Hallo! Ik ben de Monra-assistent. Ik help u met vragen over Monra Security, en kan u ook doorverwijzen naar Monra Support of Events Security als dat beter past.\n\nWaarmee kan ik u helpen?',
+    'Welkom bij Monra Security!\n\nIk ben uw AI-assistent en ken alle drie de Monra-takken. Stel gerust vragen over:\n• Evenementenbeveiliging & surveillance\n• ESO-opleiding\n• Offertes & contact\n\nWaarmee kan ik u helpen?',
   support:
-    'Hallo! Ik ben de Monra-assistent. U bent op Monra Support — wij leveren hospitality- en zorgpersoneel. Ik ken ook Monra Security en Events Security en help u naar de juiste tak.\n\nWaarmee kan ik u helpen?',
+    'Welkom bij Monra Support!\n\nIk ben uw AI-assistent voor hospitality & zorgpersoneel. Ook Monra Security en Events Security ken ik — ik verwijs u graag door.\n\n• Barpersoneel & bediening\n• BHV, EHBO & brandwachten\n• Personeelsaanvragen\n\nWaarmee kan ik u helpen?',
   events:
-    'Hallo! Ik ben de Monra-assistent. U bent bij Monra Events Security (Senna Monsigneur). Ik help u met festivals, VIP-beveiliging, opleiding en meer — en verwijs u door als een andere Monra-tak beter past.\n\nWaarmee kan ik u helpen?',
+    'Welkom bij Monra Events Security!\n\nIk ben uw AI-assistent (Senna Monsigneur). Festivals, VIP, sport — of doorverwijzing naar een andere Monra-tak.\n\n• Premium eventbeveiliging\n• VIP & close protection\n• Offertes & opleiding\n\nWaarmee kan ik u helpen?',
 }
 
 export const QUICK_REPLIES: Record<MonraSite, string[]> = {
@@ -52,15 +52,21 @@ export const QUICK_REPLIES: Record<MonraSite, string[]> = {
 
 export function getMonraOverviewReply(): ChatReply {
   return {
-    text: `Monra is een familiebedrijf uit Linne (Limburg) met 25+ jaar ervaring in evenementenbeveiliging — 500+ events, vaste teams, 30–40% efficiënter dan gemiddeld.
+    text: `OVER MONRA
 
-Drie takken onder één dak:
-🛡️ Monra Security — festivals, concerten, surveillance, ESO-opleiding
-🤝 Monra Support — barpersoneel, BHV, EHBO, brandwachten, hospitality
-✨ Monra Events Security — premium events (Senna Monsigneur), VIP, sport
+Monra is een familiebedrijf uit Linne (Limburg) met 25+ JAAR ERVARING — 500+ events, vaste teams, 30–40% efficiënter dan gemiddeld.
 
-SVPB-keurmerk · Wpbr-vergund · SBB erkend leerbedrijf · KVK 89581806
-📞 ${CONTACT.phone} · 📍 ${CONTACT.address}`,
+DRIE TAKKEN ONDER ÉÉN DAK:
+• Monra Security — festivals, concerten, surveillance, ESO-opleiding
+• Monra Support — barpersoneel, BHV, EHBO, brandwachten, hospitality
+• Monra Events Security — premium events (Senna Monsigneur), VIP, sport
+
+CERTIFICERING:
+• SVPB-keurmerk · Wpbr-vergund · SBB erkend leerbedrijf · KVK 89581806
+
+CONTACT:
+📞 ${CONTACT.phone}
+📍 ${CONTACT.address}`,
     action: { label: '→ Monra Groep overzicht', href: '/groep' },
   }
 }
@@ -373,6 +379,13 @@ export function buildMonraSystemPrompt(currentSite: MonraSite): string {
 - Directie: ${CONTACT.phone}
 - Planning: ${CONTACT.phonePlanning}
 - Keuze-wijzer welke tak past: /groep
+
+## Opmaak (belangrijk)
+- Gebruik korte kopjes in HOOFDLETTERS (bijv. ONZE DIENSTEN, CONTACT)
+- Gebruik bullet points met • voor lijsten
+- Markeer belangrijke termen in HOOFDLETTERS: SVPB, ESO, VIP, BHV, OFFERTE
+- Noem taknamen voluit: Monra Security, Monra Support, Monra Events Security
+- Max 6–8 zinnen per antwoord, overzichtelijk
 
 ## Jouw taken
 - Beantwoord vragen over Monra, diensten, certificering, ESO, ervaring en offertes — wees behulpzaam en informatief.

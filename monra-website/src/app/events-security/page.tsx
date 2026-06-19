@@ -66,6 +66,9 @@ export default function EventsSecurityPage() {
           <Link href="/support" style={{ fontSize: 11, color: 'rgba(255,255,255,.35)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 20, padding: '4px 12px', textDecoration: 'none' }}>
             🤝 Monra Support
           </Link>
+          <Link href="/groep" style={{ fontSize: 11, color: 'rgba(255,255,255,.35)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 20, padding: '4px 12px', textDecoration: 'none' }}>
+            🏢 Monra Groep
+          </Link>
         </div>
       </div>
 

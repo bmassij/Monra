@@ -171,17 +171,17 @@ export default function GroepPage() {
         </div>
         <h1 style={{ fontSize: 'clamp(32px, 5vw, 68px)', fontWeight: 900, color: '#fff', lineHeight: 1.06, marginBottom: 18 }}>
           Eén groep.<br />
-          <span style={{ color: '#11CFE7' }}>Drie specialismen.</span>
+          <span style={{ color: '#11CFE7' }}>Vijf takken.</span>
         </h1>
         <p style={{ fontSize: 16, color: 'rgba(255,255,255,.55)', maxWidth: 540, margin: '0 auto', lineHeight: 1.9 }}>
-          Monra staat voor veiligheid, gastvrijheid en professionaliteit. Onze drie takken bedienen elk een eigen doelgroep — met één gedeelde cultuur.
+          Monra staat voor veiligheid, gastvrijheid en professionaliteit. Vijf takken — één gedeelde cultuur.
         </p>
 
         {/* Stats */}
         <div style={{ display: 'flex', justifyContent: 'center', gap: 0, marginTop: 48, flexWrap: 'wrap' }}>
           {[
             { val: '25+', label: 'jaar ervaring' },
-            { val: '4', label: 'gespecialiseerde takken' },
+            { val: '5', label: 'gespecialiseerde takken' },
             { val: 'SVPB', label: 'gecertificeerd keurmerk' },
             { val: '24/7', label: 'bereikbaar' },
           ].map((s, i) => (
@@ -354,6 +354,46 @@ export default function GroepPage() {
             </div>
           </Link>
 
+          {/* Don Keijsjot */}
+          <Link href="/don-keijsjot" style={{ textDecoration: 'none' }}>
+            <div style={{
+              background: '#fff', borderRadius: 16, overflow: 'hidden',
+              border: '1px solid #e2e8f0', transition: 'transform .2s, box-shadow .2s',
+              cursor: 'pointer', height: '100%',
+            }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'translateY(-4px)'
+                e.currentTarget.style.boxShadow = '0 12px 40px rgba(196,92,38,.15)'
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = 'none'
+              }}
+            >
+              <div style={{ background: 'linear-gradient(135deg, #4a2c17, #8B4513)', padding: '36px 32px', position: 'relative', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', top: -20, right: -20, width: 120, height: 120, borderRadius: '50%', background: 'rgba(196,92,38,.12)' }} />
+                <div style={{ fontSize: 10, fontWeight: 700, color: '#f5d5b8', textTransform: 'uppercase', letterSpacing: 3, marginBottom: 14 }}>
+                  Hospitality · Maasbracht
+                </div>
+                <div style={{ fontSize: 44, marginBottom: 12 }}>🍺</div>
+                <h3 style={{ fontSize: 24, fontWeight: 900, color: '#fff', marginBottom: 8 }}>Don Keijsjot</h3>
+                <p style={{ fontSize: 13, color: 'rgba(255,255,255,.55)', lineHeight: 1.7 }}>
+                  Feestcafé in het centrum van Maasbracht — gezelligheid, muziek en lokale sfeer.
+                </p>
+              </div>
+              <div style={{ padding: '24px 32px' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 20 }}>
+                  {['Feestcafé', 'Maasbracht', 'Molenweg', 'Monra familie'].map(t => (
+                    <span key={t} style={{ fontSize: 11, color: '#8B4513', background: '#faf6f0', borderRadius: 20, padding: '4px 12px' }}>{t}</span>
+                  ))}
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#8B4513', fontSize: 13, fontWeight: 800 }}>
+                  Bezoek Don Keijsjot <span>→</span>
+                </div>
+              </div>
+            </div>
+          </Link>
+
         </div>
       </div>
 
@@ -448,6 +488,7 @@ export default function GroepPage() {
           <Link href="/support" style={{ fontSize: 11, color: 'rgba(255,255,255,.25)', textDecoration: 'none' }}>Support</Link>
           <Link href="/events-security" style={{ fontSize: 11, color: 'rgba(255,255,255,.25)', textDecoration: 'none' }}>Events Security</Link>
           <Link href="/belgie" style={{ fontSize: 11, color: 'rgba(255,255,255,.25)', textDecoration: 'none' }}>Belgium</Link>
+          <Link href="/don-keijsjot" style={{ fontSize: 11, color: 'rgba(255,255,255,.25)', textDecoration: 'none' }}>Don Keijsjot</Link>
         </div>
       </div>
 

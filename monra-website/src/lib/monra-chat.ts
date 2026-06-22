@@ -1,4 +1,4 @@
-export type MonraSite = 'security' | 'support' | 'events' | 'belgium'
+export type MonraSite = 'security' | 'support' | 'events' | 'belgium' | 'keijsjot'
 
 export type ChatReply = {
   text: string
@@ -12,7 +12,9 @@ const CONTACT = {
   mailSupport: 'info@monra-support.nl',
   mailEvents: 'info@monra-events-security.nl',
   mailBelgium: 'info@monra-belgium.be',
+  mailKeijsjot: 'wordt aangevuld@don-keijsjot.nl',
   address: 'Schuttersstraat 7, 6067 GE Linne',
+  addressKeijsjot: 'Molenweg 1, 6051 HG Maasbracht',
 }
 
 const SITES = {
@@ -40,17 +42,25 @@ const SITES = {
     email: CONTACT.mailBelgium,
     focus: 'evenementenbeveiliging in heel België — Vlaanderen, Brussel, Wallonië, FOD-vergund',
   },
+  keijsjot: {
+    name: 'Don Keijsjot',
+    path: '/don-keijsjot',
+    email: CONTACT.mailKeijsjot,
+    focus: 'feestcafé en gezelligheid in Maasbracht — onderdeel van de Monra-familie',
+  },
 } as const
 
 export const CHAT_GREETINGS: Record<MonraSite, string> = {
   security:
-    'Welkom bij Monra Security!\n\nIk ben uw AI-assistent en ken alle vier Monra-takken (NL, Support, Events, Belgium). Stel gerust vragen over:\n• Evenementenbeveiliging & surveillance\n• Opleidingen (ESO, MBO Beveiliger 2 & 3)\n• Offertes & contact\n\nWaarmee kan ik u helpen?',
+    'Welkom bij Monra Security!\n\nIk ben uw AI-assistent en ken alle Monra-takken (NL, Support, Events, Belgium, Don Keijsjot). Stel gerust vragen over:\n• Evenementenbeveiliging & surveillance\n• Opleidingen (ESO, MBO Beveiliger 2 & 3)\n• Offertes & contact\n\nWaarmee kan ik u helpen?',
   support:
     'Welkom bij Monra Support!\n\nIk ben uw AI-assistent voor hospitality & zorgpersoneel. Ik ken ook Monra Security, Events Security en Monra Belgium.\n\n• Barpersoneel & bediening\n• BHV, EHBO & brandwachten\n• Personeelsaanvragen\n\nWaarmee kan ik u helpen?',
   events:
     'Welkom bij Monra Events Security!\n\nIk ben uw AI-assistent (Senna Monsigneur). Festivals, VIP, sport — of doorverwijzing naar een andere Monra-tak.\n\n• Premium eventbeveiliging\n• VIP & close protection\n• Offertes & opleiding\n\nWaarmee kan ik u helpen?',
   belgium:
-    'Welkom bij Monra Belgium!\n\nIk ben uw AI-assistent voor evenementenbeveiliging in België. Ook Monra Security NL, Support en Events Security ken ik.\n\n• Festivals & concerten in BE\n• Vlaanderen, Brussel, Wallonië\n• FOD-vergunde beveiliging\n\nWaarmee kan ik u helpen?',
+    'Welkom bij Monra Belgium!\n\nIk ben uw AI-assistent voor evenementenbeveiliging in België. Ook Monra Security NL, Support, Events Security en Don Keijsjot ken ik.\n\n• Festivals & concerten in BE\n• Vlaanderen, Brussel, Wallonië\n• FOD-vergunde beveiliging\n\nWaarmee kan ik u helpen?',
+  keijsjot:
+    'Welkom bij Don Keijsjot!\n\nFeestcafé in Maasbracht — gezelligheid, muziek en een warme kroeg. Onderdeel van de Monra-familie; ik ken ook Security, Support, Events en Belgium.\n\n• Adres & route\n• Openingstijden (bel voor actuele info)\n• Monra Groep\n\nWaarmee kan ik u helpen?',
 }
 
 export const QUICK_REPLIES: Record<MonraSite, string[]> = {
@@ -58,6 +68,7 @@ export const QUICK_REPLIES: Record<MonraSite, string[]> = {
   support: ['Personeel aanvragen', 'BHV of EHBO?', 'Beveiliging nodig', 'Contact'],
   events: ['Offerte festival', 'Over Senna', 'VIP beveiliging', 'Contact'],
   belgium: ['Offerte aanvragen', 'Werkgebied BE', 'FOD vergunning', 'Contact'],
+  keijsjot: ['Openingstijden', 'Adres Maasbracht', 'Monra Groep', 'Contact'],
 }
 
 export function getMonraOverviewReply(): ChatReply {
@@ -66,11 +77,12 @@ export function getMonraOverviewReply(): ChatReply {
 
 Monra is een familiebedrijf uit Linne (Limburg) met 25+ JAAR ERVARING — 500+ events, vaste teams, 30–40% efficiënter dan gemiddeld.
 
-VIER TAKKEN ONDER ÉÉN DAK:
+VIJF TAKKEN ONDER ÉÉN DAK:
 • Monra Security (NL) — festivals, concerten, surveillance, opleidingen (ESO + MBO 2/3)
 • Monra Support — barpersoneel, BHV, EHBO, brandwachten, hospitality
 • Monra Events Security — premium events (Senna Monsigneur), VIP, sport
 • Monra Belgium — evenementenbeveiliging in Vlaanderen, Brussel & Wallonië
+• Don Keijsjot — feestcafé Maasbracht (Molenweg 1), gezelligheid & muziek
 
 CERTIFICERING:
 • NL: SVPB-keurmerk · Wpbr-vergund · SBB erkend leerbedrijf · KVK 89581806
@@ -111,6 +123,19 @@ function isGeneralMonraQuestion(m: string): boolean {
 
 type RouteTarget = MonraSite | 'groep'
 
+function isKeijsjotIntent(m: string): boolean {
+  return (
+    m.includes('keijsjot') ||
+    m.includes('kiesjot') ||
+    m.includes('don keij') ||
+    m.includes('don kie') ||
+    m.includes('maasbracht') ||
+    m.includes('feestcaf') ||
+    (m.includes('café') && m.includes('maasbracht')) ||
+    (m.includes('cafe') && m.includes('maasbracht'))
+  )
+}
+
 function isBelgiumIntent(m: string): boolean {
   return (
     m.includes('belgi') ||
@@ -139,6 +164,10 @@ function detectBestSite(msg: string): RouteTarget | null {
     m.includes('verschil tussen')
   ) {
     return 'groep'
+  }
+
+  if (isKeijsjotIntent(m)) {
+    return 'keijsjot'
   }
 
   if (isBelgiumIntent(m)) {
@@ -203,14 +232,19 @@ function detectBestSite(msg: string): RouteTarget | null {
 function routeReply(current: MonraSite, target: RouteTarget): ChatReply {
   if (target === 'groep') {
     return {
-      text: 'De Monra-groep heeft vier expertises:\n\n🛡️ Monra Security (NL) — evenementenbeveiliging & ESO\n🤝 Monra Support — hospitality, BHV, EHBO, brandwachten\n✨ Monra Events Security — premium events (Senna Monsigneur)\n🇧🇪 Monra Belgium — beveiliging in heel België\n\nOnze keuze-wijzer helpt u in 2 stappen de juiste match te vinden.',
+      text: 'De Monra-groep heeft vijf expertises:\n\n🛡️ Monra Security (NL) — evenementenbeveiliging & ESO\n🤝 Monra Support — hospitality, BHV, EHBO, brandwachten\n✨ Monra Events Security — premium events (Senna Monsigneur)\n🇧🇪 Monra Belgium — beveiliging in heel België\n🍺 Don Keijsjot — feestcafé Maasbracht\n\nOnze keuze-wijzer helpt u in 2 stappen de juiste match te vinden.',
       action: { label: '→ Monra Groep keuze-wijzer', href: '/groep' },
     }
   }
 
   if (target === current) {
     const site = SITES[target]
-    const phone = target === 'belgium' ? site.email : CONTACT.phone
+    const phone =
+      target === 'belgium'
+        ? site.email
+        : target === 'keijsjot'
+          ? '0475 461 801'
+          : CONTACT.phone
     return {
       text: `U bent al op de juiste plek — ${site.name}.\n\nWij zijn gespecialiseerd in ${site.focus}.\n\n${target === 'belgium' ? '✉️' : '📞'} ${phone}\n✉️ ${site.email}\n\nZal ik u helpen met een offerte of aanvraag?`,
       action: { label: '→ Naar contact', href: `${site.path}#contact` },
@@ -231,6 +265,7 @@ function salesReply(site: MonraSite): ChatReply {
     support: 'Personeelsaanvraag Monra Support',
     events: 'Offerte aanvraag Monra Events Security',
     belgium: 'Offerte aanvraag Monra Belgium',
+    keijsjot: 'Vraag Don Keijsjot',
   }
   return {
     text: `Graag help ik u verder met een offerte!\n\n${s.name} stuurt u het liefst:\n• Type event of locatie\n• Datum(en)\n• Gewenste inzet / aantal personen\n\n${site === 'belgium' ? '' : `📞 ${CONTACT.phone} (direct)\n`}✉️ ${s.email}\n\nWij reageren binnen 24 uur.`,
@@ -291,8 +326,22 @@ export function getMonraChatResponse(message: string, currentSite: MonraSite): C
 
   if (m.includes('contact') || m.includes('bellen') || m.includes('mail') || m.includes('bereik') || m.includes('telefoon')) {
     return {
-      text: `Monra Groep — contact:\n\n📞 Directie NL: ${CONTACT.phone}\n📞 Planning NL: ${CONTACT.phonePlanning}\n✉️ Security NL: ${CONTACT.mailSecurity}\n✉️ Support: ${CONTACT.mailSupport}\n✉️ Events: ${CONTACT.mailEvents}\n✉️ Belgium: ${CONTACT.mailBelgium}\n📍 NL: ${CONTACT.address}\n\n24/7 bereikbaar voor spoed & planning.`,
+      text: `Monra Groep — contact:\n\n📞 Directie NL: ${CONTACT.phone}\n📞 Planning NL: ${CONTACT.phonePlanning}\n📞 Don Keijsjot: 0475 461 801\n✉️ Security NL: ${CONTACT.mailSecurity}\n✉️ Support: ${CONTACT.mailSupport}\n✉️ Events: ${CONTACT.mailEvents}\n✉️ Belgium: ${CONTACT.mailBelgium}\n📍 NL: ${CONTACT.address}\n📍 Don Keijsjot: ${CONTACT.addressKeijsjot}\n\n24/7 bereikbaar voor spoed & planning (beveiliging).`,
     }
+  }
+
+  if (
+    (m.includes('openingstijd') || m.includes('open') || m.includes('gesloten')) &&
+    (currentSite === 'keijsjot' || isKeijsjotIntent(m))
+  ) {
+    return {
+      text: 'OPENINGSTIJDEN DON KEIJSJOT (publieke bron — ter plaatse bevestigen):\n\n• Ma: ca. 14:00–23:00\n• Do–Zo: avond/nacht (varieert)\n• Di/Wo: wordt aangevuld\n\n📞 0475 461 801 voor actuele info\n📍 Molenweg 1, Maasbracht',
+      action: { label: '→ Don Keijsjot pagina', href: '/don-keijsjot#openingstijden' },
+    }
+  }
+
+  if (isKeijsjotIntent(m) && currentSite !== 'keijsjot') {
+    return routeReply(currentSite, 'keijsjot')
   }
 
   if (m.includes('fod') || (m.includes('vergunn') && (isBelgiumIntent(m) || currentSite === 'belgium'))) {
@@ -429,6 +478,12 @@ export function getSiteTheme(site: MonraSite) {
       headerIcon: 'shield' as const,
       label: 'Monra Assistent',
     },
+    keijsjot: {
+      primary: '#8B4513',
+      accent: '#c45c26',
+      headerIcon: 'sparkles' as const,
+      label: 'Don Keijsjot',
+    },
   }
   return themes[site]
 }
@@ -446,11 +501,12 @@ export function buildMonraSystemPrompt(currentSite: MonraSite): string {
 - CEO Monra Groep: Raf Monsieur
 - 24/7 bereikbaar voor planning en spoed
 
-## De vier Monra-takken
+## De vijf Monra-takken
 1. Monra Security (/) — evenementenbeveiliging NL. E-mail: ${CONTACT.mailSecurity}
 2. Monra Support (/support) — hospitality, BHV, EHBO, brandwachten. E-mail: ${CONTACT.mailSupport}
 3. Monra Events Security (/events-security) — premium events, Senna Monsigneur. E-mail: ${CONTACT.mailEvents}
 4. Monra Belgium (/belgie) — evenementenbeveiliging BE (Vlaanderen, Brussel, Wallonië). E-mail: ${CONTACT.mailBelgium}
+5. Don Keijsjot (/don-keijsjot) — feestcafé Maasbracht, Molenweg 1. Tel: 0475 461 801
 
 ## Contact
 - Directie NL: ${CONTACT.phone}
@@ -470,7 +526,7 @@ export function buildMonraSystemPrompt(currentSite: MonraSite): string {
 - Monra staat op Stagemarkt/SBB als erkend leerbedrijf particuliere beveiliging
 
 ## Jouw taken
-- Beantwoord vragen over alle vier takken, certificering NL/BE, opleidingen (ESO, MBO 2/3), offertes
+- Beantwoord vragen over alle vijf takken, certificering NL/BE, opleidingen (ESO, MBO 2/3), offertes
 - België/Vlaanderen/Wallonië → Monra Belgium (/belgie)
 - Verwijs door als andere tak beter past
 - Geen prijzen verzinnen — maatwerk

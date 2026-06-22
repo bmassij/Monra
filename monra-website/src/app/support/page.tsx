@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { SubsiteNav } from '@/components/SubsiteNav'
 import { MonraChat } from '@/components/MonraChat'
-import { SUPPORT_NAV, FAMILIE_FROM_SUPPORT } from '@/lib/subsite-nav'
+import { SUPPORT_NAV, getFamilieFromSupport } from '@/lib/subsite-nav'
 
 export default function SupportPage() {
   return (
@@ -29,7 +29,7 @@ export default function SupportPage() {
         navLinks={SUPPORT_NAV}
         ctaLabel="Personeel aanvragen"
         ctaHref="mailto:info@monra-support.nl"
-        familieLinks={FAMILIE_FROM_SUPPORT}
+        familieLinks={getFamilieFromSupport()}
       />
 
       {/* Hero */}

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { CookieConsentBanner } from '@/components/CookieConsentBanner'
 
 export const metadata: Metadata = {
   title: 'Monra Security — Professionele Evenementenbeveiliging',
@@ -20,7 +21,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="nl">
-      <body>{children}</body>
+      <body>
+        {children}
+        <CookieConsentBanner />
+      </body>
     </html>
   )
 }

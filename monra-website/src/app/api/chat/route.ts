@@ -14,7 +14,7 @@ type ChatHistoryItem = {
   content: string
 }
 
-const VALID_SITES: MonraSite[] = ['security', 'support', 'events', 'belgium']
+const VALID_SITES: MonraSite[] = ['security', 'support', 'events', 'belgium', 'keijsjot']
 
 function getSiteUrl(): string {
   if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL

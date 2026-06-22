@@ -10,9 +10,10 @@ import {
 } from 'lucide-react'
 import { HeroSlider } from '@/components/HeroSlider'
 import { PhotoGallery } from '@/components/PhotoGallery'
+import { ReferenceSlider } from '@/components/ReferenceSlider'
 import { MonraChat } from '@/components/MonraChat'
 import { FamilieTopBanner, FAMILIE_BANNER_OFFSET } from '@/components/FamilieTopBanner'
-import { FAMILIE_TOP_SECURITY } from '@/lib/subsite-nav'
+import { getFamilieTopSecurity } from '@/lib/subsite-nav'
 import { OPLEIDINGEN, NIVEAU_UITLEG } from '@/lib/opleidingen'
 import { IMAGES } from '@/lib/images'
 
@@ -45,11 +46,6 @@ const STATS = [
   { value: '24/7', label: 'Bereikbaar' },
 ]
 
-const REFERENCES = [
-  'Festivals', 'Concerten', 'Voetbal', 'Congressen',
-  'Beurzen', 'Sportevenementen', 'Bedrijfsfeesten', 'VIP Events',
-]
-
 // ─── COMPONENTS ──────────────────────────────────────────
 
 function Navbar() {
@@ -65,6 +61,7 @@ function Navbar() {
   const links = [
     { label: 'Home', href: '#home' },
     { label: 'Diensten', href: '#diensten' },
+    { label: 'Referenties', href: '#referenties' },
     { label: "Foto's", href: '#fotos' },
     { label: 'Over ons', href: '#over-ons' },
     { label: 'Opleiding', href: '#opleiding' },
@@ -244,17 +241,6 @@ function Services() {
           })}
         </div>
 
-        {/* References ticker */}
-        <div className="border-t border-b border-slate-200 py-6 overflow-hidden bg-slate-50 -mx-6 px-6">
-          <div className="flex gap-8 items-center flex-wrap justify-center">
-            <span className="text-xs text-slate-400 uppercase tracking-widest whitespace-nowrap">Wij beveiligen o.a.:</span>
-            {REFERENCES.map(r => (
-              <span key={r} className="text-sm font-bold text-[#1A2B6D] whitespace-nowrap">
-                ◆ {r}
-              </span>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   )
@@ -675,7 +661,16 @@ function Footer() {
         </div>
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <span className="text-white/25 text-xs">© 2024 Monra Security B.V. · Alle rechten voorbehouden</span>
-          <div className="flex gap-4">
+          <div className="flex gap-4 flex-wrap items-center">
+            <Link href="/privacy" className="text-white/25 hover:text-[#11CFE7] transition-colors text-xs">Privacy</Link>
+            <Link href="/cookies" className="text-white/25 hover:text-[#11CFE7] transition-colors text-xs">Cookies</Link>
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent('monra-cookie-reopen'))}
+              className="text-white/25 hover:text-[#11CFE7] transition-colors text-xs"
+            >
+              Cookie-instellingen
+            </button>
             <a href="https://www.facebook.com/MonraBeveiliging" target="_blank" rel="noopener noreferrer"
               className="text-white/25 hover:text-[#11CFE7] transition-colors text-xs">Facebook</a>
             <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"
@@ -695,11 +690,12 @@ export default function HomePage() {
         logoSrc={IMAGES.logo}
         logoAlt="Monra Security"
         logoHref="#home"
-        links={[...FAMILIE_TOP_SECURITY]}
+        links={getFamilieTopSecurity()}
       />
       <Navbar />
       <Hero />
       <Services />
+      <ReferenceSlider />
       <HeroSlider />
       <PhotoGallery />
       <WhyUs />

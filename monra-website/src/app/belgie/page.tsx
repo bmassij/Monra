@@ -9,7 +9,7 @@ import {
 } from 'lucide-react'
 import { MonraChat } from '@/components/MonraChat'
 import { FamilieTopBanner, FAMILIE_BANNER_OFFSET } from '@/components/FamilieTopBanner'
-import { FAMILIE_TOP_BELGIUM } from '@/lib/subsite-nav'
+import { getFamilieTopBelgium } from '@/lib/subsite-nav'
 
 const SERVICES = [
   {
@@ -413,7 +413,7 @@ export default function BelgiePage() {
         icon="🇧🇪"
         siteName="Monra Belgium"
         tagline="evenementenbeveiliging in België"
-        links={[...FAMILIE_TOP_BELGIUM]}
+        links={getFamilieTopBelgium()}
       />
       <Navbar />
       <Hero />

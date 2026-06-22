@@ -4,7 +4,7 @@ import { EventsHeroSlider } from '@/components/EventsHeroSlider'
 import { EventsPhotoGallery } from '@/components/EventsPhotoGallery'
 import { SubsiteNav } from '@/components/SubsiteNav'
 import { MonraChat } from '@/components/MonraChat'
-import { EVENTS_NAV, FAMILIE_FROM_EVENTS } from '@/lib/subsite-nav'
+import { EVENTS_NAV, getFamilieFromEvents } from '@/lib/subsite-nav'
 import { EVENTS_IMAGES } from '@/lib/events-images'
 import { ESO_EVENTS_STEPS, ESO_EVENTS_CERTS } from '@/lib/opleidingen'
 
@@ -59,7 +59,7 @@ export default function EventsSecurityPage() {
         navLinks={EVENTS_NAV}
         ctaLabel="Offerte aanvragen"
         ctaHref="mailto:info@monra-events-security.nl"
-        familieLinks={FAMILIE_FROM_EVENTS}
+        familieLinks={getFamilieFromEvents()}
       />
 
       {/* Hero slider */}

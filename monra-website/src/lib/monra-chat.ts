@@ -20,7 +20,7 @@ const SITES = {
     name: 'Monra Security',
     path: '/',
     email: CONTACT.mailSecurity,
-    focus: 'evenementenbeveiliging, surveillance en ESO-opleiding (Nederland)',
+    focus: 'evenementenbeveiliging, surveillance en opleidingen (ESO, MBO Beveiliger 2 & 3)',
   },
   support: {
     name: 'Monra Support',
@@ -44,7 +44,7 @@ const SITES = {
 
 export const CHAT_GREETINGS: Record<MonraSite, string> = {
   security:
-    'Welkom bij Monra Security!\n\nIk ben uw AI-assistent en ken alle vier Monra-takken (NL, Support, Events, Belgium). Stel gerust vragen over:\n• Evenementenbeveiliging & surveillance\n• ESO-opleiding\n• Offertes & contact\n\nWaarmee kan ik u helpen?',
+    'Welkom bij Monra Security!\n\nIk ben uw AI-assistent en ken alle vier Monra-takken (NL, Support, Events, Belgium). Stel gerust vragen over:\n• Evenementenbeveiliging & surveillance\n• Opleidingen (ESO, MBO Beveiliger 2 & 3)\n• Offertes & contact\n\nWaarmee kan ik u helpen?',
   support:
     'Welkom bij Monra Support!\n\nIk ben uw AI-assistent voor hospitality & zorgpersoneel. Ik ken ook Monra Security, Events Security en Monra Belgium.\n\n• Barpersoneel & bediening\n• BHV, EHBO & brandwachten\n• Personeelsaanvragen\n\nWaarmee kan ik u helpen?',
   events:
@@ -54,7 +54,7 @@ export const CHAT_GREETINGS: Record<MonraSite, string> = {
 }
 
 export const QUICK_REPLIES: Record<MonraSite, string[]> = {
-  security: ['Offerte aanvragen', 'Welke tak past?', 'ESO Opleiding', 'Contact'],
+  security: ['Offerte aanvragen', 'Welke tak past?', 'Opleidingen', 'Contact'],
   support: ['Personeel aanvragen', 'BHV of EHBO?', 'Beveiliging nodig', 'Contact'],
   events: ['Offerte festival', 'Over Senna', 'VIP beveiliging', 'Contact'],
   belgium: ['Offerte aanvragen', 'Werkgebied BE', 'FOD vergunning', 'Contact'],
@@ -67,7 +67,7 @@ export function getMonraOverviewReply(): ChatReply {
 Monra is een familiebedrijf uit Linne (Limburg) met 25+ JAAR ERVARING — 500+ events, vaste teams, 30–40% efficiënter dan gemiddeld.
 
 VIER TAKKEN ONDER ÉÉN DAK:
-• Monra Security (NL) — festivals, concerten, surveillance, ESO-opleiding
+• Monra Security (NL) — festivals, concerten, surveillance, opleidingen (ESO + MBO 2/3)
 • Monra Support — barpersoneel, BHV, EHBO, brandwachten, hospitality
 • Monra Events Security — premium events (Senna Monsigneur), VIP, sport
 • Monra Belgium — evenementenbeveiliging in Vlaanderen, Brussel & Wallonië
@@ -307,14 +307,21 @@ export function getMonraChatResponse(message: string, currentSite: MonraSite): C
 
   if (m.includes('certifi') || m.includes('svpb') || m.includes('keurmerk') || m.includes('wpbr') || m.includes('vergunning')) {
     return {
-      text: 'Alle Monra-takken werken met gecertificeerd personeel.\n• NL: SVPB-keurmerk, Wpbr-vergund, SBB erkend leerbedrijf (ESO)\n• BE: FOD-vergund, Wet private beveiliging 2017',
+      text: 'Alle Monra-takken werken met gecertificeerd personeel.\n• NL: SVPB-keurmerk, Wpbr-vergund, SBB erkend leerbedrijf (MBO Beveiliger 2/3 + ESO)\n• BE: FOD-vergund, Wet private beveiliging 2017',
+    }
+  }
+
+  if (m.includes('niveau') || m.includes('mbo') || m.includes('beveiliger 2') || m.includes('beveiliger 3') || m.includes('beveiliger2') || m.includes('beveiliger3')) {
+    return {
+      text: 'OPLEIDINGSNIVEAUS BIJ MONRA\n\n• MBO Beveiliger niveau 2 — startkwalificatie (theorie bij ROC, praktijk bij SBB-leerbedrijf)\n• MBO Beveiliger niveau 3 — verdieping na niveau 2 (coördinatie/leiding)\n• ESO — apart SVPB-branchecertificaat voor evenementenbeveiliging\n\nEr is geen Beveiliger niveau 1 als diploma; niveau 1 is alleen entree-vooropleiding. Monra is SBB-erkend leerbedrijf voor praktijk (BPV/BBL).',
+      action: { label: '→ Opleidingen op homepage', href: '/#opleiding' },
     }
   }
 
   if (m.includes('eso') || m.includes('opleid') || m.includes('cursus') || m.includes('leerbedrijf')) {
     return {
-      text: 'ESO (Event Security Officer) opleiding bij Monra:\n• Theorie + praktijk op echte events\n• SBB erkend leerbedrijf\n• Officieel certificaat\n\nBeschikbaar via Monra Security NL en Monra Events Security.',
-      action: { label: '→ ESO bij Events Security', href: '/events-security#opleiding' },
+      text: 'OPLEIDINGEN BIJ MONRA\n\n🎓 ESO (Event Security Officer) — SVPB-certificaat, theorie + praktijk op echte events\n📋 MBO Beveiliger niveau 2 — officiële startkwalificatie (SBB leerbedrijf)\n📈 MBO Beveiliger niveau 3 — doorstroom na niveau 2\n\nMonra Security B.V. staat op Stagemarkt/SBB als erkend leerbedrijf. ESO-praktijk ook via Monra Events Security.',
+      action: { label: '→ Opleidingen', href: '/#opleiding' },
     }
   }
 
@@ -434,7 +441,7 @@ export function buildMonraSystemPrompt(currentSite: MonraSite): string {
 - Familiebedrijf gevestigd in Linne, Limburg — Schuttersstraat 7, 6067 GE Linne
 - 25+ jaar ervaring, 500+ evenementen beveiligd
 - Vaste teams — 30–40% efficiënter dan branchegemiddelde
-- NL: SVPB-keurmerk, Wpbr-vergunning, SBB erkend leerbedrijf (ESO), KVK 89581806
+- NL: SVPB-keurmerk, Wpbr-vergunning, SBB erkend leerbedrijf (MBO Beveiliger 2/3 + ESO), KVK 89581806
 - BE: FOD-vergund, Wet private beveiliging 2017
 - CEO Monra Groep: Raf Monsieur
 - 24/7 bereikbaar voor planning en spoed
@@ -455,8 +462,15 @@ export function buildMonraSystemPrompt(currentSite: MonraSite): string {
 - Noem taknamen voluit inclusief Monra Belgium
 - Max 6–8 zinnen, Nederlands
 
+## Opleidingen (Monra Security NL)
+- ESO (Event Security Officer): SVPB-branchecertificaat, theorie bij SVPB + praktijk bij erkend leerbedrijf
+- MBO Beveiliger niveau 2: officiële startkwalificatie, theorie bij ROC, praktijk bij SBB-leerbedrijf (BBL)
+- MBO Beveiliger niveau 3: verdieping na niveau 2, coördinatie/leiding
+- Geen Beveiliger niveau 1 als diploma (niveau 1 = entree-vooropleiding)
+- Monra staat op Stagemarkt/SBB als erkend leerbedrijf particuliere beveiliging
+
 ## Jouw taken
-- Beantwoord vragen over alle vier takken, certificering NL/BE, ESO, offertes
+- Beantwoord vragen over alle vier takken, certificering NL/BE, opleidingen (ESO, MBO 2/3), offertes
 - België/Vlaanderen/Wallonië → Monra Belgium (/belgie)
 - Verwijs door als andere tak beter past
 - Geen prijzen verzinnen — maatwerk

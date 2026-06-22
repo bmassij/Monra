@@ -13,6 +13,7 @@ import { PhotoGallery } from '@/components/PhotoGallery'
 import { MonraChat } from '@/components/MonraChat'
 import { FamilieTopBanner, FAMILIE_BANNER_OFFSET } from '@/components/FamilieTopBanner'
 import { FAMILIE_TOP_SECURITY } from '@/lib/subsite-nav'
+import { OPLEIDINGEN, NIVEAU_UITLEG } from '@/lib/opleidingen'
 import { IMAGES } from '@/lib/images'
 
 // ─── DATA ────────────────────────────────────────────────
@@ -31,9 +32,9 @@ const SERVICES = [
   },
   {
     icon: Lock,
-    title: 'ESO Opleiding',
-    desc: 'Leer het vak bij een erkend leerbedrijf. Combinatie van theorie en praktijk op echte evenementen.',
-    items: ['Theorie & wetgeving', 'Praktijk op locatie', 'Officieel certificaat', 'SBB erkend leerbedrijf'],
+    title: 'Opleidingen',
+    desc: 'ESO, MBO Beveiliger niveau 2 en 3 — leren in de praktijk bij een SBB erkend leerbedrijf.',
+    items: ['ESO (SVPB)', 'MBO Beveiliger 2', 'MBO Beveiliger 3', 'SBB erkend leerbedrijf'],
   },
 ]
 
@@ -343,50 +344,69 @@ function WhyUs() {
 }
 
 function Education() {
+  const [active, setActive] = useState<'eso' | 'beveiliger2' | 'beveiliger3'>('eso')
+  const program = OPLEIDINGEN.find(o => o.id === active)!
+
   return (
     <section id="opleiding" className="py-24 bg-[#1A2B6D]">
       <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-12">
+          <div className="text-xs font-bold text-[#11CFE7] tracking-[4px] uppercase mb-3">Leren in de praktijk</div>
+          <div className="w-10 h-1 bg-[#11CFE7] mx-auto mb-5 rounded" />
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+            ONZE <span className="text-[#11CFE7]">OPLEIDINGEN</span>
+          </h2>
+          <p className="text-white/55 max-w-2xl mx-auto text-sm leading-relaxed">
+            {NIVEAU_UITLEG}
+          </p>
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-3 mb-10">
+          {OPLEIDINGEN.map(o => (
+            <button
+              key={o.id}
+              onClick={() => setActive(o.id)}
+              className={`px-5 py-2.5 rounded-full text-sm font-bold border-2 transition-all ${
+                active === o.id
+                  ? 'bg-[#11CFE7] text-[#1A2B6D] border-[#11CFE7]'
+                  : 'bg-white/5 text-white/70 border-white/20 hover:border-[#11CFE7]/50'
+              }`}
+            >
+              {o.subtitle}
+            </button>
+          ))}
+        </div>
+
         <div className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <div className="inline-flex items-center gap-2 bg-[#11CFE7]/10 border border-[#11CFE7]/40 rounded-full px-4 py-1.5 mb-6">
                 <Award size={14} className="text-[#11CFE7]" />
-                <span className="text-[#11CFE7] text-xs font-bold uppercase tracking-widest">SBB Erkend Leerbedrijf</span>
+                <span className="text-[#11CFE7] text-xs font-bold uppercase tracking-widest">{program.badge}</span>
               </div>
-              <h2 className="text-4xl font-black text-white mb-4">
-                ESO <span className="text-[#11CFE7]">OPLEIDING</span>
-              </h2>
-              <p className="text-white/60 leading-relaxed mb-6">
-                De opleiding tot <strong className="text-white">Event Security Officer</strong> is de ideale route voor mensen
-                die willen werken in de dynamische wereld van evenementenbeveiliging. Leren in de praktijk
-                bij een professioneel en erkend leerbedrijf.
-              </p>
+              <p className="text-[#11CFE7]/80 text-xs font-bold uppercase tracking-widest mb-2">{program.niveau}</p>
+              <h3 className="text-3xl font-black text-white mb-4">{program.title}</h3>
+              <p className="text-white/60 leading-relaxed mb-2 text-sm">{program.intro}</p>
+              <p className="text-white/40 text-xs mb-6">Examinering: {program.provider}</p>
               <div className="space-y-3 mb-8">
-                {[
-                  'Theorie en wetgeving: crowd control, communicatie, wettelijke kaders',
-                  'Praktijk op echte locaties met ervaren begeleiders',
-                  'Officieel ESO-certificaat na afronding',
-                  'Sterke basis voor een loopbaan in beveiliging',
-                ].map(item => (
+                {program.highlights.map(item => (
                   <div key={item} className="flex items-start gap-3 text-sm text-white/70">
                     <CheckCircle size={16} className="text-[#11CFE7] flex-shrink-0 mt-0.5" />
                     {item}
                   </div>
                 ))}
               </div>
-              <a href="mailto:info@monra-security.nl?subject=Interesse ESO Opleiding"
-                className="inline-flex items-center gap-2 bg-[#11CFE7] text-[#1A2B6D] font-black px-6 py-3 rounded hover:bg-white transition-all">
-                Start nu met aanmelden
+              <a
+                href={`mailto:info@monra-security.nl?subject=${encodeURIComponent(program.mailSubject)}`}
+                className="inline-flex items-center gap-2 bg-[#11CFE7] text-[#1A2B6D] font-black px-6 py-3 rounded hover:bg-white transition-all"
+              >
+                Aanmelden voor deze opleiding
                 <ArrowRight size={16} />
               </a>
             </div>
 
             <div className="grid grid-cols-1 gap-4">
-              {[
-                { step: '01', title: 'Theorieonderwijs', desc: 'Kennis opbouwen over security, wetgeving en communicatie.' },
-                { step: '02', title: 'Praktijkervaring', desc: 'Meelopen op echte evenementen onder begeleiding van professionals.' },
-                { step: '03', title: 'Certificering', desc: 'Behaal het officiële ESO-certificaat en start uw carrière.' },
-              ].map(item => (
+              {program.steps.map(item => (
                 <div key={item.step} className="flex gap-4 items-start bg-white/5 border border-white/10 rounded-xl p-5">
                   <span className="text-3xl font-black text-[#11CFE7]/40">{item.step}</span>
                   <div>

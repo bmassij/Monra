@@ -6,6 +6,7 @@ import { SubsiteNav } from '@/components/SubsiteNav'
 import { MonraChat } from '@/components/MonraChat'
 import { EVENTS_NAV, FAMILIE_FROM_EVENTS } from '@/lib/subsite-nav'
 import { EVENTS_IMAGES } from '@/lib/events-images'
+import { ESO_EVENTS_STEPS, ESO_EVENTS_CERTS } from '@/lib/opleidingen'
 
 export default function EventsSecurityPage() {
   return (
@@ -168,35 +169,44 @@ export default function EventsSecurityPage() {
       {/* ESO Opleiding */}
       <div id="opleiding" style={{ padding: '72px 48px', maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ fontSize: 10, fontWeight: 700, color: '#EF4444', textTransform: 'uppercase', letterSpacing: 4, marginBottom: 8 }}>
-          ESO Opleiding
+          Erkend leerbedrijf
         </div>
         <div style={{ width: 40, height: 3, background: 'linear-gradient(90deg, #DC2626, transparent)', marginBottom: 20 }} />
+        <h2 className="es-heading" style={{ fontSize: 'clamp(22px, 3vw, 38px)', color: '#fff', marginBottom: 12 }}>
+          ESO Opleiding — <span className="es-accent">Event Security Officer</span>
+        </h2>
+        <p style={{ fontSize: 14, color: 'rgba(255,255,255,.45)', lineHeight: 1.85, marginBottom: 40, maxWidth: 720 }}>
+          De opleiding tot Event Security Officer is de ideale route voor wie wil werken in de dynamische wereld van evenementenbeveiliging.
+          Leer in de praktijk bij een professioneel en erkend leerbedrijf.
+        </p>
         <div style={{ display: 'flex', gap: 48, flexWrap: 'wrap', alignItems: 'flex-start' }}>
           <div style={{ flex: 1, minWidth: 280 }}>
-            <h2 className="es-heading" style={{ fontSize: 'clamp(22px, 3vw, 38px)', color: '#fff', marginBottom: 16 }}>
-              Word <span className="es-accent">Event Security Officer</span>
-            </h2>
-            <p style={{ fontSize: 14, color: 'rgba(255,255,255,.45)', lineHeight: 1.85, marginBottom: 24 }}>
-              De ESO-opleiding bij Monra Events Security combineert theorie met echte praktijkervaring op evenementen.
-              Na afronding ben je officieel gecertificeerd en direct inzetbaar in de evenementenbeveiliging.
+            <p style={{ fontSize: 14, color: 'rgba(245,237,214,.55)', lineHeight: 1.9, marginBottom: 28 }}>
+              Monra Events Security staat vermeld op Stagemarkt/SBB als erkend leerbedrijf. Tijdens de opleiding ontwikkel je kennis van crowd control,
+              toegangscontrole, wettelijke kaders en incidentafhandeling — gevolgd door praktijk op echte evenementen.
             </p>
-            <a href="mailto:info@monra-events-security.nl" className="es-btn-primary">
-              Aanmelden voor opleiding →
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 28 }}>
+              {ESO_EVENTS_CERTS.map(c => (
+                <div key={c.title} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
+                  <span style={{ fontSize: 22, flexShrink: 0 }}>{c.icon}</span>
+                  <div>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: '#EF4444', marginBottom: 4 }}>{c.title}</div>
+                    <div style={{ fontSize: 12, color: 'rgba(255,255,255,.4)', lineHeight: 1.7 }}>{c.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <a href="mailto:info@monra-events-security.nl?subject=ESO%20Opleiding%20aanmelden" className="es-btn-primary">
+              Aanmelden ESO opleiding →
             </a>
           </div>
           <div style={{ flex: 1, minWidth: 280 }}>
-            {[
-              { n: '01', t: 'Intake & oriëntatie', d: 'Kennismaking, nulmeting en persoonlijk leerplan op basis van jouw achtergrond.' },
-              { n: '02', t: 'Theorie', d: 'Wetgeving, crowd management, communicatieprotocollen en veiligheidsplannen.' },
-              { n: '03', t: 'Praktijktraining', d: 'Gesimuleerde scenario\'s: noodsituaties, conflicthantering en crowd control.' },
-              { n: '04', t: 'Stage op evenementen', d: 'Werkervaring op echte evenementen onder begeleiding van gecertificeerde beveiligers.' },
-              { n: '05', t: 'ESO Certificering', d: 'Examen en uitreiking van het officiële ESO-certificaat (SBB erkend).' },
-            ].map((s, i) => (
-              <div key={s.n} style={{ display: 'flex', gap: 16, paddingBottom: i < 4 ? 20 : 0, marginBottom: i < 4 ? 20 : 0, borderBottom: i < 4 ? '1px solid rgba(220,38,38,.08)' : 'none', alignItems: 'flex-start' }}>
-                <div className="es-heading" style={{ fontSize: 28, fontWeight: 900, color: 'rgba(239,68,68,.2)', flexShrink: 0, lineHeight: 1, paddingTop: 2 }}>{s.n}</div>
+            {ESO_EVENTS_STEPS.map((s, i) => (
+              <div key={s.step} style={{ display: 'flex', gap: 16, paddingBottom: i < ESO_EVENTS_STEPS.length - 1 ? 20 : 0, marginBottom: i < ESO_EVENTS_STEPS.length - 1 ? 20 : 0, borderBottom: i < ESO_EVENTS_STEPS.length - 1 ? '1px solid rgba(220,38,38,.08)' : 'none', alignItems: 'flex-start' }}>
+                <div className="es-heading" style={{ fontSize: 28, fontWeight: 900, color: 'rgba(239,68,68,.2)', flexShrink: 0, lineHeight: 1, paddingTop: 2 }}>{s.step}</div>
                 <div>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: '#EF4444', marginBottom: 4 }}>{s.t}</div>
-                  <div style={{ fontSize: 12, color: 'rgba(255,255,255,.4)', lineHeight: 1.7 }}>{s.d}</div>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: '#EF4444', marginBottom: 4 }}>{s.title}</div>
+                  <div style={{ fontSize: 12, color: 'rgba(255,255,255,.4)', lineHeight: 1.7 }}>{s.desc}</div>
                 </div>
               </div>
             ))}

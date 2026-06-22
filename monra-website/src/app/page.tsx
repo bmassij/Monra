@@ -77,20 +77,8 @@ function Navbar() {
         ? 'bg-white/95 backdrop-blur-md border-b-2 border-[#1A2B6D] shadow-md'
         : 'bg-white border-b border-[#1A2B6D]/20'
     }`}>
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
-        {/* Logo */}
-        <a href="#home" className="flex items-center gap-3">
-          <Image
-            src={IMAGES.logo}
-            alt="Monra Security"
-            width={120}
-            height={46}
-            className="h-10 w-auto object-contain"
-            priority
-          />
-        </a>
-
-        {/* Desktop links */}
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+        {/* Desktop links — logo staat in familie-balk */}
         <div className="hidden md:flex items-center gap-8">
           {links.map(l => (
             <a key={l.href} href={l.href}
@@ -684,9 +672,9 @@ export default function HomePage() {
   return (
     <main>
       <FamilieTopBanner
-        icon="🛡️"
-        siteName="Monra Security"
-        tagline="professionele evenementenbeveiliging"
+        logoSrc={IMAGES.logo}
+        logoAlt="Monra Security"
+        logoHref="#home"
         links={[...FAMILIE_TOP_SECURITY]}
       />
       <Navbar />

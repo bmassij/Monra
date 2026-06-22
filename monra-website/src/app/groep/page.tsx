@@ -445,6 +445,7 @@ export default function GroepPage() {
           <Link href="/" style={{ fontSize: 11, color: 'rgba(255,255,255,.25)', textDecoration: 'none' }}>Security</Link>
           <Link href="/support" style={{ fontSize: 11, color: 'rgba(255,255,255,.25)', textDecoration: 'none' }}>Support</Link>
           <Link href="/events-security" style={{ fontSize: 11, color: 'rgba(255,255,255,.25)', textDecoration: 'none' }}>Events Security</Link>
+          <Link href="/belgie" style={{ fontSize: 11, color: 'rgba(255,255,255,.25)', textDecoration: 'none' }}>Belgium</Link>
         </div>
       </div>
 

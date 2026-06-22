@@ -64,6 +64,10 @@ function FamilieBanner() {
           className="text-[11px] text-white/55 border border-white/15 rounded-full px-3 py-1 hover:border-[#C9A84C]/40 hover:text-[#C9A84C] transition-colors">
           ✨ Events Security
         </Link>
+                <Link href="/belgie"
+          className="text-[11px] text-white/55 border border-white/15 rounded-full px-3 py-1 hover:border-[#11CFE7]/40 hover:text-[#11CFE7] transition-colors">
+          🇧🇪 Belgium
+        </Link>
         <Link href="/groep"
           className="text-[11px] text-white/55 border border-white/15 rounded-full px-3 py-1 hover:border-[#11CFE7]/40 hover:text-[#11CFE7] transition-colors">
           🏢 Monra Groep

@@ -21,11 +21,13 @@ export const EVENTS_NAV: SubsiteNavLink[] = [
 export const FAMILIE_FROM_SUPPORT = [
   { label: 'Monra Security', href: '/' },
   { label: 'Events Security', href: '/events-security' },
+  { label: 'Belgium 🇧🇪', href: '/belgie' },
   { label: 'Monra Groep', href: '/groep' },
 ]
 
 export const FAMILIE_FROM_EVENTS = [
   { label: 'Monra Security', href: '/' },
   { label: 'Monra Support', href: '/support' },
+  { label: 'Belgium 🇧🇪', href: '/belgie' },
   { label: 'Monra Groep', href: '/groep' },
 ]

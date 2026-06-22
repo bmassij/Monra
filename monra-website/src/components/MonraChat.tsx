@@ -38,6 +38,7 @@ function BotAvatar({ site }: { site: MonraSite }) {
       {site === 'security' && <Shield size={13} style={{ color: theme.accent }} />}
       {site === 'support' && <span style={{ fontSize: 11 }}>🤝</span>}
       {site === 'events' && <Sparkles size={13} style={{ color: theme.accent }} />}
+      {site === 'belgium' && <span style={{ fontSize: 11 }}>🇧🇪</span>}
     </div>
   )
 }
@@ -136,7 +137,7 @@ export function MonraChat({ site }: MonraChatProps) {
               <div className="text-white font-bold text-sm tracking-wide">{theme.label}</div>
               <div className="text-white/60 text-xs flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 bg-green-400 rounded-full inline-block animate-pulse" />
-                AI assistent · Kent alle 3 Monra-takken
+                AI assistent · Kent alle 4 Monra-takken
               </div>
             </div>
           </div>

@@ -1,4 +1,4 @@
-export type MonraSite = 'security' | 'support' | 'events'
+export type MonraSite = 'security' | 'support' | 'events' | 'belgium'
 
 export type ChatReply = {
   text: string
@@ -11,6 +11,7 @@ const CONTACT = {
   mailSecurity: 'info@monra-security.nl',
   mailSupport: 'info@monra-support.nl',
   mailEvents: 'info@monra-events-security.nl',
+  mailBelgium: 'info@monra-belgium.be',
   address: 'Schuttersstraat 7, 6067 GE Linne',
 }
 
@@ -19,7 +20,7 @@ const SITES = {
     name: 'Monra Security',
     path: '/',
     email: CONTACT.mailSecurity,
-    focus: 'evenementenbeveiliging, surveillance en ESO-opleiding',
+    focus: 'evenementenbeveiliging, surveillance en ESO-opleiding (Nederland)',
   },
   support: {
     name: 'Monra Support',
@@ -33,21 +34,30 @@ const SITES = {
     email: CONTACT.mailEvents,
     focus: 'premium evenementenbeveiliging door Senna Monsigneur — festivals, VIP, sport',
   },
+  belgium: {
+    name: 'Monra Belgium',
+    path: '/belgie',
+    email: CONTACT.mailBelgium,
+    focus: 'evenementenbeveiliging in heel België — Vlaanderen, Brussel, Wallonië, FOD-vergund',
+  },
 } as const
 
 export const CHAT_GREETINGS: Record<MonraSite, string> = {
   security:
-    'Welkom bij Monra Security!\n\nIk ben uw AI-assistent en ken alle drie de Monra-takken. Stel gerust vragen over:\n• Evenementenbeveiliging & surveillance\n• ESO-opleiding\n• Offertes & contact\n\nWaarmee kan ik u helpen?',
+    'Welkom bij Monra Security!\n\nIk ben uw AI-assistent en ken alle vier Monra-takken (NL, Support, Events, Belgium). Stel gerust vragen over:\n• Evenementenbeveiliging & surveillance\n• ESO-opleiding\n• Offertes & contact\n\nWaarmee kan ik u helpen?',
   support:
-    'Welkom bij Monra Support!\n\nIk ben uw AI-assistent voor hospitality & zorgpersoneel. Ook Monra Security en Events Security ken ik — ik verwijs u graag door.\n\n• Barpersoneel & bediening\n• BHV, EHBO & brandwachten\n• Personeelsaanvragen\n\nWaarmee kan ik u helpen?',
+    'Welkom bij Monra Support!\n\nIk ben uw AI-assistent voor hospitality & zorgpersoneel. Ik ken ook Monra Security, Events Security en Monra Belgium.\n\n• Barpersoneel & bediening\n• BHV, EHBO & brandwachten\n• Personeelsaanvragen\n\nWaarmee kan ik u helpen?',
   events:
     'Welkom bij Monra Events Security!\n\nIk ben uw AI-assistent (Senna Monsigneur). Festivals, VIP, sport — of doorverwijzing naar een andere Monra-tak.\n\n• Premium eventbeveiliging\n• VIP & close protection\n• Offertes & opleiding\n\nWaarmee kan ik u helpen?',
+  belgium:
+    'Welkom bij Monra Belgium!\n\nIk ben uw AI-assistent voor evenementenbeveiliging in België. Ook Monra Security NL, Support en Events Security ken ik.\n\n• Festivals & concerten in BE\n• Vlaanderen, Brussel, Wallonië\n• FOD-vergunde beveiliging\n\nWaarmee kan ik u helpen?',
 }
 
 export const QUICK_REPLIES: Record<MonraSite, string[]> = {
   security: ['Offerte aanvragen', 'Welke tak past?', 'ESO Opleiding', 'Contact'],
   support: ['Personeel aanvragen', 'BHV of EHBO?', 'Beveiliging nodig', 'Contact'],
   events: ['Offerte festival', 'Over Senna', 'VIP beveiliging', 'Contact'],
+  belgium: ['Offerte aanvragen', 'Werkgebied BE', 'FOD vergunning', 'Contact'],
 }
 
 export function getMonraOverviewReply(): ChatReply {
@@ -56,17 +66,22 @@ export function getMonraOverviewReply(): ChatReply {
 
 Monra is een familiebedrijf uit Linne (Limburg) met 25+ JAAR ERVARING — 500+ events, vaste teams, 30–40% efficiënter dan gemiddeld.
 
-DRIE TAKKEN ONDER ÉÉN DAK:
-• Monra Security — festivals, concerten, surveillance, ESO-opleiding
+VIER TAKKEN ONDER ÉÉN DAK:
+• Monra Security (NL) — festivals, concerten, surveillance, ESO-opleiding
 • Monra Support — barpersoneel, BHV, EHBO, brandwachten, hospitality
 • Monra Events Security — premium events (Senna Monsigneur), VIP, sport
+• Monra Belgium — evenementenbeveiliging in Vlaanderen, Brussel & Wallonië
 
 CERTIFICERING:
-• SVPB-keurmerk · Wpbr-vergund · SBB erkend leerbedrijf · KVK 89581806
+• NL: SVPB-keurmerk · Wpbr-vergund · SBB erkend leerbedrijf · KVK 89581806
+• BE: FOD-vergund · Wet private beveiliging 2017
 
-CONTACT:
+CONTACT NL:
 📞 ${CONTACT.phone}
-📍 ${CONTACT.address}`,
+📍 ${CONTACT.address}
+
+CONTACT BE:
+✉️ ${CONTACT.mailBelgium}`,
     action: { label: '→ Monra Groep overzicht', href: '/groep' },
   }
 }
@@ -96,6 +111,22 @@ function isGeneralMonraQuestion(m: string): boolean {
 
 type RouteTarget = MonraSite | 'groep'
 
+function isBelgiumIntent(m: string): boolean {
+  return (
+    m.includes('belgi') ||
+    m.includes('belgium') ||
+    m.includes('vlaanderen') ||
+    m.includes('walloni') ||
+    m.includes('brussel') ||
+    m.includes('antwerpen') ||
+    m.includes('gent') ||
+    m.includes('luik') ||
+    m.includes('charleroi') ||
+    m.includes('fod') ||
+    m.includes('kbo')
+  )
+}
+
 function detectBestSite(msg: string): RouteTarget | null {
   const m = msg.toLowerCase()
 
@@ -108,6 +139,10 @@ function detectBestSite(msg: string): RouteTarget | null {
     m.includes('verschil tussen')
   ) {
     return 'groep'
+  }
+
+  if (isBelgiumIntent(m)) {
+    return 'belgium'
   }
 
   if (
@@ -168,22 +203,23 @@ function detectBestSite(msg: string): RouteTarget | null {
 function routeReply(current: MonraSite, target: RouteTarget): ChatReply {
   if (target === 'groep') {
     return {
-      text: 'De Monra-groep heeft drie expertises:\n\n🛡️ Monra Security — evenementenbeveiliging & ESO\n🤝 Monra Support — hospitality, BHV, EHBO, brandwachten\n✨ Monra Events Security — premium events (Senna Monsigneur)\n\nOnze keuze-wijzer helpt u in 2 stappen de juiste match te vinden.',
+      text: 'De Monra-groep heeft vier expertises:\n\n🛡️ Monra Security (NL) — evenementenbeveiliging & ESO\n🤝 Monra Support — hospitality, BHV, EHBO, brandwachten\n✨ Monra Events Security — premium events (Senna Monsigneur)\n🇧🇪 Monra Belgium — beveiliging in heel België\n\nOnze keuze-wijzer helpt u in 2 stappen de juiste match te vinden.',
       action: { label: '→ Monra Groep keuze-wijzer', href: '/groep' },
     }
   }
 
   if (target === current) {
     const site = SITES[target]
+    const phone = target === 'belgium' ? site.email : CONTACT.phone
     return {
-      text: `U bent al op de juiste plek — ${site.name}.\n\nWij zijn gespecialiseerd in ${site.focus}.\n\n📞 ${CONTACT.phone}\n✉️ ${site.email}\n\nZal ik u helpen met een offerte of aanvraag?`,
+      text: `U bent al op de juiste plek — ${site.name}.\n\nWij zijn gespecialiseerd in ${site.focus}.\n\n${target === 'belgium' ? '✉️' : '📞'} ${phone}\n✉️ ${site.email}\n\nZal ik u helpen met een offerte of aanvraag?`,
       action: { label: '→ Naar contact', href: `${site.path}#contact` },
     }
   }
 
   const site = SITES[target]
   return {
-    text: `Voor wat u zoekt past ${site.name} het beste.\n\n${site.name} richt zich op ${site.focus}.\n\n✉️ ${site.email}\n📞 ${CONTACT.phone}`,
+    text: `Voor wat u zoekt past ${site.name} het beste.\n\n${site.name} richt zich op ${site.focus}.\n\n✉️ ${site.email}${target !== 'belgium' ? `\n📞 ${CONTACT.phone}` : ''}`,
     action: { label: `→ Bezoek ${site.name}`, href: site.path },
   }
 }
@@ -194,9 +230,10 @@ function salesReply(site: MonraSite): ChatReply {
     security: 'Offerte aanvraag Monra Security',
     support: 'Personeelsaanvraag Monra Support',
     events: 'Offerte aanvraag Monra Events Security',
+    belgium: 'Offerte aanvraag Monra Belgium',
   }
   return {
-    text: `Graag help ik u verder met een offerte!\n\n${s.name} stuurt u het liefst:\n• Type event of locatie\n• Datum(en)\n• Gewenste inzet / aantal personen\n\n📞 ${CONTACT.phone} (direct)\n✉️ ${s.email}\n\nWij reageren binnen 24 uur.`,
+    text: `Graag help ik u verder met een offerte!\n\n${s.name} stuurt u het liefst:\n• Type event of locatie\n• Datum(en)\n• Gewenste inzet / aantal personen\n\n${site === 'belgium' ? '' : `📞 ${CONTACT.phone} (direct)\n`}✉️ ${s.email}\n\nWij reageren binnen 24 uur.`,
     action: {
       label: '✉ Offerte per e-mail',
       href: `mailto:${s.email}?subject=${encodeURIComponent(subjects[site])}`,
@@ -220,11 +257,10 @@ export function getMonraChatResponse(message: string, currentSite: MonraSite): C
     m.includes('wat ben je')
   ) {
     return {
-      text: 'Ik ben de Monra AI-assistent — aangedreven via OpenRouter. Ik help u met vragen over Monra Security, Monra Support en Monra Events Security, en verwijs u door naar de juiste tak of een offerte.\n\nWaarmee kan ik u verder helpen?',
+      text: 'Ik ben de Monra AI-assistent — aangedreven via OpenRouter. Ik help u met vragen over Monra Security, Monra Support, Monra Events Security en Monra Belgium, en verwijs u door naar de juiste tak of een offerte.\n\nWaarmee kan ik u verder helpen?',
     }
   }
 
-  // Routing intent first
   const best = detectBestSite(m)
   if (best) {
     const wantsRouting =
@@ -255,26 +291,36 @@ export function getMonraChatResponse(message: string, currentSite: MonraSite): C
 
   if (m.includes('contact') || m.includes('bellen') || m.includes('mail') || m.includes('bereik') || m.includes('telefoon')) {
     return {
-      text: `Monra Groep — contact:\n\n📞 Directie: ${CONTACT.phone}\n📞 Planning: ${CONTACT.phonePlanning}\n✉️ Security: ${CONTACT.mailSecurity}\n✉️ Support: ${CONTACT.mailSupport}\n✉️ Events: ${CONTACT.mailEvents}\n📍 ${CONTACT.address}\n\n24/7 bereikbaar voor spoed & planning.`,
+      text: `Monra Groep — contact:\n\n📞 Directie NL: ${CONTACT.phone}\n📞 Planning NL: ${CONTACT.phonePlanning}\n✉️ Security NL: ${CONTACT.mailSecurity}\n✉️ Support: ${CONTACT.mailSupport}\n✉️ Events: ${CONTACT.mailEvents}\n✉️ Belgium: ${CONTACT.mailBelgium}\n📍 NL: ${CONTACT.address}\n\n24/7 bereikbaar voor spoed & planning.`,
+    }
+  }
+
+  if (m.includes('fod') || (m.includes('vergunn') && (isBelgiumIntent(m) || currentSite === 'belgium'))) {
+    if (currentSite !== 'belgium') {
+      return routeReply(currentSite, 'belgium')
+    }
+    return {
+      text: 'Monra Belgium is FOD-vergund conform de Wet van 2 oktober 2017 tot regeling van de private en bijzondere veiligheid. Wij opereren in Vlaanderen, Brussel en Wallonië — Nederlandstalig en Franstalig.',
+      action: { label: '→ Offerte België', href: 'mailto:info@monra-belgium.be' },
     }
   }
 
   if (m.includes('certifi') || m.includes('svpb') || m.includes('keurmerk') || m.includes('wpbr') || m.includes('vergunning')) {
     return {
-      text: 'Alle Monra-takken werken met gecertificeerd personeel. Monra Security & Events Security: SVPB-keurmerk, Wpbr-vergund, SBB erkend leerbedrijf voor ESO.',
+      text: 'Alle Monra-takken werken met gecertificeerd personeel.\n• NL: SVPB-keurmerk, Wpbr-vergund, SBB erkend leerbedrijf (ESO)\n• BE: FOD-vergund, Wet private beveiliging 2017',
     }
   }
 
   if (m.includes('eso') || m.includes('opleid') || m.includes('cursus') || m.includes('leerbedrijf')) {
     return {
-      text: 'ESO (Event Security Officer) opleiding bij Monra:\n• Theorie + praktijk op echte events\n• SBB erkend leerbedrijf\n• Officieel certificaat\n\nBeschikbaar via Monra Security en Monra Events Security.',
+      text: 'ESO (Event Security Officer) opleiding bij Monra:\n• Theorie + praktijk op echte events\n• SBB erkend leerbedrijf\n• Officieel certificaat\n\nBeschikbaar via Monra Security NL en Monra Events Security.',
       action: { label: '→ ESO bij Events Security', href: '/events-security#opleiding' },
     }
   }
 
   if (m.includes('senna') || m.includes('oprichter') || m.includes('directeur')) {
     return {
-      text: 'Senna Monsigneur is oprichter van Monra Events Security — opgegroeid in het Monra-bedrijf, met een hospitality-first aanpak voor premium evenementen.',
+      text: 'Senna Monsigneur is oprichter van Monra Events Security — opgegroeid in het Monra-bedrijf. Raf Monsieur is CEO van de Monra Groep (inclusief Monra Belgium).',
       action: { label: '→ Over Senna', href: '/events-security#senna' },
     }
   }
@@ -299,13 +345,26 @@ export function getMonraChatResponse(message: string, currentSite: MonraSite): C
     }
   }
 
+  if (m.includes('werkgebied') || m.includes('vlaanderen') || m.includes('walloni') || m.includes('brussel')) {
+    if (currentSite !== 'belgium') {
+      return routeReply(currentSite, 'belgium')
+    }
+    return {
+      text: 'Monra Belgium is actief in:\n• Vlaanderen — Antwerpen, Gent, Brugge, Leuven, Hasselt\n• Brussel — hele Brussels gewest\n• Wallonië — Luik, Namen, Charleroi, Bergen\n\nNederlandstalig, Franstalig en tweetalig.',
+      action: { label: '→ Contact België', href: '/belgie#contact' },
+    }
+  }
+
   if (m.includes('festival') || m.includes('concert') || m.includes('vip') || m.includes('voetbal')) {
+    if (isBelgiumIntent(m)) {
+      return routeReply(currentSite, 'belgium')
+    }
     if (currentSite !== 'events' && (m.includes('vip') || m.includes('senna'))) {
       return routeReply(currentSite, 'events')
     }
     if (currentSite === 'security') {
       return {
-        text: 'Monra Security beveiligt festivals, concerten en sportevents met vaste teams. Voor premium/VIP-events is Monra Events Security (Senna Monsigneur) ook beschikbaar.',
+        text: 'Monra Security beveiligt festivals, concerten en sportevents met vaste teams. Voor België: Monra Belgium. Voor premium/VIP: Monra Events Security.',
         action: { label: '→ Events Security', href: '/events-security' },
       }
     }
@@ -313,6 +372,10 @@ export function getMonraChatResponse(message: string, currentSite: MonraSite): C
 
   if (m.includes('ervaring') || m.includes('jaar') || m.includes('wie is monra') || m.includes('over monra')) {
     return getMonraOverviewReply()
+  }
+
+  if (isBelgiumIntent(m) && currentSite !== 'belgium') {
+    return routeReply(currentSite, 'belgium')
   }
 
   if (m.includes('support') && currentSite !== 'support') {
@@ -327,9 +390,8 @@ export function getMonraChatResponse(message: string, currentSite: MonraSite): C
     return routeReply(currentSite, 'security')
   }
 
-  // Default: helpful + routing offer
   return {
-    text: `Goede vraag! Ik kan u helpen met:\n• De juiste Monra-tak kiezen\n• Offerte of personeelsaanvraag\n• Contact & bereikbaarheid\n\nWaar bent u naar op zoek — beveiliging, hospitality personeel, of premium event security?`,
+    text: `Goede vraag! Ik kan u helpen met:\n• De juiste Monra-tak kiezen\n• Offerte of personeelsaanvraag\n• Contact & bereikbaarheid\n\nWaar bent u naar op zoek — beveiliging NL/BE, hospitality personeel, of premium event security?`,
     action: { label: '→ Help me kiezen', href: '/groep' },
   }
 }
@@ -354,6 +416,12 @@ export function getSiteTheme(site: MonraSite) {
       headerIcon: 'sparkles' as const,
       label: 'Monra Assistent',
     },
+    belgium: {
+      primary: '#1A2B6D',
+      accent: '#11CFE7',
+      headerIcon: 'shield' as const,
+      label: 'Monra Assistent',
+    },
   }
   return themes[site]
 }
@@ -366,36 +434,32 @@ export function buildMonraSystemPrompt(currentSite: MonraSite): string {
 - Familiebedrijf gevestigd in Linne, Limburg — Schuttersstraat 7, 6067 GE Linne
 - 25+ jaar ervaring, 500+ evenementen beveiligd
 - Vaste teams — 30–40% efficiënter dan branchegemiddelde
-- SVPB-keurmerk evenementenbeveiliging, Wpbr-vergunning, SBB erkend leerbedrijf (ESO)
-- KVK 89581806
+- NL: SVPB-keurmerk, Wpbr-vergunning, SBB erkend leerbedrijf (ESO), KVK 89581806
+- BE: FOD-vergund, Wet private beveiliging 2017
+- CEO Monra Groep: Raf Monsieur
 - 24/7 bereikbaar voor planning en spoed
 
-## De drie Monra-takken
-1. Monra Security (/) — evenementenbeveiliging (festivals, concerten, voetbal, congressen, beurzen), mobiele surveillance, ESO-opleiding. E-mail: ${CONTACT.mailSecurity}
-2. Monra Support (/support) — hospitality & zorgpersoneel: barpersoneel, serveersters, gastheren/vrouwen, BHV, EHBO, brandwachten (24/7 landelijk), servicemedewerkers, toezichthouders. E-mail: ${CONTACT.mailSupport}
-3. Monra Events Security (/events-security) — premium evenementenbeveiliging door Senna Monsigneur: festivals, VIP, close protection, sport, kermis, Master of Games. E-mail: ${CONTACT.mailEvents}
+## De vier Monra-takken
+1. Monra Security (/) — evenementenbeveiliging NL. E-mail: ${CONTACT.mailSecurity}
+2. Monra Support (/support) — hospitality, BHV, EHBO, brandwachten. E-mail: ${CONTACT.mailSupport}
+3. Monra Events Security (/events-security) — premium events, Senna Monsigneur. E-mail: ${CONTACT.mailEvents}
+4. Monra Belgium (/belgie) — evenementenbeveiliging BE (Vlaanderen, Brussel, Wallonië). E-mail: ${CONTACT.mailBelgium}
 
 ## Contact
-- Directie: ${CONTACT.phone}
-- Planning: ${CONTACT.phonePlanning}
-- Keuze-wijzer welke tak past: /groep
+- Directie NL: ${CONTACT.phone}
+- Planning NL: ${CONTACT.phonePlanning}
+- Keuze-wijzer: /groep
 
-## Opmaak (belangrijk)
-- Gebruik korte kopjes in HOOFDLETTERS (bijv. ONZE DIENSTEN, CONTACT)
-- Gebruik bullet points met • voor lijsten
-- Markeer belangrijke termen in HOOFDLETTERS: SVPB, ESO, VIP, BHV, OFFERTE
-- Noem taknamen voluit: Monra Security, Monra Support, Monra Events Security
-- Max 6–8 zinnen per antwoord, overzichtelijk
+## Opmaak
+- Kopjes in HOOFDLETTERS, bullets met •
+- Noem taknamen voluit inclusief Monra Belgium
+- Max 6–8 zinnen, Nederlands
 
 ## Jouw taken
-- Beantwoord vragen over Monra, diensten, certificering, ESO, ervaring en offertes — wees behulpzaam en informatief.
-- Bij "vertel over Monra" of algemene vragen: geef een rijk antwoord over de groep en alle drie takken.
-- Als een andere tak beter past, verwijs door (noem pad en e-mail).
-- Moedig bij interesse aan een offerte of personeelsaanvraag aan.
-- Wees vriendelijk, professioneel, Nederlands. Gebruik 3–8 zinnen bij algemene vragen.
-- Verzin geen prijzen — tarieven zijn maatwerk.
-- Senna Monsigneur is oprichter van Monra Events Security, opgegroeid in het Monra-bedrijf.
-- Als iemand vraagt welk model je bent: je bent de Monra AI-assistent via OpenRouter.
+- Beantwoord vragen over alle vier takken, certificering NL/BE, ESO, offertes
+- België/Vlaanderen/Wallonië → Monra Belgium (/belgie)
+- Verwijs door als andere tak beter past
+- Geen prijzen verzinnen — maatwerk
 
 Huidige pagina-focus: ${current.focus}`
 }

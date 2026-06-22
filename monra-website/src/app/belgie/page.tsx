@@ -7,6 +7,9 @@ import {
   Award, Users, Clock, Star, ArrowRight, CheckCircle,
   Send, Zap, Eye, Lock
 } from 'lucide-react'
+import { MonraChat } from '@/components/MonraChat'
+import { FamilieTopBanner, FAMILIE_BANNER_OFFSET } from '@/components/FamilieTopBanner'
+import { FAMILIE_TOP_BELGIUM } from '@/lib/subsite-nav'
 
 const SERVICES = [
   {
@@ -41,27 +44,6 @@ const REFERENCES = [
   'Beurzen', 'Sportevenementen', 'Bedrijfsfeesten', 'VIP Events',
 ]
 
-function FamilieBanner() {
-  return (
-    <div className="fixed top-0 left-0 right-0 z-[60] bg-[#0a1540] border-b border-[#1A2B6D]/50 px-4 md:px-8 py-2.5 flex justify-between items-center flex-wrap gap-2">
-      <span className="text-xs text-white/50 tracking-wide">
-        🇧🇪 <strong className="text-white/75 font-semibold">Monra Belgium</strong> — evenementenbeveiliging in België
-      </span>
-      <div className="flex gap-2 flex-wrap">
-        <Link href="/" className="text-[11px] text-white/55 border border-white/15 rounded-full px-3 py-1 hover:border-[#11CFE7]/40 hover:text-[#11CFE7] transition-colors">
-          🛡️ Monra Security NL
-        </Link>
-        <Link href="/support" className="text-[11px] text-white/55 border border-white/15 rounded-full px-3 py-1 hover:border-[#1ABFA1]/40 hover:text-[#1ABFA1] transition-colors">
-          🤝 Monra Support
-        </Link>
-        <Link href="/groep" className="text-[11px] text-white/55 border border-white/15 rounded-full px-3 py-1 hover:border-[#11CFE7]/40 hover:text-[#11CFE7] transition-colors">
-          🏢 Monra Groep
-        </Link>
-      </div>
-    </div>
-  )
-}
-
 function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -78,7 +60,7 @@ function Navbar() {
     { label: 'Monra Groep', href: '/groep' },
   ]
   return (
-    <nav className={`fixed top-[42px] left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md border-b-2 border-[#1A2B6D] shadow-md' : 'bg-white border-b border-[#1A2B6D]/20'}`}>
+    <nav className={`fixed ${FAMILIE_BANNER_OFFSET} left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md border-b-2 border-[#1A2B6D] shadow-md' : 'bg-white border-b border-[#1A2B6D]/20'}`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
         <a href="#home" className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-[#1A2B6D] flex items-center justify-center">
@@ -427,7 +409,12 @@ function Footer() {
 export default function BelgiePage() {
   return (
     <main>
-      <FamilieBanner />
+      <FamilieTopBanner
+        icon="🇧🇪"
+        siteName="Monra Belgium"
+        tagline="evenementenbeveiliging in België"
+        links={[...FAMILIE_TOP_BELGIUM]}
+      />
       <Navbar />
       <Hero />
       <Services />
@@ -435,6 +422,7 @@ export default function BelgiePage() {
       <Werkgebied />
       <Contact />
       <Footer />
+      <MonraChat site="belgium" />
     </main>
   )
 }

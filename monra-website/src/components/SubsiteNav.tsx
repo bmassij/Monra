@@ -73,30 +73,42 @@ export function SubsiteNav({
       {/* Familie-balk */}
       <div style={{
         background: t.bannerBg,
-        borderBottom: `1px solid ${t.bannerBorder}`,
-        padding: '8px 24px',
+        borderBottom: `2px solid ${t.bannerBorder}`,
+        padding: '12px 24px',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
         flexWrap: 'wrap',
-        gap: 8,
+        gap: 10,
+        boxShadow: '0 4px 12px rgba(0,0,0,.15)',
       }}>
-        <span style={{ fontSize: 11, color: t.bannerText }}>
-          Onderdeel van <strong style={{ color: t.bannerStrong }}>Monra Groep</strong>
+        <span style={{ fontSize: 14, color: t.bannerText, fontWeight: 500 }}>
+          Onderdeel van <strong style={{ color: t.bannerStrong, fontWeight: 800 }}>Monra Groep</strong>
         </span>
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
           {familieLinks.map(link => (
             <Link
               key={link.href}
               href={link.href}
               style={{
-                fontSize: 11,
+                fontSize: 13,
+                fontWeight: 600,
                 color: t.bannerText,
-                border: `1px solid ${t.pillBorder}`,
+                border: `2px solid ${t.pillBorder}`,
                 borderRadius: 20,
-                padding: '3px 12px',
+                padding: '6px 16px',
                 textDecoration: 'none',
-                transition: 'color .2s, border-color .2s',
+                transition: 'color .2s, border-color .2s, background .2s',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.color = t.pillHover
+                e.currentTarget.style.borderColor = `${t.pillHover}99`
+                e.currentTarget.style.background = 'rgba(255,255,255,.05)'
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.color = t.bannerText
+                e.currentTarget.style.borderColor = t.pillBorder
+                e.currentTarget.style.background = 'transparent'
               }}
             >
               {link.label}

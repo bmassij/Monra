@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Kroeg interieur">
+  <defs>
+    <linearGradient id="wood" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6b4423"/>
+      <stop offset="100%" stop-color="#3d2914"/>
+    </linearGradient>
+    <pattern id="grain" width="40" height="40" patternUnits="userSpaceOnUse">
+      <rect width="40" height="40" fill="#4a2c17"/>
+      <line x1="0" y1="10" x2="40" y2="12" stroke="#5c3317" stroke-width="1" opacity="0.3"/>
+      <line x1="0" y1="28" x2="40" y2="26" stroke="#2a1810" stroke-width="1" opacity="0.25"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="600" fill="url(#wood)"/>
+  <rect width="800" height="600" fill="url(#grain)" opacity="0.35"/>
+  <rect x="100" y="140" width="600" height="280" rx="12" fill="#2a1810" opacity="0.35"/>
+  <rect x="140" y="200" width="120" height="160" rx="6" fill="#5c3317" opacity="0.6"/>
+  <rect x="300" y="180" width="200" height="12" rx="3" fill="#8B7355" opacity="0.5"/>
+  <text x="400" y="520" text-anchor="middle" fill="#f5d5b8" font-family="Georgia, serif" font-size="22" opacity="0.75">Huiskamer van Maasbracht</text>
+</svg>

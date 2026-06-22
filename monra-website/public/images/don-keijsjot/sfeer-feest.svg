@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Feestcaf� sfeer">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1a0f0a"/>
+      <stop offset="50%" stop-color="#4a2c17"/>
+      <stop offset="100%" stop-color="#8B4513"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <circle cx="150" cy="120" r="6" fill="#f5a623" opacity="0.9"/>
+  <circle cx="280" cy="80" r="5" fill="#c45c26" opacity="0.85"/>
+  <circle cx="420" cy="100" r="7" fill="#ffd166" opacity="0.8"/>
+  <circle cx="560" cy="70" r="5" fill="#f5a623" opacity="0.75"/>
+  <circle cx="680" cy="130" r="6" fill="#c45c26" opacity="0.9"/>
+  <rect x="200" y="420" width="400" height="8" rx="4" fill="#f5d5b8" opacity="0.15"/>
+  <rect x="260" y="360" width="280" height="50" rx="8" fill="#3d2914" opacity="0.5"/>
+  <text x="400" y="520" text-anchor="middle" fill="#f5d5b8" font-family="Georgia, serif" font-size="22" opacity="0.75">Feestjes � muziek � dansen</text>
+</svg>

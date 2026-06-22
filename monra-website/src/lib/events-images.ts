@@ -1,5 +1,4 @@
 export const EVENTS_IMAGES = {
-  logo: '/images/logo.jpg',
   teamBamboo: '/images/636926960_891171093660733_518372891806277317_n.jpg',
   carnival: '/images/713184142_2516335452141885_952085673499634832_n.jpg',
   festivalGate: '/images/480634082_610611148383397_2751379836703466158_n.jpg',
@@ -48,7 +47,7 @@ export const EVENTS_HERO_SLIDES: EventsSlide[] = [
     title: 'Altijd representatief,',
     titleAccent: 'altijd paraat',
     description:
-      'Monra Events Security — opgericht door Senna Monsigneur, gebouwd op 25+ jaar Monra-expertise.',
+      'Monra Events Security — opgericht door Senna Monsieur, gebouwd op 25+ jaar Monra-expertise.',
     image: EVENTS_IMAGES.teamIndustrial,
     imageAlt: 'Monra Events Security team',
   },

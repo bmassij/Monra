@@ -2,19 +2,20 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
+import type { FamilieNavLink } from '@/lib/subsite-nav'
 
-export type FamilieTopLink = {
-  label: string
-  href: string
+export type FamilieTopLink = FamilieNavLink & {
   hoverClass: string
 }
 
 type FamilieTopBannerProps = {
-  links: FamilieTopLink[]
+  links: FamilieTopLink[] | FamilieNavLink[]
   /** Logo in plaats van icoon + tekst links */
   logoSrc?: string
   logoAlt?: string
   logoHref?: string
+  /** Neon/kleurlogo — geen wit-filter in familie-balk */
+  logoPreserveColors?: boolean
   icon?: string
   siteName?: string
   tagline?: string
@@ -28,6 +29,7 @@ export function FamilieTopBanner({
   logoSrc,
   logoAlt = 'Monra',
   logoHref = '#home',
+  logoPreserveColors = false,
   icon,
   siteName,
   tagline,
@@ -39,7 +41,7 @@ export function FamilieTopBanner({
         alt={logoAlt}
         width={180}
         height={70}
-        className="h-11 md:h-14 w-auto object-contain brightness-0 invert"
+        className={`h-11 md:h-14 w-auto object-contain${logoPreserveColors ? '' : ' brightness-0 invert'}`}
         priority
       />
     </Link>
@@ -61,8 +63,16 @@ export function FamilieTopBanner({
           <Link
             key={link.href}
             href={link.href}
-            className={`text-sm font-semibold text-white/70 border-2 border-white/20 rounded-full px-4 py-2 hover:bg-white/5 transition-all ${link.hoverClass}`}
+            className={`inline-flex items-center gap-2 text-sm font-semibold text-white/70 border-2 border-white/20 rounded-full px-3 py-1.5 md:px-4 md:py-2 hover:bg-white/5 transition-all ${'hoverClass' in link && link.hoverClass ? link.hoverClass : ''}`}
           >
+            <Image
+              src={link.icon}
+              alt=""
+              width={20}
+              height={20}
+              className="w-4 h-4 md:w-5 md:h-5 object-contain flex-shrink-0"
+              aria-hidden
+            />
             {link.label}
           </Link>
         ))}

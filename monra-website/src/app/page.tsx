@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { ImageWithWatermark } from '@/components/ImageWithWatermark'
 import Link from 'next/link'
 import {
   Shield, Phone, Mail, MapPin, ChevronDown, Menu, X,
@@ -16,6 +17,7 @@ import { FamilieTopBanner, FAMILIE_BANNER_OFFSET } from '@/components/FamilieTop
 import { getFamilieTopSecurity } from '@/lib/subsite-nav'
 import { OPLEIDINGEN, NIVEAU_UITLEG } from '@/lib/opleidingen'
 import { IMAGES } from '@/lib/images'
+import { BRAND_LOGOS, BRAND_ICONS } from '@/lib/brand-logos'
 
 // ─── DATA ────────────────────────────────────────────────
 const SERVICES = [
@@ -128,10 +130,11 @@ function Hero() {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#1A2B6D]">
       {/* Background photo */}
-      <Image
+      <ImageWithWatermark
         src={IMAGES.team}
         alt=""
         fill
+        watermarkSrc={BRAND_ICONS.security}
         className="object-cover object-center"
         priority
         sizes="100vw"
@@ -263,10 +266,11 @@ function WhyUs() {
           {/* Left — team photo + certificeringen */}
           <div className="relative">
             <div className="relative rounded-xl overflow-hidden aspect-[4/3] border-2 border-[#1A2B6D]/20 shadow-xl">
-              <Image
+              <ImageWithWatermark
                 src={IMAGES.team}
                 alt="Monra Security team"
                 fill
+                watermarkSrc={BRAND_ICONS.security}
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
@@ -591,7 +595,7 @@ function MonraFamilie() {
                 <div className="text-[9px] font-bold text-[#C9A84C] uppercase tracking-[3px] mb-1">Nieuw bedrijf</div>
                 <h3 className="text-xl font-black text-white mb-2">Monra Events Security</h3>
                 <p className="text-[#888] text-sm leading-relaxed mb-4">
-                  Opgericht door <strong className="text-white">Senna Monsigneur</strong> — gespecialiseerde <strong className="text-white">evenementenbeveiliging</strong> met een eigen stijl. SVPB gecertificeerd, vaste teams, 24/7 inzetbaar.
+                  Opgericht door <strong className="text-white">Senna Monsieur</strong> — gespecialiseerde <strong className="text-white">evenementenbeveiliging</strong> met een eigen stijl. SVPB gecertificeerd, vaste teams, 24/7 inzetbaar.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-5">
                   {['Festival', 'Concert', 'VIP Beveiliging', 'ESO Opleiding'].map(t => (
@@ -687,7 +691,7 @@ export default function HomePage() {
   return (
     <main>
       <FamilieTopBanner
-        logoSrc={IMAGES.logo}
+        logoSrc={BRAND_LOGOS.security}
         logoAlt="Monra Security"
         logoHref="#home"
         links={getFamilieTopSecurity()}

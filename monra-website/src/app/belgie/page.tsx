@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   Shield, Phone, Mail, MapPin, ChevronDown, Menu, X,
   Award, Users, Clock, Star, ArrowRight, CheckCircle,
@@ -10,6 +11,7 @@ import {
 import { MonraChat } from '@/components/MonraChat'
 import { FamilieTopBanner, FAMILIE_BANNER_OFFSET } from '@/components/FamilieTopBanner'
 import { getFamilieTopBelgium } from '@/lib/subsite-nav'
+import { BRAND_LOGOS, BRAND_LOGO_ALT } from '@/lib/brand-logos'
 
 const SERVICES = [
   {
@@ -63,9 +65,14 @@ function Navbar() {
     <nav className={`fixed ${FAMILIE_BANNER_OFFSET} left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md border-b-2 border-[#1A2B6D] shadow-md' : 'bg-white border-b border-[#1A2B6D]/20'}`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
         <a href="#home" className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-[#1A2B6D] flex items-center justify-center">
-            <Shield size={18} className="text-[#11CFE7]" />
-          </div>
+          <Image
+            src={BRAND_LOGOS.security}
+            alt={BRAND_LOGO_ALT.security}
+            width={120}
+            height={48}
+            className="h-10 w-auto object-contain"
+            priority
+          />
           <div>
             <div className="text-sm font-black text-[#1A2B6D] leading-tight">MONRA <span className="text-[#11CFE7]">BELGIUM</span></div>
             <div className="text-[9px] text-slate-400 uppercase tracking-widest">Evenementenbeveiliging</div>
@@ -410,9 +417,9 @@ export default function BelgiePage() {
   return (
     <main>
       <FamilieTopBanner
-        icon="🇧🇪"
-        siteName="Monra Belgium"
-        tagline="evenementenbeveiliging in België"
+        logoSrc={BRAND_LOGOS.security}
+        logoAlt="Monra Belgium"
+        logoHref="#home"
         links={getFamilieTopBelgium()}
       />
       <Navbar />

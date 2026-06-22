@@ -1,4 +1,5 @@
-import Image from 'next/image'
+import { ImageWithWatermark } from '@/components/ImageWithWatermark'
+import { BRAND_ICONS } from '@/lib/brand-logos'
 import { EVENTS_GALLERY } from '@/lib/events-images'
 
 export function EventsPhotoGallery() {
@@ -30,10 +31,11 @@ export function EventsPhotoGallery() {
                 minHeight: 200,
               }}
             >
-              <Image
+              <ImageWithWatermark
                 src={photo.src}
                 alt={photo.alt}
                 fill
+                watermarkSrc={BRAND_ICONS.eventsSecurity}
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />

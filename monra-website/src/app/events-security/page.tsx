@@ -1,11 +1,14 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { ImageWithWatermark } from '@/components/ImageWithWatermark'
+import { BRAND_ICONS } from '@/lib/brand-logos'
 import { EventsHeroSlider } from '@/components/EventsHeroSlider'
 import { EventsPhotoGallery } from '@/components/EventsPhotoGallery'
 import { SubsiteNav } from '@/components/SubsiteNav'
 import { MonraChat } from '@/components/MonraChat'
 import { EVENTS_NAV, getFamilieFromEvents } from '@/lib/subsite-nav'
 import { EVENTS_IMAGES } from '@/lib/events-images'
+import { BRAND_LOGOS, BRAND_LOGO_ALT } from '@/lib/brand-logos'
 import { ESO_EVENTS_STEPS, ESO_EVENTS_CERTS } from '@/lib/opleidingen'
 
 export default function EventsSecurityPage() {
@@ -54,8 +57,9 @@ export default function EventsSecurityPage() {
       <SubsiteNav
         theme="events"
         siteName="Monra Events Security"
-        logoSrc={EVENTS_IMAGES.logo}
-        logoAlt="Monra Events Security"
+        logoSrc={BRAND_LOGOS.eventsSecurity}
+        logoAlt={BRAND_LOGO_ALT.eventsSecurity}
+        logoPreserveColors
         navLinks={EVENTS_NAV}
         ctaLabel="Offerte aanvragen"
         ctaHref="mailto:info@monra-events-security.nl"
@@ -126,10 +130,11 @@ export default function EventsSecurityPage() {
             <div style={{ position: 'absolute', top: -10, left: -10, width: 50, height: 50, borderTop: '2px solid #DC2626', borderLeft: '2px solid #DC2626', borderRadius: '4px 0 0 0' }} />
             <div style={{ position: 'absolute', bottom: -10, right: -10, width: 50, height: 50, borderBottom: '2px solid #DC2626', borderRight: '2px solid #DC2626', borderRadius: '0 0 4px 0' }} />
             <div style={{ borderRadius: 8, overflow: 'hidden', border: '1px solid rgba(220,38,38,.2)', position: 'relative', aspectRatio: '3/4', maxWidth: 360 }}>
-              <Image
+              <ImageWithWatermark
                 src={EVENTS_IMAGES.teamBamboo}
-                alt="Senna Monsigneur en Monra Events Security team"
+                alt="Senna Monsieur en Monra Events Security team"
                 fill
+                watermarkSrc={BRAND_ICONS.eventsSecurity}
                 className="object-cover object-top"
                 sizes="(max-width: 768px) 100vw, 360px"
               />
@@ -145,7 +150,7 @@ export default function EventsSecurityPage() {
               Oprichtster
             </div>
             <h2 className="es-heading" style={{ fontSize: 'clamp(24px, 3vw, 42px)', color: '#fff', marginBottom: 20 }}>
-              Senna Monsigneur
+              Senna Monsieur
             </h2>
             <p style={{ fontSize: 15, color: 'rgba(255,255,255,.5)', lineHeight: 1.9, marginBottom: 16 }}>
               Opgegroeid in het Monra-bedrijf heeft Senna de kneepjes van evenementenbeveiliging van binnenuit geleerd.
@@ -218,8 +223,8 @@ export default function EventsSecurityPage() {
       <div id="contact" style={{ background: '#0d0d0d', borderTop: '1px solid rgba(220,38,38,.08)', padding: '64px 48px' }}>
         <div style={{ maxWidth: 700, margin: '0 auto', textAlign: 'center' }}>
           <Image
-            src={EVENTS_IMAGES.logo}
-            alt="Monra Events Security"
+            src={BRAND_LOGOS.eventsSecurity}
+            alt={BRAND_LOGO_ALT.eventsSecurity}
             width={180}
             height={72}
             style={{ height: 56, width: 'auto', objectFit: 'contain', margin: '0 auto 28px' }}
@@ -271,7 +276,7 @@ export default function EventsSecurityPage() {
       {/* Footer */}
       <div style={{ background: '#050505', borderTop: '1px solid rgba(220,38,38,.06)', padding: '24px 48px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10 }}>
         <div style={{ fontSize: 11, color: 'rgba(255,255,255,.2)' }}>
-          © 2024 Monra Events Security · Senna Monsigneur · Linne
+          © 2024 Monra Events Security · Senna Monsieur · Linne
         </div>
         <div style={{ fontSize: 11, color: 'rgba(255,255,255,.2)' }}>
           Onderdeel van de Monra-groep

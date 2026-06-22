@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useEffect, useCallback, useRef } from 'react'
-import Image from 'next/image'
+import { ImageWithWatermark } from '@/components/ImageWithWatermark'
+import { BRAND_ICONS } from '@/lib/brand-logos'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { EVENTS_HERO_SLIDES } from '@/lib/events-images'
 
@@ -56,10 +57,11 @@ export function EventsHeroSlider() {
             }`}
             aria-hidden={i !== current}
           >
-            <Image
+            <ImageWithWatermark
               src={slide.image}
               alt={slide.imageAlt}
               fill
+              watermarkSrc={BRAND_ICONS.eventsSecurity}
               className={`object-cover object-center transition-transform duration-[6000ms] ease-out ${
                 i === current ? 'scale-100' : 'scale-105'
               }`}

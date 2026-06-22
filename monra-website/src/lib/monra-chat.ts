@@ -34,7 +34,7 @@ const SITES = {
     name: 'Monra Events Security',
     path: '/events-security',
     email: CONTACT.mailEvents,
-    focus: 'premium evenementenbeveiliging door Senna Monsigneur — festivals, VIP, sport',
+    focus: 'premium evenementenbeveiliging door Senna Monsieur — festivals, VIP, sport',
   },
   belgium: {
     name: 'Monra Belgium',
@@ -46,7 +46,8 @@ const SITES = {
     name: 'Don Keijsjot',
     path: '/don-keijsjot',
     email: CONTACT.mailKeijsjot,
-    focus: 'feestcafé en gezelligheid in Maasbracht — onderdeel van de Monra-familie',
+    focus:
+      'feestcafé in het centrum van Maasbracht — gezelligheid, muziek, bier en warme kroegsfeer (Molenweg 1). Onderdeel van de Monra-familie',
   },
 } as const
 
@@ -56,11 +57,11 @@ export const CHAT_GREETINGS: Record<MonraSite, string> = {
   support:
     'Welkom bij Monra Support!\n\nIk ben uw AI-assistent voor hospitality & zorgpersoneel. Ik ken ook Monra Security, Events Security en Monra Belgium.\n\n• Barpersoneel & bediening\n• BHV, EHBO & brandwachten\n• Personeelsaanvragen\n\nWaarmee kan ik u helpen?',
   events:
-    'Welkom bij Monra Events Security!\n\nIk ben uw AI-assistent (Senna Monsigneur). Festivals, VIP, sport — of doorverwijzing naar een andere Monra-tak.\n\n• Premium eventbeveiliging\n• VIP & close protection\n• Offertes & opleiding\n\nWaarmee kan ik u helpen?',
+    'Welkom bij Monra Events Security!\n\nIk ben uw AI-assistent (Senna Monsieur). Festivals, VIP, sport — of doorverwijzing naar een andere Monra-tak.\n\n• Premium eventbeveiliging\n• VIP & close protection\n• Offertes & opleiding\n\nWaarmee kan ik u helpen?',
   belgium:
     'Welkom bij Monra Belgium!\n\nIk ben uw AI-assistent voor evenementenbeveiliging in België. Ook Monra Security NL, Support, Events Security en Don Keijsjot ken ik.\n\n• Festivals & concerten in BE\n• Vlaanderen, Brussel, Wallonië\n• FOD-vergunde beveiliging\n\nWaarmee kan ik u helpen?',
   keijsjot:
-    'Welkom bij Don Keijsjot!\n\nFeestcafé in Maasbracht — gezelligheid, muziek en een warme kroeg. Onderdeel van de Monra-familie; ik ken ook Security, Support, Events en Belgium.\n\n• Adres & route\n• Openingstijden (bel voor actuele info)\n• Monra Groep\n\nWaarmee kan ik u helpen?',
+    'Welkom bij Don Keijsjot — Tot Donkie!\n\nFeestcafé in het centrum van Maasbracht: gezelligheid, muziek, bier en warme kroegsfeer aan de Molenweg 1. Onderdeel van de Monra-familie; ik ken ook Security, Support, Events en Belgium.\n\n• Adres, route & Google Maps\n• Openingstijden (bel 0475 461 801 voor actuele info)\n• Facebook voor feestjes & foto\'s\n• Monra Groep\n\nWaarmee kan ik u helpen?',
 }
 
 export const QUICK_REPLIES: Record<MonraSite, string[]> = {
@@ -68,7 +69,7 @@ export const QUICK_REPLIES: Record<MonraSite, string[]> = {
   support: ['Personeel aanvragen', 'BHV of EHBO?', 'Beveiliging nodig', 'Contact'],
   events: ['Offerte festival', 'Over Senna', 'VIP beveiliging', 'Contact'],
   belgium: ['Offerte aanvragen', 'Werkgebied BE', 'FOD vergunning', 'Contact'],
-  keijsjot: ['Openingstijden', 'Adres Maasbracht', 'Monra Groep', 'Contact'],
+  keijsjot: ['Openingstijden', 'Adres & route', 'Facebook feestjes', 'Monra Groep'],
 }
 
 export function getMonraOverviewReply(): ChatReply {
@@ -80,7 +81,7 @@ Monra is een familiebedrijf uit Linne (Limburg) met 25+ JAAR ERVARING — 500+ e
 VIJF TAKKEN ONDER ÉÉN DAK:
 • Monra Security (NL) — festivals, concerten, surveillance, opleidingen (ESO + MBO 2/3)
 • Monra Support — barpersoneel, BHV, EHBO, brandwachten, hospitality
-• Monra Events Security — premium events (Senna Monsigneur), VIP, sport
+• Monra Events Security — premium events (Senna Monsieur), VIP, sport
 • Monra Belgium — evenementenbeveiliging in Vlaanderen, Brussel & Wallonië
 • Don Keijsjot — feestcafé Maasbracht (Molenweg 1), gezelligheid & muziek
 
@@ -232,7 +233,7 @@ function detectBestSite(msg: string): RouteTarget | null {
 function routeReply(current: MonraSite, target: RouteTarget): ChatReply {
   if (target === 'groep') {
     return {
-      text: 'De Monra-groep heeft vijf expertises:\n\n🛡️ Monra Security (NL) — evenementenbeveiliging & ESO\n🤝 Monra Support — hospitality, BHV, EHBO, brandwachten\n✨ Monra Events Security — premium events (Senna Monsigneur)\n🇧🇪 Monra Belgium — beveiliging in heel België\n🍺 Don Keijsjot — feestcafé Maasbracht\n\nOnze keuze-wijzer helpt u in 2 stappen de juiste match te vinden.',
+      text: 'De Monra-groep heeft vijf expertises:\n\n🛡️ Monra Security (NL) — evenementenbeveiliging & ESO\n🤝 Monra Support — hospitality, BHV, EHBO, brandwachten\n✨ Monra Events Security — premium events (Senna Monsieur)\n🇧🇪 Monra Belgium — beveiliging in heel België\n🍺 Don Keijsjot — feestcafé Maasbracht\n\nOnze keuze-wijzer helpt u in 2 stappen de juiste match te vinden.',
       action: { label: '→ Monra Groep keuze-wijzer', href: '/groep' },
     }
   }
@@ -335,7 +336,7 @@ export function getMonraChatResponse(message: string, currentSite: MonraSite): C
     (currentSite === 'keijsjot' || isKeijsjotIntent(m))
   ) {
     return {
-      text: 'OPENINGSTIJDEN DON KEIJSJOT (publieke bron — ter plaatse bevestigen):\n\n• Ma: ca. 14:00–23:00\n• Do–Zo: avond/nacht (varieert)\n• Di/Wo: wordt aangevuld\n\n📞 0475 461 801 voor actuele info\n📍 Molenweg 1, Maasbracht',
+      text: 'OPENINGSTIJDEN DON KEIJSJOT (indicatief — ter plaatse bevestigen):\n\n• Ma: ca. 14:00–23:00\n• Do–Zo: avond/nacht (varieert per feest)\n• Di/Wo: wordt aangevuld\n\n📞 0475 461 801 voor actuele info\n📍 Molenweg 1, Maasbracht\n📘 Facebook: facebook.com/CafeDonkiesjot — feestjes & nieuws',
       action: { label: '→ Don Keijsjot pagina', href: '/don-keijsjot#openingstijden' },
     }
   }
@@ -376,7 +377,7 @@ export function getMonraChatResponse(message: string, currentSite: MonraSite): C
 
   if (m.includes('senna') || m.includes('oprichter') || m.includes('directeur')) {
     return {
-      text: 'Senna Monsigneur is oprichter van Monra Events Security — opgegroeid in het Monra-bedrijf. Raf Monsieur is CEO van de Monra Groep (inclusief Monra Belgium).',
+      text: 'Senna Monsieur is oprichter van Monra Events Security — opgegroeid in het Monra-bedrijf. Raf Monsieur is CEO van de Monra Groep (inclusief Monra Belgium).',
       action: { label: '→ Over Senna', href: '/events-security#senna' },
     }
   }
@@ -504,9 +505,9 @@ export function buildMonraSystemPrompt(currentSite: MonraSite): string {
 ## De vijf Monra-takken
 1. Monra Security (/) — evenementenbeveiliging NL. E-mail: ${CONTACT.mailSecurity}
 2. Monra Support (/support) — hospitality, BHV, EHBO, brandwachten. E-mail: ${CONTACT.mailSupport}
-3. Monra Events Security (/events-security) — premium events, Senna Monsigneur. E-mail: ${CONTACT.mailEvents}
+3. Monra Events Security (/events-security) — premium events, Senna Monsieur. E-mail: ${CONTACT.mailEvents}
 4. Monra Belgium (/belgie) — evenementenbeveiliging BE (Vlaanderen, Brussel, Wallonië). E-mail: ${CONTACT.mailBelgium}
-5. Don Keijsjot (/don-keijsjot) — feestcafé Maasbracht, Molenweg 1. Tel: 0475 461 801
+5. Don Keijsjot (/don-keijsjot) — feestcafé Maasbracht (Molenweg 1), gezelligheid & muziek. Tel: 0475 461 801. Facebook: facebook.com/CafeDonkiesjot
 
 ## Contact
 - Directie NL: ${CONTACT.phone}

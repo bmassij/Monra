@@ -1,7 +1,9 @@
 ﻿'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
+import { BRAND_LOGOS, BRAND_LOGO_ALT } from '@/lib/brand-logos'
 
 // Quiz stap type
 type QuizStep = {
@@ -34,7 +36,7 @@ const QUIZ_STAPPEN: QuizStep[] = [
 const UITKOMST: Record<string, { href: string; naam: string; kleur: string; uitleg: string }> = {
   security: { href: '/', naam: 'Monra Security', kleur: '#1A2B6D', uitleg: 'Gecertificeerde beveiliging voor elk evenement of locatie.' },
   support: { href: '/support', naam: 'Monra Support', kleur: '#0E5C4B', uitleg: 'Hospitality, BHV, EHBO en servicepersoneel op maat.' },
-  events: { href: '/events-security', naam: 'Monra Events Security', kleur: '#8B6914', uitleg: 'Premium evenementenbeveiliging door Senna Monsigneur.' },
+  events: { href: '/events-security', naam: 'Monra Events Security', kleur: '#8B6914', uitleg: 'Premium evenementenbeveiliging door Senna Monsieur.' },
   belgium: { href: '/belgie', naam: 'Monra Belgium', kleur: '#1A2B6D', uitleg: 'Evenementenbeveiliging in Vlaanderen, Brussel en Wallonië.' },
   onzeker: { href: '/', naam: 'Monra Security', kleur: '#1A2B6D', uitleg: 'Begin bij onze hoofdsite — wij helpen u verder.' },
   festival: { href: '/events-security', naam: 'Monra Events Security', kleur: '#8B6914', uitleg: 'Specialist in festivals, concerten en crowd management.' },
@@ -165,6 +167,15 @@ export default function GroepPage() {
         {/* Decoratieve cirkels */}
         <div style={{ position: 'absolute', top: -80, right: -80, width: 320, height: 320, borderRadius: '50%', background: 'rgba(17,207,231,.04)', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', bottom: -60, left: -60, width: 240, height: 240, borderRadius: '50%', background: 'rgba(17,207,231,.03)', pointerEvents: 'none' }} />
+
+        <Image
+          src={BRAND_LOGOS.groep}
+          alt={BRAND_LOGO_ALT.groep}
+          width={280}
+          height={280}
+          style={{ height: 'clamp(120px, 18vw, 200px)', width: 'auto', objectFit: 'contain', margin: '0 auto 28px' }}
+          priority
+        />
 
         <div style={{ fontSize: 10, fontWeight: 700, color: '#11CFE7', textTransform: 'uppercase', letterSpacing: 5, marginBottom: 18 }}>
           De Monra Groep
@@ -333,7 +344,7 @@ export default function GroepPage() {
               <div style={{ background: 'linear-gradient(135deg, #080808, #1a1400)', padding: '36px 32px', position: 'relative', overflow: 'hidden' }}>
                 <div style={{ position: 'absolute', top: -20, right: -20, width: 120, height: 120, borderRadius: '50%', background: 'rgba(201,168,76,.06)' }} />
                 <div style={{ fontSize: 10, fontWeight: 700, color: '#C9A84C', textTransform: 'uppercase', letterSpacing: 3, marginBottom: 14 }}>
-                  Nieuw · Senna Monsigneur
+                  Nieuw · Senna Monsieur
                 </div>
                 <div style={{ fontSize: 44, marginBottom: 12 }}>✨</div>
                 <h3 style={{ fontSize: 24, fontWeight: 900, color: '#fff', marginBottom: 8 }}>Monra Events Security</h3>

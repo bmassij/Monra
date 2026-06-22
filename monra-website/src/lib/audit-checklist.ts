@@ -67,7 +67,7 @@ export const AUDIT_TAKKEN: AuditTak[] = [
       { id: 'social', label: 'Social media + Senna profiel' },
       { id: 'foto', label: "Foto's events / Senna" },
       { id: 'domein', label: 'Domein (monra-events-security.nl)' },
-      { id: 'senna', label: 'Tekst over Senna Monsigneur' },
+      { id: 'senna', label: 'Tekst over Senna Monsieur' },
     ],
   },
   {

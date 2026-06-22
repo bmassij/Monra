@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useEffect, useCallback, useRef } from 'react'
-import Image from 'next/image'
+import { ImageWithWatermark } from '@/components/ImageWithWatermark'
+import { BRAND_ICONS } from '@/lib/brand-logos'
 import { ArrowRight, ChevronLeft, ChevronRight, CheckCircle } from 'lucide-react'
 import { HERO_SLIDES } from '@/lib/images'
 
@@ -58,10 +59,11 @@ export function HeroSlider() {
           >
             {/* Photo side */}
             <div className="absolute inset-0 md:inset-y-0 md:left-0 md:w-[62%] overflow-hidden">
-              <Image
+              <ImageWithWatermark
                 src={slide.image}
                 alt={slide.imageAlt}
                 fill
+                watermarkSrc={BRAND_ICONS.security}
                 className={`object-cover object-center transition-transform duration-[6000ms] ease-out ${
                   i === current ? 'scale-100' : 'scale-105'
                 }`}

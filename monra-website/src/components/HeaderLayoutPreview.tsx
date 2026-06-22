@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Phone, Menu, X } from 'lucide-react'
-import { IMAGES } from '@/lib/images'
+import { BRAND_LOGOS } from '@/lib/brand-logos'
 import { FAMILIE_TOP_SECURITY } from '@/lib/subsite-nav'
 
 export type HeaderLayoutVariant = 'huidig' | 'logo-boven' | 'alles-blauw'
@@ -94,7 +94,7 @@ function HeaderPreview({ variant }: { variant: HeaderLayoutVariant }) {
         <nav className="bg-white border-b border-[#1A2B6D]/20">
           <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
             <a href="#home">
-              <Image src={IMAGES.logo} alt="Monra Security" width={120} height={46} className="h-10 w-auto" />
+              <Image src={BRAND_LOGOS.security} alt="Monra Security" width={120} height={46} className="h-10 w-auto" />
             </a>
             <div className="hidden lg:flex items-center gap-6">
               <NavLinks variant="white" />
@@ -121,7 +121,7 @@ function HeaderPreview({ variant }: { variant: HeaderLayoutVariant }) {
       <div className="border border-[#1A2B6D]/20 rounded-xl overflow-hidden shadow-xl">
         <div className="bg-[#0a1540] border-b-2 border-[#11CFE7]/30 px-4 md:px-6 py-3 flex justify-between items-center flex-wrap gap-3">
           <Image
-            src={IMAGES.logo}
+            src={BRAND_LOGOS.security}
             alt="Monra Security"
             width={180}
             height={70}
@@ -160,7 +160,7 @@ function HeaderPreview({ variant }: { variant: HeaderLayoutVariant }) {
         </div>
         <div className="px-4 md:px-6 py-3 flex items-center justify-between gap-4 flex-wrap">
           <Image
-            src={IMAGES.logo}
+            src={BRAND_LOGOS.security}
             alt="Monra Security"
             width={180}
             height={70}

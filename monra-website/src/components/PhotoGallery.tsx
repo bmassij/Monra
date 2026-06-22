@@ -1,4 +1,5 @@
-import Image from 'next/image'
+import { ImageWithWatermark } from '@/components/ImageWithWatermark'
+import { BRAND_ICONS } from '@/lib/brand-logos'
 import { GALLERY_PHOTOS } from '@/lib/images'
 
 export function PhotoGallery() {
@@ -24,10 +25,11 @@ export function PhotoGallery() {
                 photo.wide ? 'col-span-2' : 'col-span-1'
               }`}
             >
-              <Image
+              <ImageWithWatermark
                 src={photo.src}
                 alt={photo.alt}
                 fill
+                watermarkSrc={BRAND_ICONS.security}
                 className="object-cover transition-transform duration-500 group-hover:scale-105 brightness-75 group-hover:brightness-90"
                 sizes={photo.wide ? '(max-width: 768px) 100vw, 50vw' : '(max-width: 768px) 50vw, 25vw'}
               />

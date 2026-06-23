@@ -57,7 +57,8 @@ export default function EventsSecurityPage() {
       <SubsiteNav
         theme="events"
         siteName="Monra Events Security"
-        logoSrc={BRAND_LOGOS.eventsSecurityWordmark}
+        wordmarkSrc={BRAND_LOGOS.eventsSecurityWordmark}
+        iconSrc={BRAND_ICONS.eventsSecurity}
         logoAlt={BRAND_LOGO_ALT.eventsSecurityWordmark}
         logoPreserveColors
         navLinks={EVENTS_NAV}

@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { SubsiteNav } from '@/components/SubsiteNav'
 import { MonraChat } from '@/components/MonraChat'
 import { SUPPORT_NAV, getFamilieFromSupport } from '@/lib/subsite-nav'
-import { BRAND_LOGOS, BRAND_LOGO_ALT } from '@/lib/brand-logos'
+import { BRAND_LOGOS, BRAND_LOGO_ALT, BRAND_ICONS } from '@/lib/brand-logos'
 
 export default function SupportPage() {
   return (
@@ -17,17 +17,23 @@ export default function SupportPage() {
           background: #fff;
           border: 1px solid #d1ede7;
           border-radius: 10px;
-          padding: 24px 22px;
-          border-top: 3px solid transparent;
-          transition: border-top-color .2s;
+          padding: 28px 24px;
+          border-top: 4px solid transparent;
+          box-shadow: 0 1px 12px rgba(14,92,75,.08);
+          transition: border-top-color .2s, box-shadow .2s, transform .2s;
         }
-        .support-card:hover { border-top-color: #1ABFA1; }
+        .support-card:hover {
+          border-top-color: #1ABFA1;
+          box-shadow: 0 20px 48px rgba(14,92,75,.14);
+          transform: translateY(-4px);
+        }
       `}</style>
 
       <SubsiteNav
         theme="support"
         siteName="Monra Support BV"
-        logoSrc={BRAND_LOGOS.supportWordmark}
+        wordmarkSrc={BRAND_LOGOS.supportWordmark}
+        iconSrc={BRAND_ICONS.support}
         logoAlt={BRAND_LOGO_ALT.supportWordmark}
         logoPreserveColors
         navLinks={SUPPORT_NAV}
@@ -36,36 +42,48 @@ export default function SupportPage() {
         familieLinks={getFamilieFromSupport()}
       />
 
-      {/* Hero */}
+      {/* Hero — Wix hs: #062E26 + overlay gradients */}
       <div id="home" style={{
-        background: 'linear-gradient(135deg, #062E26 0%, #0E5C4B 100%)',
-        padding: '80px 48px',
+        background: '#062E26',
+        padding: '88px 48px',
         textAlign: 'center',
         position: 'relative',
         overflow: 'hidden',
       }}>
-        <div style={{ fontSize: 10, fontWeight: 700, color: '#1ABFA1', textTransform: 'uppercase', letterSpacing: 4, marginBottom: 16 }}>
-          Hospitality · Toezicht · Zorg
-        </div>
-        <h1 style={{ fontSize: 'clamp(32px, 5vw, 64px)', fontWeight: 900, color: '#fff', lineHeight: 1.08, marginBottom: 20 }}>
-          Monra <span style={{ color: '#1ABFA1' }}>Support</span> BV
-        </h1>
-        <p style={{ fontSize: 17, color: 'rgba(255,255,255,.65)', maxWidth: 560, margin: '0 auto 36px', lineHeight: 1.85 }}>
-          Ondersteuningsprofessionals voor hospitality, veiligheid en zorg — flexibel inzetbaar, altijd gastvrij.
-        </p>
-        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <a href="#contact" style={{
-            background: '#1ABFA1', color: '#062E26', fontWeight: 800,
-            fontSize: 14, padding: '13px 28px', borderRadius: 6, display: 'inline-block', textDecoration: 'none',
-          }}>
-            Personeel aanvragen →
-          </a>
-          <a href="tel:0645398678" style={{
-            border: '1px solid rgba(26,191,161,.4)', color: '#1ABFA1', fontWeight: 700,
-            fontSize: 14, padding: '12px 24px', borderRadius: 6, display: 'inline-block', textDecoration: 'none',
-          }}>
-            06 45398678
-          </a>
+        <div style={{
+          position: 'absolute', inset: 0, pointerEvents: 'none',
+          background: 'linear-gradient(135deg, rgba(14,92,75,.45) 0%, transparent 42%, rgba(6,46,38,.85) 100%)',
+        }} />
+        <div style={{
+          position: 'absolute', inset: 0, pointerEvents: 'none',
+          background: 'radial-gradient(ellipse 80% 60% at 75% 40%, rgba(26,191,161,.12) 0%, transparent 55%)',
+        }} />
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontSize: 10, fontWeight: 800, color: '#1ABFA1', textTransform: 'uppercase', letterSpacing: 3.5, marginBottom: 20 }}>
+            <span style={{ width: 36, height: 2, background: '#1ABFA1', flexShrink: 0 }} />
+            Hospitality · Toezicht · Zorg
+          </div>
+          <h1 style={{ fontSize: 'clamp(32px, 5vw, 64px)', fontWeight: 900, color: '#fff', lineHeight: 1.08, marginBottom: 20, letterSpacing: '-0.02em' }}>
+            Monra <span style={{ color: '#1ABFA1' }}>Support</span> BV
+          </h1>
+          <p style={{ fontSize: 17, color: 'rgba(255,255,255,.72)', maxWidth: 560, margin: '0 auto 36px', lineHeight: 1.85 }}>
+            Ondersteuningsprofessionals voor hospitality, veiligheid en zorg — flexibel inzetbaar, altijd gastvrij.
+          </p>
+          <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <a href="#contact" style={{
+              background: '#1ABFA1', color: '#062E26', fontWeight: 800,
+              fontSize: 14, padding: '13px 28px', borderRadius: 6, display: 'inline-block', textDecoration: 'none',
+              boxShadow: '0 8px 28px rgba(26,191,161,.35)',
+            }}>
+              Personeel aanvragen →
+            </a>
+            <a href="tel:0645398678" style={{
+              border: '1px solid rgba(26,191,161,.4)', color: '#1ABFA1', fontWeight: 700,
+              fontSize: 14, padding: '12px 24px', borderRadius: 6, display: 'inline-block', textDecoration: 'none',
+            }}>
+              06 45398678
+            </a>
+          </div>
         </div>
       </div>
 
@@ -74,7 +92,7 @@ export default function SupportPage() {
         <div style={{ fontSize: 10, fontWeight: 700, color: '#1ABFA1', textTransform: 'uppercase', letterSpacing: 4, marginBottom: 8 }}>
           Onze 9 diensten
         </div>
-        <div style={{ width: 40, height: 4, background: '#1ABFA1', borderRadius: 2, marginBottom: 20 }} />
+        <div style={{ width: 44, height: 4, background: 'linear-gradient(90deg, #1ABFA1, #0E5C4B)', borderRadius: 2, marginBottom: 20 }} />
         <h2 style={{ fontSize: 'clamp(24px, 3vw, 38px)', fontWeight: 900, color: '#0E5C4B', marginBottom: 40 }}>
           Voor elk evenement de juiste professional
         </h2>

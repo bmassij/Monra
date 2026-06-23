@@ -11,6 +11,11 @@ export type SubsiteNavLink = { label: string; href: string }
 type SubsiteNavProps = {
   theme: 'support' | 'events'
   siteName: string
+  /** Volledig logo met tekst — familie-balk links */
+  wordmarkSrc?: string
+  /** Schild-icoon — navbar links (geen wordmark) */
+  iconSrc?: string
+  /** @deprecated Gebruik wordmarkSrc */
   logoSrc?: string
   logoAlt?: string
   /** Behoud kleuren in familie-balk (bijv. groen Support-logo op donkergroene balk) */
@@ -62,6 +67,8 @@ const THEMES = {
 export function SubsiteNav({
   theme,
   siteName,
+  wordmarkSrc,
+  iconSrc,
   logoSrc,
   logoAlt,
   logoPreserveColors = theme === 'support',
@@ -73,6 +80,8 @@ export function SubsiteNav({
 }: SubsiteNavProps) {
   const [open, setOpen] = useState(false)
   const t = THEMES[theme]
+  const familieLogo = wordmarkSrc ?? logoSrc
+  const navLogo = iconSrc
 
   return (
     <header style={{ position: 'sticky', top: 0, zIndex: 50 }}>
@@ -88,10 +97,10 @@ export function SubsiteNav({
         gap: 10,
         boxShadow: '0 4px 12px rgba(0,0,0,.15)',
       }}>
-        {logoSrc ? (
+        {familieLogo ? (
           <Link href="#home" style={{ display: 'flex', alignItems: 'center', flexShrink: 0, textDecoration: 'none' }}>
             <Image
-              src={logoSrc}
+              src={familieLogo}
               alt={logoAlt ?? siteName}
               width={180}
               height={70}
@@ -169,15 +178,15 @@ export function SubsiteNav({
           justifyContent: 'space-between',
           gap: 16,
         }}>
-          {/* Logo / sitenaam */}
+          {/* Logo / sitenaam — schild-icoon, geen wordmark */}
           <a href="#home" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
-            {logoSrc ? (
+            {navLogo ? (
               <Image
-                src={logoSrc}
+                src={navLogo}
                 alt={logoAlt ?? siteName}
-                width={160}
+                width={56}
                 height={56}
-                style={{ height: 50, width: 'auto', maxWidth: 220, objectFit: 'contain' }}
+                style={{ height: 50, width: 'auto', maxWidth: 56, objectFit: 'contain' }}
                 priority
               />
             ) : (

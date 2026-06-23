@@ -57,8 +57,8 @@ export default function EventsSecurityPage() {
       <SubsiteNav
         theme="events"
         siteName="Monra Events Security"
-        logoSrc={BRAND_LOGOS.eventsSecurity}
-        logoAlt={BRAND_LOGO_ALT.eventsSecurity}
+        logoSrc={BRAND_LOGOS.eventsSecurityWordmark}
+        logoAlt={BRAND_LOGO_ALT.eventsSecurityWordmark}
         logoPreserveColors
         navLinks={EVENTS_NAV}
         ctaLabel="Offerte aanvragen"
@@ -223,8 +223,8 @@ export default function EventsSecurityPage() {
       <div id="contact" style={{ background: '#0d0d0d', borderTop: '1px solid rgba(220,38,38,.08)', padding: '64px 48px' }}>
         <div style={{ maxWidth: 700, margin: '0 auto', textAlign: 'center' }}>
           <Image
-            src={BRAND_LOGOS.eventsSecurity}
-            alt={BRAND_LOGO_ALT.eventsSecurity}
+            src={BRAND_LOGOS.eventsSecurityWordmark}
+            alt={BRAND_LOGO_ALT.eventsSecurityWordmark}
             width={180}
             height={72}
             style={{ height: 56, width: 'auto', objectFit: 'contain', margin: '0 auto 28px' }}

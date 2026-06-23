@@ -27,8 +27,8 @@ export default function SupportPage() {
       <SubsiteNav
         theme="support"
         siteName="Monra Support BV"
-        logoSrc={BRAND_LOGOS.support}
-        logoAlt={BRAND_LOGO_ALT.support}
+        logoSrc={BRAND_LOGOS.supportWordmark}
+        logoAlt={BRAND_LOGO_ALT.supportWordmark}
         logoPreserveColors
         navLinks={SUPPORT_NAV}
         ctaLabel="Personeel aanvragen"
@@ -38,7 +38,7 @@ export default function SupportPage() {
 
       {/* Hero */}
       <div id="home" style={{
-        background: 'linear-gradient(135deg, #062E26 0%, #0E5C4B 60%, #0a3d30 100%)',
+        background: 'linear-gradient(135deg, #062E26 0%, #0E5C4B 100%)',
         padding: '80px 48px',
         textAlign: 'center',
         position: 'relative',

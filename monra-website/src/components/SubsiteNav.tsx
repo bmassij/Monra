@@ -96,8 +96,9 @@ export function SubsiteNav({
               width={180}
               height={70}
               style={{
-                height: 44,
+                height: 48,
                 width: 'auto',
+                maxWidth: 240,
                 objectFit: 'contain',
                 ...(logoPreserveColors ? {} : { filter: 'brightness(0) invert(1)' }),
               }}
@@ -176,7 +177,7 @@ export function SubsiteNav({
                 alt={logoAlt ?? siteName}
                 width={160}
                 height={56}
-                style={{ height: 50, width: 'auto', objectFit: 'contain' }}
+                style={{ height: 50, width: 'auto', maxWidth: 220, objectFit: 'contain' }}
                 priority
               />
             ) : (

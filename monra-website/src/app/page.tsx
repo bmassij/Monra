@@ -155,7 +155,7 @@ function Hero() {
         </div>
 
         {/* Headline */}
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-none mb-6 tracking-tight">
+        <h1 className="text-4xl sm:text-5xl md:text-[52px] lg:text-[58px] font-black text-white leading-[1.08] mb-6 tracking-tight">
           VEILIGHEID IS{' '}
           <span className="text-[#11CFE7]">
             GEEN TOEVAL
@@ -691,7 +691,7 @@ export default function HomePage() {
   return (
     <main>
       <FamilieTopBanner
-        logoSrc={BRAND_LOGOS.security}
+        logoSrc={IMAGES.logo}
         logoAlt="Monra Security"
         logoHref="#home"
         links={getFamilieTopSecurity()}

@@ -12,11 +12,12 @@ export function ImageWithWatermark({
   watermarkOpacity = 0.17,
   className,
   alt,
+  fill,
   ...imageProps
 }: ImageWithWatermarkProps) {
   return (
-    <div className="relative w-full h-full">
-      <Image alt={alt} className={className} {...imageProps} />
+    <div className={fill ? 'absolute inset-0' : 'relative w-full h-full'}>
+      <Image alt={alt} className={className} fill={fill} {...imageProps} />
       <div className="absolute inset-0 pointer-events-none select-none" aria-hidden>
         <Image
           src={watermarkSrc}

@@ -12,6 +12,7 @@ import { MonraChat } from '@/components/MonraChat'
 import { FamilieTopBanner, FAMILIE_BANNER_OFFSET } from '@/components/FamilieTopBanner'
 import { getFamilieTopBelgium } from '@/lib/subsite-nav'
 import { BRAND_LOGOS, BRAND_LOGO_ALT } from '@/lib/brand-logos'
+import { IMAGES } from '@/lib/images'
 
 const SERVICES = [
   {
@@ -417,7 +418,7 @@ export default function BelgiePage() {
   return (
     <main>
       <FamilieTopBanner
-        logoSrc={BRAND_LOGOS.security}
+        logoSrc={IMAGES.logo}
         logoAlt="Monra Belgium"
         logoHref="#home"
         links={getFamilieTopBelgium()}

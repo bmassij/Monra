@@ -41,7 +41,7 @@ export function FamilieTopBanner({
         alt={logoAlt}
         width={180}
         height={70}
-        className={`h-11 md:h-14 w-auto object-contain${logoPreserveColors ? '' : ' brightness-0 invert'}`}
+        className={`h-10 md:h-12 w-auto max-w-[200px] md:max-w-[240px] object-contain object-left${logoPreserveColors ? '' : ' brightness-0 invert'}`}
         priority
       />
     </Link>

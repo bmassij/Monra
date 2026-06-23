@@ -10,6 +10,8 @@ export const IMAGES = {
     'https://static.wixstatic.com/media/b8fe10_d3b22fc71aa942fdb690bca9d5b8cb11~mv2.jpeg/v1/fill/w_1400,h_700,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8.jpeg',
   ceo:
     'https://static.wixstatic.com/media/b8fe10_2305b014cb2e4168b25028c8c5718e18~mv2.jpg/v1/fill/w_1400,h_700,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/654328443_27017350404534680_8802946859876802782_n.jpg',
+  logo:
+    'https://static.wixstatic.com/media/cc1283_dea11d631ca44c47a0b79d176bc721ca~mv2.png/v1/fill/w_664,h_256,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/246399639_4962935193736184_5264466054426007896_n.png',
   svpb:
     'https://static.wixstatic.com/media/b8fe10_0ae8b26d1183436998b77b2b89fa50c8~mv2.png/v1/fill/w_352,h_396,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Logo_SVPB_RGB_4x.png',
   keurmerk:

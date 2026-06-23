@@ -3,6 +3,8 @@ export const BRAND_LOGOS = {
   security: '/brand/security-logo.png',
   support: '/brand/support-logo.png',
   supportWordmark: '/brand/support-wordmark.webp',
+  /** PNG fallback als WebP niet laadt */
+  supportWordmarkFallback: '/brand/support-wordmark.png',
   eventsSecurity: '/brand/events-security-logo.png',
   eventsSecurityWordmark: '/brand/events-security-wordmark.png',
   groep: '/brand/groep-logo.png',
@@ -26,6 +28,7 @@ export const BRAND_LOGO_ALT: Record<BrandLogoKey, string> = {
   security: 'Monra Security',
   support: 'Monra Support',
   supportWordmark: 'Monra Support',
+  supportWordmarkFallback: 'Monra Support',
   eventsSecurity: 'Monra Events Security',
   eventsSecurityWordmark: 'Monra Events Security',
   groep: 'Monra Groep',

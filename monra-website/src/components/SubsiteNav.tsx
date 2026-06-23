@@ -13,6 +13,8 @@ type SubsiteNavProps = {
   siteName: string
   /** Volledig logo met tekst — familie-balk links */
   wordmarkSrc?: string
+  /** PNG/WebP fallback voor wordmarkSrc */
+  wordmarkFallbackSrc?: string
   /** Schild-icoon — navbar links (geen wordmark) */
   iconSrc?: string
   /** @deprecated Gebruik wordmarkSrc */
@@ -20,6 +22,8 @@ type SubsiteNavProps = {
   logoAlt?: string
   /** Behoud kleuren in familie-balk (bijv. groen Support-logo op donkergroene balk) */
   logoPreserveColors?: boolean
+  /** Tagline naast icoon in navbar (Wix nav-brand) */
+  navTagline?: string
   navLinks: SubsiteNavLink[]
   ctaLabel: string
   ctaHref: string
@@ -68,10 +72,12 @@ export function SubsiteNav({
   theme,
   siteName,
   wordmarkSrc,
+  wordmarkFallbackSrc,
   iconSrc,
   logoSrc,
   logoAlt,
   logoPreserveColors = theme === 'support',
+  navTagline,
   navLinks,
   ctaLabel,
   ctaHref,
@@ -79,8 +85,11 @@ export function SubsiteNav({
   familieLinks,
 }: SubsiteNavProps) {
   const [open, setOpen] = useState(false)
+  const [wordmarkFailed, setWordmarkFailed] = useState(false)
   const t = THEMES[theme]
-  const familieLogo = wordmarkSrc ?? logoSrc
+  const familieLogo = wordmarkFailed && wordmarkFallbackSrc
+    ? wordmarkFallbackSrc
+    : (wordmarkSrc ?? logoSrc)
   const navLogo = iconSrc
 
   return (
@@ -102,14 +111,17 @@ export function SubsiteNav({
             <Image
               src={familieLogo}
               alt={logoAlt ?? siteName}
-              width={180}
-              height={70}
+              width={240}
+              height={240}
               style={{
-                height: 48,
+                height: 50,
                 width: 'auto',
-                maxWidth: 240,
+                maxWidth: 220,
                 objectFit: 'contain',
                 ...(logoPreserveColors ? {} : { filter: 'brightness(0) invert(1)' }),
+              }}
+              onError={() => {
+                if (wordmarkFallbackSrc && !wordmarkFailed) setWordmarkFailed(true)
               }}
               priority
             />
@@ -179,16 +191,31 @@ export function SubsiteNav({
           gap: 16,
         }}>
           {/* Logo / sitenaam — schild-icoon, geen wordmark */}
-          <a href="#home" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
+          <a href="#home" style={{ display: 'flex', alignItems: 'center', gap: 14, textDecoration: 'none', flexShrink: 0 }}>
             {navLogo ? (
-              <Image
-                src={navLogo}
-                alt={logoAlt ?? siteName}
-                width={56}
-                height={56}
-                style={{ height: 50, width: 'auto', maxWidth: 56, objectFit: 'contain' }}
-                priority
-              />
+              <>
+                <Image
+                  src={navLogo}
+                  alt=""
+                  width={52}
+                  height={52}
+                  style={{ height: 50, width: 50, objectFit: 'contain', flexShrink: 0 }}
+                  priority
+                  aria-hidden
+                />
+                {theme === 'support' && (
+                  <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.2 }}>
+                    {navTagline && (
+                      <span style={{ fontSize: 9, fontWeight: 700, color: '#1ABFA1', textTransform: 'uppercase', letterSpacing: 2 }}>
+                        {navTagline}
+                      </span>
+                    )}
+                    <span style={{ fontSize: 15, fontWeight: 900, color: '#0E5C4B' }}>
+                      {siteName}
+                    </span>
+                  </div>
+                )}
+              </>
             ) : (
               <span style={{
                 fontSize: 18,

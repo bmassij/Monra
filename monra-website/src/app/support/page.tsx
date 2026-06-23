@@ -33,9 +33,11 @@ export default function SupportPage() {
         theme="support"
         siteName="Monra Support BV"
         wordmarkSrc={BRAND_LOGOS.supportWordmark}
+        wordmarkFallbackSrc={BRAND_LOGOS.supportWordmarkFallback}
         iconSrc={BRAND_ICONS.support}
         logoAlt={BRAND_LOGO_ALT.supportWordmark}
         logoPreserveColors
+        navTagline="Hospitality · Toezicht · Zorg"
         navLinks={SUPPORT_NAV}
         ctaLabel="Personeel aanvragen"
         ctaHref="mailto:info@monra-support.nl"

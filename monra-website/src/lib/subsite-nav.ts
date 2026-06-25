@@ -45,7 +45,7 @@ const FAMILIE_FROM_EVENTS_RAW: FamilieNavLink[] = [
 ]
 
 const FAMILIE_TOP_SECURITY_RAW: FamilieNavLink[] = [
-  { label: 'Monra Support', href: '/support', icon: BRAND_ICONS.support, hoverClass: 'hover:border-[#1ABFA1]/60 hover:text-[#1ABFA1]' },
+  { label: 'Monra Support', href: '/support', icon: BRAND_ICONS.support, hoverClass: 'hover:border-[#3CB138]/60 hover:text-[#3CB138]' },
   { label: 'Events Security', href: '/events-security', icon: BRAND_ICONS.eventsSecurity, hoverClass: 'hover:border-[#C9A84C]/60 hover:text-[#C9A84C]' },
   { label: 'Belgium', href: '/belgie', icon: BRAND_ICONS.belgium, hoverClass: 'hover:border-[#11CFE7]/60 hover:text-[#11CFE7]' },
   { label: 'Don Keijsjot', href: '/don-keijsjot', icon: BRAND_ICONS.donKeijsjot, hoverClass: 'hover:border-[#c45c26]/60 hover:text-[#c45c26]' },
@@ -54,7 +54,7 @@ const FAMILIE_TOP_SECURITY_RAW: FamilieNavLink[] = [
 
 const FAMILIE_TOP_BELGIUM_RAW: FamilieNavLink[] = [
   { label: 'Monra Security NL', href: '/', icon: BRAND_ICONS.security, hoverClass: 'hover:border-[#11CFE7]/60 hover:text-[#11CFE7]' },
-  { label: 'Monra Support', href: '/support', icon: BRAND_ICONS.support, hoverClass: 'hover:border-[#1ABFA1]/60 hover:text-[#1ABFA1]' },
+  { label: 'Monra Support', href: '/support', icon: BRAND_ICONS.support, hoverClass: 'hover:border-[#3CB138]/60 hover:text-[#3CB138]' },
   { label: 'Events Security', href: '/events-security', icon: BRAND_ICONS.eventsSecurity, hoverClass: 'hover:border-[#C9A84C]/60 hover:text-[#C9A84C]' },
   { label: 'Don Keijsjot', href: '/don-keijsjot', icon: BRAND_ICONS.donKeijsjot, hoverClass: 'hover:border-[#c45c26]/60 hover:text-[#c45c26]' },
   { label: 'Monra Groep', href: '/groep', icon: BRAND_ICONS.groep, hoverClass: 'hover:border-[#11CFE7]/60 hover:text-[#11CFE7]' },
@@ -62,7 +62,7 @@ const FAMILIE_TOP_BELGIUM_RAW: FamilieNavLink[] = [
 
 const FAMILIE_TOP_KEIJSJOT_RAW: FamilieNavLink[] = [
   { label: 'Monra Security NL', href: '/', icon: BRAND_ICONS.security, hoverClass: 'hover:border-[#11CFE7]/60 hover:text-[#11CFE7]' },
-  { label: 'Monra Support', href: '/support', icon: BRAND_ICONS.support, hoverClass: 'hover:border-[#1ABFA1]/60 hover:text-[#1ABFA1]' },
+  { label: 'Monra Support', href: '/support', icon: BRAND_ICONS.support, hoverClass: 'hover:border-[#3CB138]/60 hover:text-[#3CB138]' },
   { label: 'Events Security', href: '/events-security', icon: BRAND_ICONS.eventsSecurity, hoverClass: 'hover:border-[#C9A84C]/60 hover:text-[#C9A84C]' },
   { label: 'Belgium', href: '/belgie', icon: BRAND_ICONS.belgium, hoverClass: 'hover:border-[#11CFE7]/60 hover:text-[#11CFE7]' },
   { label: 'Monra Groep', href: '/groep', icon: BRAND_ICONS.groep, hoverClass: 'hover:border-[#11CFE7]/60 hover:text-[#11CFE7]' },

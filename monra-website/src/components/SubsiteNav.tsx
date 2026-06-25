@@ -33,21 +33,21 @@ type SubsiteNavProps = {
 
 const THEMES = {
   support: {
-    bannerBg: '#062E26',
-    bannerBorder: 'rgba(255,255,255,.12)',
-    bannerText: 'rgba(255,255,255,.75)',
-    pillBorder: 'rgba(255,255,255,.15)',
-    pillHover: '#1ABFA1',
-    navBg: '#fff',
-    navBorder: '#0E5C4B',
+    bannerBg: '#0c0c0c',
+    bannerBorder: 'rgba(185,255,130,.22)',
+    bannerText: 'rgba(247,255,242,.78)',
+    pillBorder: 'rgba(185,255,130,.24)',
+    pillHover: '#b9ff82',
+    navBg: '#f7fff2',
+    navBorder: '#3CB138',
     navBorderWidth: 3,
-    navText: '#0E5C4B',
-    navHover: '#1ABFA1',
-    ctaBg: '#0E5C4B',
-    ctaHover: '#1ABFA1',
-    ctaText: '#fff',
+    navText: '#2a8a2a',
+    navHover: '#3CB138',
+    ctaBg: '#3CB138',
+    ctaHover: '#2a8a2a',
+    ctaText: '#f7fff2',
     navHeight: 78,
-    navShadow: '0 2px 20px rgba(14,92,75,.12)',
+    navShadow: '0 2px 20px rgba(0,0,0,.08)',
   },
   events: {
     bannerBg: '#0a0a0a',
@@ -206,11 +206,11 @@ export function SubsiteNav({
                 {theme === 'support' && (
                   <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.2 }}>
                     {navTagline && (
-                      <span style={{ fontSize: 9, fontWeight: 700, color: '#1ABFA1', textTransform: 'uppercase', letterSpacing: 2 }}>
+                      <span style={{ fontSize: 9, fontWeight: 700, color: '#3CB138', textTransform: 'uppercase', letterSpacing: 2 }}>
                         {navTagline}
                       </span>
                     )}
-                    <span style={{ fontSize: 15, fontWeight: 900, color: '#0E5C4B' }}>
+                    <span style={{ fontSize: 15, fontWeight: 900, color: '#2a8a2a' }}>
                       {siteName}
                     </span>
                   </div>
@@ -329,7 +329,7 @@ export function SubsiteNav({
                   color: t.navText,
                   textDecoration: 'none',
                   padding: '10px 0',
-                  borderBottom: `1px solid ${theme === 'support' ? '#d1ede7' : t.navBorder}`,
+                  borderBottom: `1px solid ${theme === 'support' ? '#e9ffe0' : t.navBorder}`,
                   textTransform: 'uppercase',
                   letterSpacing: '0.08em',
                 }}

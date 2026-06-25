@@ -14,7 +14,7 @@ Dit document is het **projectgeheugen**. Update bij elke significante wijziging.
 | Route | Site | Chat AI | Thema |
 |-------|------|---------|-------|
 | `/` | Monra Security (NL) | ✅ `site="security"` | Blauw `#1A2B6D` / cyaan `#11CFE7` |
-| `/support` | Monra Support | ✅ `site="support"` | Groen `#0E5C4B` / `#1ABFA1` |
+| `/support` | Monra Support | ✅ `site="support"` | Origineel groen `#2a8a2a` / `#3CB138` + lichtgroen `#b9ff82` |
 | `/events-security` | Monra Events Security | ✅ `site="events"` | Donker / rood `#EF4444` |
 | `/belgie` | Monra Belgium | ✅ `site="belgium"` | Blauw (zelfde als NL) |
 | `/groep` | Monra Groep + quiz | ❌ | Multi-brand |
@@ -45,6 +45,11 @@ Dit document is het **projectgeheugen**. Update bij elke significante wijziging.
 |--------|--------------|
 | `8c2006a` | Unified AI chat op 3 sites, OpenRouter API |
 | `6734ca7` | Chat styling per brand, Vercel timeout fix |
+
+### 25 jun 2026 — Support styling (door agent)
+- Monra Support-kleuren afgestemd op originele `monra-support.nl` huisstijl:
+  `#0c0c0c`, `#2a8a2a`, `#3CB138`, `#b9ff82`, `#e9ffe0`, `#f7fff2`.
+- Bijgewerkt in `/support`, gedeelde subsite-navigatie, chataccenten en Monra-familie kaarten.
 
 ### Eerder jun 2026
 - Events Security: logo, slider, gallery (`fd81a0a`)

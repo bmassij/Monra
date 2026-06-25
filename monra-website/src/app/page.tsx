@@ -541,7 +541,7 @@ function MonraFamilie() {
           {/* SEO tekst met interne links naar zusterbedrijven */}
           <p className="text-slate-500 max-w-2xl mx-auto leading-relaxed text-sm">
             Naast professionele <strong className="text-[#1A2B6D]">evenementenbeveiliging</strong> biedt de Monra-groep ook{' '}
-            <a href="/support" className="text-[#0E5C4B] font-bold underline underline-offset-2 hover:text-[#1ABFA1] transition-colors">
+            <a href="/support" className="text-[#2a8a2a] font-bold underline underline-offset-2 hover:text-[#3CB138] transition-colors">
               hospitality- en zorgondersteuning via Monra Support
             </a>{' '}
             en{' '}
@@ -557,26 +557,26 @@ function MonraFamilie() {
 
           {/* Monra Support */}
           <a href="/support"
-            className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white hover:border-[#1ABFA1] hover:shadow-xl transition-all p-8">
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0E5C4B] to-[#1ABFA1] opacity-0 group-hover:opacity-100 transition-opacity" />
+            className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white hover:border-[#3CB138] hover:shadow-xl transition-all p-8">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#2a8a2a] to-[#3CB138] opacity-0 group-hover:opacity-100 transition-opacity" />
             <div className="flex items-start gap-5">
-              <div className="w-14 h-14 rounded-xl bg-[#0E5C4B]/8 border border-[#0E5C4B]/15 flex items-center justify-center text-2xl flex-shrink-0 group-hover:bg-[#1ABFA1]/15 transition-colors">
+              <div className="w-14 h-14 rounded-xl bg-[#e9ffe0] border border-[#b9ff82] flex items-center justify-center text-2xl flex-shrink-0 group-hover:bg-[#f7fff2] transition-colors">
                 🤝
               </div>
               <div>
-                <div className="text-[9px] font-bold text-[#1ABFA1] uppercase tracking-[3px] mb-1">Zusterorganisatie</div>
-                <h3 className="text-xl font-black text-[#0E5C4B] mb-2">Monra Support BV</h3>
+                <div className="text-[9px] font-bold text-[#3CB138] uppercase tracking-[3px] mb-1">Zusterorganisatie</div>
+                <h3 className="text-xl font-black text-[#2a8a2a] mb-2">Monra Support BV</h3>
                 <p className="text-slate-500 text-sm leading-relaxed mb-4">
                   Ondersteuningsprofessionals voor <strong className="text-slate-700">hospitality, toezicht en zorg</strong> — servicemedewerkers, gastheren, EHBO&apos;ers, BHV&apos;ers en brandwachten. Flexibel inzetbaar, altijd gastvrij.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-5">
                   {['Servicemedewerkers', 'BHV & EHBO', 'Brandwachten', 'Barpersoneel'].map(t => (
-                    <span key={t} className="text-[10px] font-semibold text-[#0E5C4B] bg-[#0E5C4B]/6 border border-[#0E5C4B]/15 px-2.5 py-1 rounded-full">
+                    <span key={t} className="text-[10px] font-semibold text-[#2a8a2a] bg-[#f7fff2] border border-[#e9ffe0] px-2.5 py-1 rounded-full">
                       {t}
                     </span>
                   ))}
                 </div>
-                <span className="inline-flex items-center gap-1.5 text-sm font-bold text-[#0E5C4B] group-hover:text-[#1ABFA1] transition-colors">
+                <span className="inline-flex items-center gap-1.5 text-sm font-bold text-[#2a8a2a] group-hover:text-[#3CB138] transition-colors">
                   Bezoek monra-support.nl →
                 </span>
               </div>

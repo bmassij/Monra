@@ -260,12 +260,12 @@ export default function EventsSecurityPage() {
                 </div>
               </Link>
               <Link href="/support" style={{
-                padding: '12px 20px', borderRadius: 6, border: '1px solid rgba(14,92,75,.5)',
-                background: 'rgba(14,60,40,.2)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10,
+                padding: '12px 20px', borderRadius: 6, border: '1px solid rgba(42,138,42,.5)',
+                background: 'rgba(42,138,42,.16)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10,
               }}>
                 <span style={{ fontSize: 18 }}>🤝</span>
                 <div style={{ textAlign: 'left' }}>
-                  <div style={{ fontSize: 12, fontWeight: 700, color: '#1ABFA1' }}>Monra Support</div>
+                  <div style={{ fontSize: 12, fontWeight: 700, color: '#3CB138' }}>Monra Support</div>
                   <div style={{ fontSize: 10, color: 'rgba(255,255,255,.3)' }}>Hospitality & zorg</div>
                 </div>
               </Link>

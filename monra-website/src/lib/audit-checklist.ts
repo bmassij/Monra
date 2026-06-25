@@ -37,7 +37,7 @@ export const AUDIT_TAKKEN: AuditTak[] = [
     id: 'support',
     naam: 'Monra Support',
     icon: '🤝',
-    kleur: '#0E5C4B',
+    kleur: '#2a8a2a',
     items: [
       { id: 'tel', label: 'Telefoonnummer' },
       { id: 'mail', label: 'E-mailadres', hint: 'info@monra-support.nl' },

@@ -35,7 +35,7 @@ const QUIZ_STAPPEN: QuizStep[] = [
 
 const UITKOMST: Record<string, { href: string; naam: string; kleur: string; uitleg: string }> = {
   security: { href: '/', naam: 'Monra Security', kleur: '#1A2B6D', uitleg: 'Gecertificeerde beveiliging voor elk evenement of locatie.' },
-  support: { href: '/support', naam: 'Monra Support', kleur: '#0E5C4B', uitleg: 'Hospitality, BHV, EHBO en servicepersoneel op maat.' },
+  support: { href: '/support', naam: 'Monra Support', kleur: '#2a8a2a', uitleg: 'Hospitality, BHV, EHBO en servicepersoneel op maat.' },
   events: { href: '/events-security', naam: 'Monra Events Security', kleur: '#8B6914', uitleg: 'Premium evenementenbeveiliging door Senna Monsieur.' },
   belgium: { href: '/belgie', naam: 'Monra Belgium', kleur: '#1A2B6D', uitleg: 'Evenementenbeveiliging in Vlaanderen, Brussel en Wallonië.' },
   onzeker: { href: '/', naam: 'Monra Security', kleur: '#1A2B6D', uitleg: 'Begin bij onze hoofdsite — wij helpen u verder.' },
@@ -270,16 +270,16 @@ export default function GroepPage() {
             }}
               onMouseEnter={e => {
                 e.currentTarget.style.transform = 'translateY(-4px)'
-                e.currentTarget.style.boxShadow = '0 12px 40px rgba(14,92,75,.15)'
+                e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,0,0,.10)'
               }}
               onMouseLeave={e => {
                 e.currentTarget.style.transform = 'translateY(0)'
                 e.currentTarget.style.boxShadow = 'none'
               }}
             >
-              <div style={{ background: 'linear-gradient(135deg, #062E26, #0E5C4B)', padding: '36px 32px', position: 'relative', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', top: -20, right: -20, width: 120, height: 120, borderRadius: '50%', background: 'rgba(26,191,161,.08)' }} />
-                <div style={{ fontSize: 10, fontWeight: 700, color: '#1ABFA1', textTransform: 'uppercase', letterSpacing: 3, marginBottom: 14 }}>
+              <div style={{ background: 'linear-gradient(135deg, #0c0c0c, #2a8a2a)', padding: '36px 32px', position: 'relative', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', top: -20, right: -20, width: 120, height: 120, borderRadius: '50%', background: 'rgba(185,255,130,.16)' }} />
+                <div style={{ fontSize: 10, fontWeight: 700, color: '#b9ff82', textTransform: 'uppercase', letterSpacing: 3, marginBottom: 14 }}>
                   Hospitality & Zorg · KVK 98875825
                 </div>
                 <div style={{ fontSize: 44, marginBottom: 12 }}>🤝</div>
@@ -291,10 +291,10 @@ export default function GroepPage() {
               <div style={{ padding: '24px 32px' }}>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 20 }}>
                   {['BHV & EHBO', 'Brandwachten', 'Barpersoneel', 'Toezichthouders'].map(t => (
-                    <span key={t} style={{ fontSize: 11, color: '#0E5C4B', background: '#f0faf7', borderRadius: 20, padding: '4px 12px' }}>{t}</span>
+                    <span key={t} style={{ fontSize: 11, color: '#2a8a2a', background: '#f7fff2', borderRadius: 20, padding: '4px 12px' }}>{t}</span>
                   ))}
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#0E5C4B', fontSize: 13, fontWeight: 800 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#2a8a2a', fontSize: 13, fontWeight: 800 }}>
                   Bezoek Monra Support <span>→</span>
                 </div>
               </div>

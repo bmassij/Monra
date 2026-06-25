@@ -462,8 +462,8 @@ export function getSiteTheme(site: MonraSite) {
       label: 'Monra Assistent',
     },
     support: {
-      primary: '#0E5C4B',
-      accent: '#1ABFA1',
+      primary: '#2a8a2a',
+      accent: '#3CB138',
       headerIcon: 'handshake' as const,
       label: 'Monra Assistent',
     },

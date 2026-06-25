@@ -14,7 +14,7 @@ Dit document is het **projectgeheugen**. Update bij elke significante wijziging.
 | Route | Site | Chat AI | Thema |
 |-------|------|---------|-------|
 | `/` | Monra Security (NL) | ✅ `site="security"` | Blauw `#1A2B6D` / cyaan `#11CFE7` |
-| `/support` | Monra Support | ✅ `site="support"` | Groen `#0E5C4B` / `#1ABFA1` |
+| `/support` | Monra Support | ✅ `site="support"` | Groen `#3CB138` / `#2A8A2A` |
 | `/events-security` | Monra Events Security | ✅ `site="events"` | Donker / rood `#EF4444` |
 | `/belgie` | Monra Belgium | ✅ `site="belgium"` | Blauw (zelfde als NL) |
 | `/groep` | Monra Groep + quiz | ❌ | Multi-brand |

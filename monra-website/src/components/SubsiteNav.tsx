@@ -20,7 +20,7 @@ type SubsiteNavProps = {
   /** @deprecated Gebruik wordmarkSrc */
   logoSrc?: string
   logoAlt?: string
-  /** Behoud kleuren in familie-balk (bijv. groen Support-logo op donkergroene balk) */
+  /** Behoud kleuren in familie-balk wanneer de achtergrond daar contrast voor heeft. */
   logoPreserveColors?: boolean
   /** Tagline naast icoon in navbar (Wix nav-brand) */
   navTagline?: string
@@ -33,21 +33,21 @@ type SubsiteNavProps = {
 
 const THEMES = {
   support: {
-    bannerBg: '#062E26',
-    bannerBorder: 'rgba(255,255,255,.12)',
-    bannerText: 'rgba(255,255,255,.75)',
-    pillBorder: 'rgba(255,255,255,.15)',
-    pillHover: '#1ABFA1',
+    bannerBg: '#3CB138',
+    bannerBorder: 'rgba(255,255,255,.2)',
+    bannerText: 'rgba(255,255,255,.9)',
+    pillBorder: 'rgba(255,255,255,.25)',
+    pillHover: '#fff',
     navBg: '#fff',
-    navBorder: '#0E5C4B',
+    navBorder: '#3CB138',
     navBorderWidth: 3,
-    navText: '#0E5C4B',
-    navHover: '#1ABFA1',
-    ctaBg: '#0E5C4B',
-    ctaHover: '#1ABFA1',
+    navText: '#14532D',
+    navHover: '#2A8A2A',
+    ctaBg: '#3CB138',
+    ctaHover: '#2A8A2A',
     ctaText: '#fff',
     navHeight: 78,
-    navShadow: '0 2px 20px rgba(14,92,75,.12)',
+    navShadow: '0 2px 20px rgba(60,177,56,.16)',
   },
   events: {
     bannerBg: '#0a0a0a',
@@ -76,7 +76,7 @@ export function SubsiteNav({
   iconSrc,
   logoSrc,
   logoAlt,
-  logoPreserveColors = theme === 'support',
+  logoPreserveColors = false,
   navTagline,
   navLinks,
   ctaLabel,
@@ -206,11 +206,11 @@ export function SubsiteNav({
                 {theme === 'support' && (
                   <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.2 }}>
                     {navTagline && (
-                      <span style={{ fontSize: 9, fontWeight: 700, color: '#1ABFA1', textTransform: 'uppercase', letterSpacing: 2 }}>
+                      <span style={{ fontSize: 9, fontWeight: 700, color: '#3CB138', textTransform: 'uppercase', letterSpacing: 2 }}>
                         {navTagline}
                       </span>
                     )}
-                    <span style={{ fontSize: 15, fontWeight: 900, color: '#0E5C4B' }}>
+                    <span style={{ fontSize: 15, fontWeight: 900, color: '#14532D' }}>
                       {siteName}
                     </span>
                   </div>
@@ -329,7 +329,7 @@ export function SubsiteNav({
                   color: t.navText,
                   textDecoration: 'none',
                   padding: '10px 0',
-                  borderBottom: `1px solid ${theme === 'support' ? '#d1ede7' : t.navBorder}`,
+                  borderBottom: `1px solid ${theme === 'support' ? '#BBF7D0' : t.navBorder}`,
                   textTransform: 'uppercase',
                   letterSpacing: '0.08em',
                 }}

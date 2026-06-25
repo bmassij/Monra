@@ -22,7 +22,7 @@ const BRAND_NAMES = [
 
 const BRAND_COLORS: Record<string, string> = {
   'Monra Security': '#1A2B6D',
-  'Monra Support': '#0E5C4B',
+  'Monra Support': '#3CB138',
   'Monra Events Security': '#DC2626',
   'Monra Belgium': '#1A2B6D',
   'Monra Groep': '#1A2B6D',
